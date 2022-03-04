@@ -1,1 +1,9 @@
 .idea
+cmake_install.cmake
+CMakeFiles
+Testing
+CMakeCache.txt
+secure-store
+secure-store.cbp
+Makefile
+cmake-build-debug
