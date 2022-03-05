@@ -7,6 +7,8 @@ namespace SecureStore
     {
     public:
         Config();
+    private:
+        void initialize();
     };
 }
 
