@@ -10,6 +10,8 @@
 #include <memory.h>
 
 int main() {
+    SecureStore::Config config;
+
     struct passwd *pw = getpwuid(getuid());
 
     const char *homedir = pw->pw_dir;
