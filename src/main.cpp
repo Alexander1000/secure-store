@@ -1,3 +1,5 @@
+#include <secure-store.h>
+
 #include <iostream>
 #include <unistd.h>
 #include <pwd.h>
