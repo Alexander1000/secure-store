@@ -26,12 +26,14 @@ namespace SecureStore
 
         struct stat info;
 
-        if (stat( str, &info ) != 0) {
+        if (stat(str, &info) != 0) {
             mkdir(str, 0777);
-        } else if (info.st_mode & S_IFDIR)
-            printf( "%s is a directory\n", str );
-        else
-            printf( "%s is no directory\n", str );
+        } else if (info.st_mode & S_IFDIR) {
+            printf("%s is a directory\n", str);
+        } else {
+            printf("%s is no directory\n", str);
+            return;
+        }
     }
 
     const char* Config::getHomeDir()
