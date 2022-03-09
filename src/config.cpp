@@ -3,6 +3,12 @@
 #include <unistd.h>
 #include <pwd.h>
 
+#include <iostream>
+#include <sys/types.h>
+#include <sys/stat.h>
+
+#include <memory.h>
+
 namespace SecureStore
 {
     Config::Config()
@@ -12,6 +18,20 @@ namespace SecureStore
 
     void Config::initialize()
     {
+        const char* homedir = this->getHomeDir();
+        int nLen = std::strlen(homedir) + 5; // homeDir + "/.sec"
+        char* str = new char[nLen];
+        memset(str, 0, nLen * sizeof(char));
+        sprintf(str, "%s/.sec", homedir);
+
+        struct stat info;
+
+        if (stat( str, &info ) != 0) {
+            mkdir(str, 0777);
+        } else if (info.st_mode & S_IFDIR)
+            printf( "%s is a directory\n", str );
+        else
+            printf( "%s is no directory\n", str );
     }
 
     const char* Config::getHomeDir()
