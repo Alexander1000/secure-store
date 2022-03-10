@@ -42,9 +42,20 @@ namespace SecureStore
         memset(configFile, 0, nLen * sizeof(char));
         sprintf(configFile, "%s/config", str);
 
-        std::fstream fs;
-        fs.open(configFile, std::ios_base::out);
-        fs.close();
+        struct stat configInfo;
+
+        if (stat(configFile, &configInfo) != 0) {
+            std::fstream fs;
+            fs.open(configFile, std::ios_base::out);
+            fs.close();
+        } else if (configInfo.st_mode & S_IFDIR) {
+            printf("%s is a directory\n", configFile);
+            return;
+        } else {
+            printf("%s is no directory\n", configFile);
+        }
+
+        printf("%s file exists, begin configure it\n", configFile);
     }
 
     const char* Config::getHomeDir()
