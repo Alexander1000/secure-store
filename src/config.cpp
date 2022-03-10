@@ -9,6 +9,8 @@
 
 #include <memory.h>
 
+#include <fstream>
+
 namespace SecureStore
 {
     Config::Config()
@@ -34,6 +36,15 @@ namespace SecureStore
             printf("%s is no directory\n", str);
             return;
         }
+
+        nLen += 7; // nLen + "/config"
+        char* configFile = new char[nLen];
+        memset(configFile, 0, nLen * sizeof(char));
+        sprintf(configFile, "%s/config", str);
+
+        std::fstream fs;
+        fs.open(configFile, std::ios_base::out);
+        fs.close();
     }
 
     const char* Config::getHomeDir()
