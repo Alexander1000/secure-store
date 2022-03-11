@@ -7,6 +7,9 @@ namespace SecureStore
     {
     public:
         Menu();
+
+    private:
+        char** pListElement;
     };
 }
 
