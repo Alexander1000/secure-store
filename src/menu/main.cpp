@@ -1,9 +1,12 @@
 #include <secure-store.h>
 
+#include <string>
+#include <list>
+
 namespace SecureStore
 {
     Menu::Menu()
     {
-        // do nothing
+        this->elements = new std::list<std::string>;
     }
 }

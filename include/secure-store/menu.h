@@ -1,6 +1,9 @@
 #ifndef H_SECURE_STORE_MENU
 #define H_SECURE_STORE_MENU
 
+#include <string>
+#include <list>
+
 namespace SecureStore
 {
     class Menu
@@ -9,7 +12,7 @@ namespace SecureStore
         Menu();
 
     private:
-        char** pListElement;
+        std::list<std::string>* elements;
     };
 }
 
