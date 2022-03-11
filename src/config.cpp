@@ -4,7 +4,6 @@
 #include <pwd.h>
 
 #include <iostream>
-#include <sys/types.h>
 #include <sys/stat.h>
 
 #include <memory.h>
@@ -56,6 +55,8 @@ namespace SecureStore
         }
 
         printf("%s file exists, begin configure it\n", configFile);
+
+        this->loadConfig(configFile);
     }
 
     const char* Config::getHomeDir()

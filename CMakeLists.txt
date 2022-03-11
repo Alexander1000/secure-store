@@ -5,6 +5,7 @@ project(secure-store)
 set(SECURE_STORE_SOURCES
     src/main.cpp
     src/config.cpp
+    src/config/load_config.cpp
 )
 
 include_directories(

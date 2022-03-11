@@ -9,6 +9,7 @@ namespace SecureStore
         Config();
     private:
         void initialize();
+        void loadConfig(const char*);
         const char* getHomeDir();
     };
 }
