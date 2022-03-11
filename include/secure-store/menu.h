@@ -11,6 +11,8 @@ namespace SecureStore
     public:
         Menu();
 
+        void addElement(const char*);
+
     private:
         std::list<std::string>* elements;
     };

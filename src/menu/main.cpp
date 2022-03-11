@@ -9,4 +9,9 @@ namespace SecureStore
     {
         this->elements = new std::list<std::string>;
     }
+
+    void Menu::addElement(const char *pElement)
+    {
+        this->elements->push_back(pElement);
+    }
 }
