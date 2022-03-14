@@ -7,6 +7,7 @@ set(SECURE_STORE_SOURCES
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp
+    src/db/main.cpp
 )
 
 include_directories(
