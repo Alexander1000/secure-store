@@ -8,6 +8,7 @@ set(SECURE_STORE_SOURCES
     src/config/load_config.cpp
     src/menu/main.cpp
     src/db/main.cpp
+    src/db/create_empty.cpp
 )
 
 include_directories(

@@ -7,6 +7,7 @@ namespace SecureStore
     {
     public:
         DB();
+        void createEmpty();
     };
 }
 
