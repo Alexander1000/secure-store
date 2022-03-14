@@ -3,5 +3,6 @@
 
 #include <secure-store/config.h>
 #include <secure-store/menu.h>
+#include <secure-store/db.h>
 
 #endif
