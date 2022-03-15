@@ -10,6 +10,7 @@ set(SECURE_STORE_SOURCES
     src/storage/main.cpp
     src/storage/create_empty.cpp
     src/storage/data_pack.cpp
+    src/storage/record.cpp
 )
 
 include_directories(
