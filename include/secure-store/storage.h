@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace SecureStore
+namespace SecureStore::Storage
 {
     class DB
     {

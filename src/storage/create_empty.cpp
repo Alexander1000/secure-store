@@ -1,6 +1,6 @@
 #include <secure-store.h>
 
-namespace SecureStore
+namespace SecureStore::Storage
 {
     void DB::createEmpty()
     {
