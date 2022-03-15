@@ -21,6 +21,9 @@ namespace SecureStore::Storage
         std::string* name;
         std::string* user;
         std::string* password;
+        std::string* comment;
+        std::list<std::string>* keywords;
+        uint64_t createTime;
     };
 }
 
