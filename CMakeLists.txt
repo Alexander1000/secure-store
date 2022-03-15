@@ -9,6 +9,7 @@ set(SECURE_STORE_SOURCES
     src/menu/main.cpp
     src/storage/main.cpp
     src/storage/create_empty.cpp
+    src/storage/data_pack.cpp
 )
 
 include_directories(
