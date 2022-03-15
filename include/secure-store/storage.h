@@ -34,6 +34,9 @@ namespace SecureStore::Storage
         int length;
         void* data;
     };
+
+    DataPack* pack(Record*);
+    Record* unpack(DataPack*);
 }
 
 #endif
