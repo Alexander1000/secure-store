@@ -25,6 +25,15 @@ namespace SecureStore::Storage
         std::list<std::string>* keywords;
         uint64_t createTime;
     };
+
+    class DataPack
+    {
+    public:
+        DataPack(int, void*);
+    private:
+        int length;
+        void* data;
+    };
 }
 
 #endif
