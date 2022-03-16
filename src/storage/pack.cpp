@@ -22,7 +22,7 @@ namespace SecureStore::Storage
             bitmask &= DATA_PACK_COMMENT;
         }
 
-        if (record->getKeywords() != nullptr && record->getKeywords()->size() > 0) {
+        if (record->getKeywords() != nullptr && !record->getKeywords()->empty()) {
             bitmask &= DATA_PACK_KEYWORDS;
         }
 
