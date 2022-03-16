@@ -35,6 +35,12 @@ namespace SecureStore::Storage
         uint64_t createTime;
     };
 
+    /**
+     * index_<name> = offset in heap + length
+     * +---------------------------------------------------------------------------------------+
+     * | id | index_name | index_user | index_password | index_comment | keywords | createTime |
+     * +---------------------------------------------------------------------------------------+
+     */
     class DataPack
     {
     public:
@@ -45,6 +51,7 @@ namespace SecureStore::Storage
     };
 
     DataPack* pack(Record*);
+
     Record* unpack(DataPack*);
 }
 
