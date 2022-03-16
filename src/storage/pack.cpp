@@ -10,8 +10,10 @@ namespace SecureStore::Storage
             return nullptr;
         }
 
-        int headerSize = 12; // id (16-bit) + index_name (16-bit) + createTime (64-bit)
+        uint16_t headerSize = 12; // id (16-bit) + index_name (16-bit) + createTime (64-bit)
         uint16_t heapSize = record->getName()->length();
+        uint8_t countKeywords = 0;
+
         uint8_t bitmask = 0;
 
         if (record->getUser() != nullptr) {
@@ -35,6 +37,7 @@ namespace SecureStore::Storage
         if (record->getKeywords() != nullptr && !record->getKeywords()->empty()) {
             bitmask |= DATA_PACK_KEYWORDS;
             headerSize += 1; // count_keywords (8-bit)
+            countKeywords = record->getKeywords()->size();
 
             for (auto & it : *record->getKeywords()) {
                 heapSize += it.length() + 1;
@@ -96,6 +99,14 @@ namespace SecureStore::Storage
             uint32_t index = currentHeaderOffset + (length << 16);
             memcpy((uint8_t*) headerData + currentHeaderOffset, &index, sizeof(uint32_t));
             currentHeaderOffset += 4;
+        }
+
+        if (countKeywords > 0) {
+            // write data in header
+            memcpy((uint8_t*) headerData + currentHeaderOffset, &countKeywords, sizeof(uint8_t));
+            currentHeaderOffset++;
+
+            // todo: save keywords in heap
         }
 
         return nullptr;
