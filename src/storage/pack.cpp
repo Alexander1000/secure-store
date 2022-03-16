@@ -76,6 +76,17 @@ namespace SecureStore::Storage
             currentHeaderOffset += 4;
         }
 
+        if (record->getPassword() != nullptr) {
+            uint16_t length = record->getPassword()->length();
+            // write heap
+            memcpy((uint8_t*) heapData + currentHeapOffset, record->getPassword()->c_str(), length * sizeof(char));
+            currentHeapOffset += length;
+            // write data in header
+            uint32_t indexPassword = currentHeaderOffset + (length << 16);
+            memcpy((uint8_t*) headerData + currentHeaderOffset, &indexPassword, sizeof(uint32_t));
+            currentHeaderOffset += 4;
+        }
+
         return nullptr;
     }
 }
