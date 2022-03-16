@@ -35,13 +35,12 @@ namespace SecureStore::Storage
         uint64_t createTime;
     };
 
-    const uint8_t DATA_PACK_USER = 0x1;
+    const uint8_t DATA_PACK_USER     = 0x1;
     const uint8_t DATA_PACK_PASSWORD = 0x2;
-    const uint8_t DATA_PACK_COMMENT = 0x4;
+    const uint8_t DATA_PACK_COMMENT  = 0x4;
     const uint8_t DATA_PACK_KEYWORDS = 0x8;
 
     /**
-     * index_<name> (32-bit) = offset in heap (16-bit) + length (16-bit)
      * bit mask signature (8-bit)
      * +------+----------+---------+----------+
      * | USER | PASSWORD | COMMENT | KEYWORDS |
@@ -51,6 +50,9 @@ namespace SecureStore::Storage
      * | id | index_name | index_user | index_password | index_comment | count_keywords | createTime |
      * +----+------------+------------+----------------+---------------+----------------+------------+
      * index_name (16-bit) - have always offset - 0, than skip it
+     * index_<name> (32-bit) = offset in heap (16-bit) + length (16-bit)
+     * count_keywords (8-bit)
+     * createTime (64-bit)
      * keyword tables (offsets in heap):
      * +----+----+----+
      * | k0 | k1 | k2 |
