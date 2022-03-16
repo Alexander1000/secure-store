@@ -17,7 +17,16 @@ namespace SecureStore::Storage
     public:
         Record();
 
+        uint32_t getId();
+        std::string* getName();
+        std::string* getUser();
+        std::string* getPassword();
+        std::string* getComment();
+        std::list<std::string>* getKeywords();
+        uint64_t getCreateTime();
+
     private:
+        uint32_t id;
         std::string* name;
         std::string* user;
         std::string* password;
