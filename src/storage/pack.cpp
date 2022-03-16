@@ -1,5 +1,7 @@
 #include <secure-store.h>
 
+#include <memory>
+
 namespace SecureStore::Storage
 {
     DataPack* pack(Record* record)
@@ -31,7 +33,8 @@ namespace SecureStore::Storage
             headerSize += 1; // count_keywords (8-bit)
         }
 
-        int size = 0; // 4 (id)
+        void* headerData = malloc(sizeof(uint8_t) * headerSize);
+
         return nullptr;
     }
 }
