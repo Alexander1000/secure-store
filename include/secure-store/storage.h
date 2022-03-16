@@ -36,8 +36,8 @@ namespace SecureStore::Storage
     };
 
     /**
-     * index_<name> = offset in heap + length
-     * bit mask signature
+     * index_<name> (32-bit) = offset in heap (16-bit) + length (16-bit)
+     * bit mask signature (8-bit)
      * +------+----------+---------+----------+
      * | USER | PASSWORD | COMMENT | KEYWORDS |
      * +------+----------+---------+----------+
@@ -45,6 +45,7 @@ namespace SecureStore::Storage
      * +----+------------+------------+----------------+---------------+----------------+------------+
      * | id | index_name | index_user | index_password | index_comment | count_keywords | createTime |
      * +----+------------+------------+----------------+---------------+----------------+------------+
+     * index_name (16-bit) - have always offset - 0, than skip it
      * keyword tables (offsets in heap):
      * +----+----+----+
      * | k0 | k1 | k2 |
