@@ -35,6 +35,11 @@ namespace SecureStore::Storage
         uint64_t createTime;
     };
 
+    const uint8_t DATA_PACK_USER = 0x1;
+    const uint8_t DATA_PACK_PASSWORD = 0x2;
+    const uint8_t DATA_PACK_COMMENT = 0x4;
+    const uint8_t DATA_PACK_KEYWORDS = 0x8;
+
     /**
      * index_<name> (32-bit) = offset in heap (16-bit) + length (16-bit)
      * bit mask signature (8-bit)
