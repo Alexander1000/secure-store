@@ -44,8 +44,8 @@ namespace SecureStore::Storage
         void* headerData = malloc(sizeof(uint8_t) * headerSize);
         void* heapData = malloc(sizeof(uint8_t) * heapSize);
 
-        int currentHeapOffset = 0;
-        int currentHeaderOffset = 0;
+        uint16_t currentHeapOffset = 0;
+        uint16_t currentHeaderOffset = 0;
 
         // write id
         {
@@ -66,12 +66,12 @@ namespace SecureStore::Storage
         }
 
         if (record->getUser() != nullptr) {
-            int length = record->getUser()->length();
+            uint16_t length = record->getUser()->length();
             // write heap
             memcpy((uint8_t*) heapData + currentHeapOffset, record->getUser()->c_str(), length * sizeof(char));
             currentHeapOffset += length;
             // write data in header
-            uint32_t indexUser = 0;
+            uint32_t indexUser = currentHeaderOffset + (length << 16);
             memcpy((uint8_t*) headerData + currentHeaderOffset, &indexUser, sizeof(uint32_t));
             currentHeaderOffset += 4;
         }
