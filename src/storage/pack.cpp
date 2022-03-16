@@ -11,19 +11,19 @@ namespace SecureStore::Storage
         uint8_t bitmask = 0;
 
         if (record->getUser() != nullptr) {
-            bitmask &= DATA_PACK_USER;
+            bitmask |= DATA_PACK_USER;
         }
 
         if (record->getPassword() != nullptr) {
-            bitmask &= DATA_PACK_PASSWORD;
+            bitmask |= DATA_PACK_PASSWORD;
         }
 
         if (record->getComment() != nullptr) {
-            bitmask &= DATA_PACK_COMMENT;
+            bitmask |= DATA_PACK_COMMENT;
         }
 
         if (record->getKeywords() != nullptr && !record->getKeywords()->empty()) {
-            bitmask &= DATA_PACK_KEYWORDS;
+            bitmask |= DATA_PACK_KEYWORDS;
         }
 
         int size = 0; // 4 (id)
