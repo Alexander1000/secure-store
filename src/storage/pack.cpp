@@ -109,6 +109,14 @@ namespace SecureStore::Storage
             // todo: save keywords in heap
         }
 
+        // write createTime
+        {
+            // write data in header
+            uint64_t createTime = record->getCreateTime();
+            memcpy((uint8_t*) headerData + currentHeaderOffset, &createTime, sizeof(uint64_t));
+            currentHeaderOffset += 8;
+        }
+
         return nullptr;
     }
 }
