@@ -17,7 +17,7 @@ namespace SecureStore::Storage
     public:
         Record();
 
-        uint32_t getId();
+        uint16_t getId();
         std::string* getName();
         std::string* getUser();
         std::string* getPassword();
@@ -26,7 +26,7 @@ namespace SecureStore::Storage
         uint64_t getCreateTime();
 
     private:
-        uint32_t id;
+        uint16_t id;
         std::string* name;
         std::string* user;
         std::string* password;

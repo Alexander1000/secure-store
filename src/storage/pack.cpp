@@ -35,6 +35,12 @@ namespace SecureStore::Storage
 
         void* headerData = malloc(sizeof(uint8_t) * headerSize);
 
+        // write id
+        {
+            uint16_t id = record->getId();
+            memcpy(headerData, &id, sizeof(uint16_t));
+        }
+
         return nullptr;
     }
 }

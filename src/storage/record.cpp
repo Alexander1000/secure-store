@@ -7,6 +7,7 @@ namespace SecureStore::Storage
 {
     Record::Record()
     {
+        this->id = 0;
         this->name = nullptr;
         this->user = nullptr;
         this->password = nullptr;
@@ -15,7 +16,7 @@ namespace SecureStore::Storage
         this->createTime = 0;
     }
 
-    uint32_t Record::getId()
+    uint16_t Record::getId()
     {
         return this->id;
     }
