@@ -49,6 +49,7 @@ namespace SecureStore::Storage
      * +----+------------+------------+----------------+---------------+----------------+------------+
      * | id | index_name | index_user | index_password | index_comment | count_keywords | createTime |
      * +----+------------+------------+----------------+---------------+----------------+------------+
+     * id (16-bit)
      * index_name (16-bit) - have always offset - 0, than skip it
      * index_<name> (32-bit) = offset in heap (16-bit) + length (16-bit)
      * count_keywords (8-bit)
