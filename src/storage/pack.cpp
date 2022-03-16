@@ -71,8 +71,8 @@ namespace SecureStore::Storage
             memcpy((uint8_t*) heapData + currentHeapOffset, record->getUser()->c_str(), length * sizeof(char));
             currentHeapOffset += length;
             // write data in header
-            uint32_t indexUser = currentHeaderOffset + (length << 16);
-            memcpy((uint8_t*) headerData + currentHeaderOffset, &indexUser, sizeof(uint32_t));
+            uint32_t index = currentHeaderOffset + (length << 16);
+            memcpy((uint8_t*) headerData + currentHeaderOffset, &index, sizeof(uint32_t));
             currentHeaderOffset += 4;
         }
 
@@ -82,8 +82,19 @@ namespace SecureStore::Storage
             memcpy((uint8_t*) heapData + currentHeapOffset, record->getPassword()->c_str(), length * sizeof(char));
             currentHeapOffset += length;
             // write data in header
-            uint32_t indexPassword = currentHeaderOffset + (length << 16);
-            memcpy((uint8_t*) headerData + currentHeaderOffset, &indexPassword, sizeof(uint32_t));
+            uint32_t index = currentHeaderOffset + (length << 16);
+            memcpy((uint8_t*) headerData + currentHeaderOffset, &index, sizeof(uint32_t));
+            currentHeaderOffset += 4;
+        }
+
+        if (record->getComment() != nullptr) {
+            uint16_t length = record->getComment()->length();
+            // write heap
+            memcpy((uint8_t*) heapData + currentHeapOffset, record->getComment()->c_str(), length * sizeof(char));
+            currentHeapOffset += length;
+            // write data in header
+            uint32_t index = currentHeaderOffset + (length << 16);
+            memcpy((uint8_t*) headerData + currentHeaderOffset, &index, sizeof(uint32_t));
             currentHeaderOffset += 4;
         }
 
