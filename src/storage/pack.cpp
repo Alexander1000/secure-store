@@ -42,6 +42,7 @@ namespace SecureStore::Storage
         }
 
         void* headerData = malloc(sizeof(uint8_t) * headerSize);
+        void* heapData = malloc(sizeof(uint8_t) * heapSize);
 
         // write id
         {
