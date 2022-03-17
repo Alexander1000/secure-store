@@ -25,6 +25,14 @@ namespace SecureStore::Storage
         std::list<std::string>* getKeywords();
         uint64_t getCreateTime();
 
+        void setId(uint16_t);
+        void setName(std::string*);
+        void setUser(std::string*);
+        void setPassword(std::string*);
+        void setComment(std::string*);
+        void setKeywords(std::list<std::string>*);
+        void setCreateTime(uint64_t);
+
     private:
         uint16_t id;
         std::string* name;

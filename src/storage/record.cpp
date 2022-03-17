@@ -50,4 +50,39 @@ namespace SecureStore::Storage
     {
         return this->createTime;
     }
+
+    void Record::setId(uint16_t id)
+    {
+        this->id = id;
+    }
+
+    void Record::setName(std::string *name)
+    {
+        this->name = name;
+    }
+
+    void Record::setUser(std::string *user)
+    {
+        this->user = user;
+    }
+
+    void Record::setPassword(std::string *password)
+    {
+        this->password = password;
+    }
+
+    void Record::setComment(std::string *comment)
+    {
+        this->comment = comment;
+    }
+
+    void Record::setKeywords(std::list<std::string> *keywords)
+    {
+        this->keywords = keywords;
+    }
+
+    void Record::setCreateTime(uint64_t createTime)
+    {
+        this->createTime = createTime;
+    }
 }
