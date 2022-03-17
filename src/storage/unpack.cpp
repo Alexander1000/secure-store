@@ -1,5 +1,7 @@
 #include <secure-store.h>
 
+#include <memory>
+
 namespace SecureStore::Storage
 {
     Record* unpack(DataPack* dataPack)
@@ -32,6 +34,10 @@ namespace SecureStore::Storage
         if ((bitmask & DATA_PACK_KEYWORDS) != 0) {
             headerSize++; // count_keywords (8-bit)
         }
+
+        void* headerData = malloc(sizeof(uint8_t) * headerSize);
+        memset(headerData, 0, sizeof(uint8_t) * headerSize);
+        memcpy(headerData, (uint8_t*) rawData + 1, sizeof(uint8_t) * headerSize);
 
         return nullptr;
     }
