@@ -58,9 +58,16 @@ include_directories(
     /usr/local/include
 )
 
+find_library(CPP_UNIT_TEST libcpp-unit-test.a)
+message(STATUS "Found cpp-unit-test: ${CPP_UNIT_TEST}")
+
 add_executable(
     ${PROJECT_NAME} tests/src/main.cpp
     ${SECURE_STORE_SOURCES_TEST}
 )
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+
+target_link_libraries(${PROJECT_NAME}
+    ${CPP_UNIT_TEST}
+)
