@@ -106,12 +106,26 @@ namespace SecureStore::Storage
             currentHeaderOffset += 4;
         }
 
-        if (countKeywords > 0) {
+        if (countKeywords > 0 && keywordsData != nullptr) {
             // write data in header
             memcpy((uint8_t*) headerData + currentHeaderOffset, &countKeywords, sizeof(uint8_t));
             currentHeaderOffset++;
 
-            // todo: save keywords in heap
+            uint16_t length;
+            uint16_t currentKeywordOffset = 0;
+
+            for (auto & it : *record->getKeywords()) {
+                // write keywords in heap
+                length = it.length();
+                memcpy((uint8_t*) heapData + currentHeapOffset, it.c_str(), length * sizeof(uint8_t));
+
+                // write keyword indexes
+                uint16_t index = currentHeapOffset;
+                memcpy((uint8_t*) keywordsData + currentKeywordOffset, &index, sizeof(uint16_t));
+
+                currentHeapOffset += length + 1;
+                currentKeywordOffset += 2;
+            }
         }
 
         // write createTime
