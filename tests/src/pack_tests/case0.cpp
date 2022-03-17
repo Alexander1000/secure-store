@@ -37,6 +37,8 @@ namespace SecureStoreTest
 
         SecureStore::Storage::DataPack *dataPack = SecureStore::Storage::pack(record);
 
+        SecureStore::Storage::Record *unpackedRecord = SecureStore::Storage::unpack(dataPack);
+
         t->finish();
 
         return t;
