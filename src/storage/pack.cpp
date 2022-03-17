@@ -151,6 +151,10 @@ namespace SecureStore::Storage
             currentHeaderOffset += 8;
         }
 
+        uint16_t totalSize = 1 + headerSize + countKeywords * sizeof(uint16_t) + heapSize;
+        void *rawData = malloc(sizeof(uint8_t) * totalSize);
+        memset(rawData, 0, sizeof(uint8_t) * totalSize);
+
         return nullptr;
     }
 }
