@@ -66,9 +66,11 @@ namespace SecureStore::Storage
             currentHeaderOffset += 2;
         }
 
+        uint16_t length;
+
         // write name
         {
-            int length = record->getName()->length();
+            length = record->getName()->length();
 
             // write data in heap
             memcpy(heapData, record->getName()->c_str(), sizeof(char) * length);
@@ -80,7 +82,7 @@ namespace SecureStore::Storage
         }
 
         if (record->getUser() != nullptr) {
-            uint16_t length = record->getUser()->length();
+            length = record->getUser()->length();
 
             // write heap
             memcpy((uint8_t*) heapData + currentHeapOffset, record->getUser()->c_str(), length * sizeof(char));
@@ -94,7 +96,7 @@ namespace SecureStore::Storage
         }
 
         if (record->getPassword() != nullptr) {
-            uint16_t length = record->getPassword()->length();
+            length = record->getPassword()->length();
 
             // write heap
             memcpy((uint8_t*) heapData + currentHeapOffset, record->getPassword()->c_str(), length * sizeof(char));
@@ -108,7 +110,7 @@ namespace SecureStore::Storage
         }
 
         if (record->getComment() != nullptr) {
-            uint16_t length = record->getComment()->length();
+            length = record->getComment()->length();
 
             // write heap
             memcpy((uint8_t*) heapData + currentHeapOffset, record->getComment()->c_str(), length * sizeof(char));
@@ -126,7 +128,6 @@ namespace SecureStore::Storage
             memcpy((uint8_t*) headerData + currentHeaderOffset, &countKeywords, sizeof(uint8_t));
             currentHeaderOffset++;
 
-            uint16_t length;
             uint16_t currentKeywordOffset = 0;
 
             for (auto & it : *record->getKeywords()) {
