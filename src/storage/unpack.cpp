@@ -11,6 +11,9 @@ namespace SecureStore::Storage
             return nullptr;
         }
 
+        uint8_t bitmask;
+        memcpy(&bitmask, rawData, sizeof(uint8_t));
+
         return nullptr;
     }
 }
