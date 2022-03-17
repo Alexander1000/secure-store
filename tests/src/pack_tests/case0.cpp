@@ -29,6 +29,8 @@ namespace SecureStoreTest
         record->setComment(&comment);
 
         std::list<std::string> keywords;
+        keywords.emplace_back("system");
+        keywords.emplace_back("critical");
         record->setKeywords(&keywords);
 
         record->setCreateTime(187766224);
