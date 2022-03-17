@@ -50,6 +50,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 set(SECURE_STORE_SOURCES_TEST
     tests/src/main.cpp
     ${SECURE_STORE_SOURCES_SHARED}
+    tests/src/pack_tests/case0.cpp
 )
 
 include_directories(
