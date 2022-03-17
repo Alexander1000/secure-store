@@ -160,6 +160,14 @@ namespace SecureStore::Storage
         // write header
         memcpy((uint8_t*) rawData + 1, headerData, headerSize);
 
+        if (countKeywords > 0 && keywordsData != nullptr) {
+            // write keyword indexes
+            memcpy((uint8_t*) rawData + 1 + headerSize, keywordsData, sizeof(uint16_t) * countKeywords);
+        }
+
+        // write heap
+        memcpy((uint8_t*) rawData + 1 + headerSize + sizeof(uint16_t) * countKeywords, heapData, heapSize);
+
         DataPack* pack;
         pack = new DataPack(totalSize, rawData);
 
