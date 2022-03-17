@@ -6,8 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(SECURE_STORE_SOURCES
-    src/main.cpp
+set(SECURE_STORE_SOURCES_SHARED
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp
@@ -16,6 +15,11 @@ set(SECURE_STORE_SOURCES
     src/storage/data_pack.cpp
     src/storage/pack.cpp
     src/storage/record.cpp
+)
+
+set(SECURE_STORE_SOURCES
+    src/main.cpp
+    ${SECURE_STORE_SOURCES_SHARED}
 )
 
 include_directories(
@@ -27,3 +31,36 @@ add_executable(
     ${PROJECT_NAME} src/main.cpp
     ${SECURE_STORE_SOURCES}
 )
+
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
+
+#############
+### TESTS ###
+#############
+
+project(secure-store-test)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+
+set(SECURE_STORE_SOURCES_TEST
+    tests/src/main.cpp
+    ${SECURE_STORE_SOURCES_SHARED}
+)
+
+include_directories(
+    include
+    tests/include
+    /usr/local/include
+)
+
+add_executable(
+    ${PROJECT_NAME} tests/src/main.cpp
+    ${SECURE_STORE_SOURCES_TEST}
+)
+
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
