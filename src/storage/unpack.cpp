@@ -2,7 +2,7 @@
 
 namespace SecureStore::Storage
 {
-    Record* unpack(DataPack*)
+    Record* unpack(DataPack* dataPack)
     {
         return nullptr;
     }

@@ -75,6 +75,9 @@ namespace SecureStore::Storage
     {
     public:
         DataPack(int, void*);
+
+        int getLength();
+        void* getData();
     private:
         int length;
         void* data;
