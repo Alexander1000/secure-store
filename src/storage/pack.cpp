@@ -171,6 +171,16 @@ namespace SecureStore::Storage
         DataPack* pack;
         pack = new DataPack(totalSize, rawData);
 
+        // free allocated memory
+
+        free(headerData);
+
+        if (keywordsData != nullptr) {
+            free(keywordsData);
+        }
+
+        free(heapData);
+
         return pack;
     }
 }
