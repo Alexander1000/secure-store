@@ -39,8 +39,12 @@ namespace SecureStore::Storage
         memset(headerData, 0, sizeof(uint8_t) * headerSize);
         memcpy(headerData, (uint8_t*) rawData + 1, sizeof(uint8_t) * headerSize);
 
+        uint16_t id;
+        memcpy(&id, headerData, sizeof(uint16_t));
+
         Record* record;
         record = new Record;
+        record->setId(id);
 
         return record;
     }
