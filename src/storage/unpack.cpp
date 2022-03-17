@@ -39,6 +39,9 @@ namespace SecureStore::Storage
         memset(headerData, 0, sizeof(uint8_t) * headerSize);
         memcpy(headerData, (uint8_t*) rawData + 1, sizeof(uint8_t) * headerSize);
 
-        return nullptr;
+        Record* record;
+        record = new Record;
+
+        return record;
     }
 }
