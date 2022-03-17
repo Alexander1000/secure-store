@@ -155,6 +155,14 @@ namespace SecureStore::Storage
         void *rawData = malloc(sizeof(uint8_t) * totalSize);
         memset(rawData, 0, sizeof(uint8_t) * totalSize);
 
-        return nullptr;
+        // write bit mask
+        memcpy(rawData, &bitmask, sizeof(uint8_t));
+        // write header
+        memcpy((uint8_t*) rawData + 1, headerData, headerSize);
+
+        DataPack* pack;
+        pack = new DataPack(totalSize, rawData);
+
+        return pack;
     }
 }
