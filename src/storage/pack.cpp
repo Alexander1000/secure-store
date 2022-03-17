@@ -45,11 +45,15 @@ namespace SecureStore::Storage
         }
 
         void* headerData = malloc(sizeof(uint8_t) * headerSize);
+        memset(headerData, 0, sizeof(uint8_t) * headerSize);
+
         void* keywordsData = nullptr;
         void* heapData = malloc(sizeof(uint8_t) * heapSize);
+        memset(heapData, 0, sizeof(uint8_t) * heapSize);
 
         if (countKeywords > 0) {
             keywordsData = malloc(countKeywords * sizeof(uint16_t));
+            memset(keywordsData, 0, countKeywords * sizeof(uint16_t));
         }
 
         uint16_t currentHeapOffset = 0;
