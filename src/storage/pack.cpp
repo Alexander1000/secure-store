@@ -65,9 +65,11 @@ namespace SecureStore::Storage
         // write name
         {
             int length = record->getName()->length();
+
             // write data in heap
             memcpy(heapData, record->getName()->c_str(), sizeof(char) * length);
             currentHeapOffset += length;
+
             // write data in header
             memcpy((uint8_t*) headerData + currentHeaderOffset, &length, sizeof(uint16_t));
             currentHeaderOffset += 2;
@@ -75,34 +77,43 @@ namespace SecureStore::Storage
 
         if (record->getUser() != nullptr) {
             uint16_t length = record->getUser()->length();
+
             // write heap
             memcpy((uint8_t*) heapData + currentHeapOffset, record->getUser()->c_str(), length * sizeof(char));
-            currentHeapOffset += length;
+
             // write data in header
-            uint32_t index = currentHeaderOffset + (length << 16);
+            uint32_t index = currentHeapOffset + (length << 16);
             memcpy((uint8_t*) headerData + currentHeaderOffset, &index, sizeof(uint32_t));
+
+            currentHeapOffset += length;
             currentHeaderOffset += 4;
         }
 
         if (record->getPassword() != nullptr) {
             uint16_t length = record->getPassword()->length();
+
             // write heap
             memcpy((uint8_t*) heapData + currentHeapOffset, record->getPassword()->c_str(), length * sizeof(char));
-            currentHeapOffset += length;
+
             // write data in header
-            uint32_t index = currentHeaderOffset + (length << 16);
+            uint32_t index = currentHeapOffset + (length << 16);
             memcpy((uint8_t*) headerData + currentHeaderOffset, &index, sizeof(uint32_t));
+
+            currentHeapOffset += length;
             currentHeaderOffset += 4;
         }
 
         if (record->getComment() != nullptr) {
             uint16_t length = record->getComment()->length();
+
             // write heap
             memcpy((uint8_t*) heapData + currentHeapOffset, record->getComment()->c_str(), length * sizeof(char));
-            currentHeapOffset += length;
+
             // write data in header
-            uint32_t index = currentHeaderOffset + (length << 16);
+            uint32_t index = currentHeapOffset + (length << 16);
             memcpy((uint8_t*) headerData + currentHeaderOffset, &index, sizeof(uint32_t));
+
+            currentHeapOffset += length;
             currentHeaderOffset += 4;
         }
 
