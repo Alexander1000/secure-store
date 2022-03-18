@@ -44,6 +44,22 @@ namespace SecureStoreTest
         CppUnitTest::assertEquals(t, *record->getUser(), *unpackedRecord->getUser());
         CppUnitTest::assertEquals(t, *record->getPassword(), *unpackedRecord->getPassword());
         CppUnitTest::assertEquals(t, *record->getComment(), *unpackedRecord->getComment());
+
+        CppUnitTest::assertEquals(t, (int) record->getKeywords()->size(), (int) unpackedRecord->getKeywords()->size());
+
+        for (auto & keyword : *record->getKeywords()) {
+            bool found = false;
+
+            for (auto & unpackedKeyword : *unpackedRecord->getKeywords()) {
+                if (keyword == unpackedKeyword) {
+                    found = true;
+                    break;
+                }
+            }
+
+            CppUnitTest::assertTrue(t, found);
+        }
+
         CppUnitTest::assertEquals(t, (int) record->getCreateTime(), (int) unpackedRecord->getCreateTime());
 
         t->finish();
