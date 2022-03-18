@@ -13,22 +13,28 @@ namespace SecureStore::Storage
             return nullptr;
         }
 
+        // read bitmask
         uint8_t bitmask;
         memcpy(&bitmask, rawData, sizeof(uint8_t));
 
         // id (16-bit) + index_name (16-bit) + ... + createTime (64-bit)
         uint16_t headerSize = 12;
 
+        uint16_t offsetKeywords = 4; // id (16-bit) + index_name (16-bit)
+
         if ((bitmask & DATA_PACK_USER) != 0) {
             headerSize += 4; // index_user (32-bit)
+            offsetKeywords += 4;
         }
 
         if ((bitmask & DATA_PACK_PASSWORD) != 0) {
             headerSize += 4; // index_password (32-bit)
+            offsetKeywords += 4;
         }
 
         if ((bitmask & DATA_PACK_COMMENT) != 0) {
             headerSize += 4; // index_comment (32-bit)
+            offsetKeywords += 4;
         }
 
         if ((bitmask & DATA_PACK_KEYWORDS) != 0) {
@@ -39,6 +45,17 @@ namespace SecureStore::Storage
         void* headerData = malloc(sizeof(uint8_t) * headerSize);
         memset(headerData, 0, sizeof(uint8_t) * headerSize);
         memcpy(headerData, (uint8_t*) rawData + 1, sizeof(uint8_t) * headerSize);
+
+        // read keywords data
+        void* keywordsIndex = nullptr;
+        uint8_t countKeywords = 0;
+        if ((bitmask & DATA_PACK_KEYWORDS) != 0) {
+            memcpy(&countKeywords, (uint8_t*) headerData + offsetKeywords, sizeof(uint8_t));
+            if (countKeywords > 0) {
+                keywordsIndex = malloc(countKeywords * sizeof(uint16_t));
+                memset(keywordsIndex, 0, countKeywords * sizeof(uint16_t));
+            }
+        }
 
         // id
         uint16_t id;
