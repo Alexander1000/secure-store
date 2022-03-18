@@ -41,10 +41,13 @@ namespace SecureStore::Storage
             headerSize++; // count_keywords (8-bit)
         }
 
+        uint16_t rawOffset = 1; // skip bitmask
+
         // read header
         void* headerData = malloc(sizeof(uint8_t) * headerSize);
         memset(headerData, 0, sizeof(uint8_t) * headerSize);
         memcpy(headerData, (uint8_t*) rawData + 1, sizeof(uint8_t) * headerSize);
+        rawOffset += headerSize; // skip header block
 
         // read keywords data
         void* keywordsIndex = nullptr;
@@ -54,6 +57,8 @@ namespace SecureStore::Storage
             if (countKeywords > 0) {
                 keywordsIndex = malloc(countKeywords * sizeof(uint16_t));
                 memset(keywordsIndex, 0, countKeywords * sizeof(uint16_t));
+                memcpy(keywordsIndex, (uint8_t*) rawData + rawOffset, countKeywords * sizeof(uint16_t));
+                rawOffset += countKeywords * sizeof(uint16_t); // skip keywords block
             }
         }
 
