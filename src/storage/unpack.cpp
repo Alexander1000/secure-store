@@ -35,15 +35,21 @@ namespace SecureStore::Storage
             headerSize++; // count_keywords (8-bit)
         }
 
+        // read header
         void* headerData = malloc(sizeof(uint8_t) * headerSize);
         memset(headerData, 0, sizeof(uint8_t) * headerSize);
         memcpy(headerData, (uint8_t*) rawData + 1, sizeof(uint8_t) * headerSize);
 
+        // id
         uint16_t id;
         memcpy(&id, headerData, sizeof(uint16_t));
 
+        uint16_t currentOffsetHeader = 2;
+
+        // read name
         uint16_t nameLength;
-        memcpy(&nameLength, (uint8_t*) headerData + 2, sizeof(uint16_t));
+        memcpy(&nameLength, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
+        currentOffsetHeader += 2;
 
         Record* record;
         record = new Record;
