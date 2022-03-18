@@ -62,6 +62,11 @@ namespace SecureStore::Storage
             }
         }
 
+        // read heap
+        uint16_t heapSize = length - rawOffset;
+        void* heapData = malloc(sizeof(uint8_t) * heapSize);
+        memcpy(heapData, (uint8_t*) rawData + rawOffset, heapSize * sizeof(uint8_t));
+
         // id
         uint16_t id;
         memcpy(&id, headerData, sizeof(uint16_t));
