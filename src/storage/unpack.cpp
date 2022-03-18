@@ -152,6 +152,16 @@ namespace SecureStore::Storage
             free(str);
         }
 
+        if ((bitmask & DATA_PACK_KEYWORDS) != 0) {
+            // skip key, because already read
+            currentOffsetHeader++;
+        }
+
+        // read createTime
+        uint64_t createTime;
+        memcpy(&createTime, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint64_t));
+        record->setCreateTime(createTime);
+
         return record;
     }
 }
