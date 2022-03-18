@@ -152,9 +152,28 @@ namespace SecureStore::Storage
             free(str);
         }
 
+        // read keywords
         if ((bitmask & DATA_PACK_KEYWORDS) != 0) {
             // skip key, because already read
             currentOffsetHeader++;
+
+            if (countKeywords > 0) {
+                std::list<std::string>* keywords;
+                keywords = new std::list<std::string>;
+
+                for (uint8_t i  = 0; i < countKeywords; i++) {
+                    // unpack offset in heap
+                    uint16_t offset;
+                    memcpy(&offset, (uint8_t*) keywordsIndex + i * 2, sizeof(uint16_t));
+                    uint16_t length = std::strlen((char*) heapData + offset);
+                    char* str = (char*) malloc((length + 1) * sizeof(char));
+                    memset(str, 0, (length + 1) * sizeof(char));
+                    memcpy(str, (uint8_t*) heapData + offset, length * sizeof(uint8_t));
+                    keywords->emplace_back(std::string(str));
+                }
+
+                record->setKeywords(keywords);
+            }
         }
 
         // read createTime
