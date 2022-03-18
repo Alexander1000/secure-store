@@ -37,6 +37,9 @@ namespace SecureStoreTest
 
         SecureStore::Storage::DataPack *dataPack = SecureStore::Storage::pack(record);
 
+        CppUnitTest::assertNotNull(t, dataPack);
+        CppUnitTest::assertEquals(t, 116, dataPack->getLength());
+
         SecureStore::Storage::Record *unpackedRecord = SecureStore::Storage::unpack(dataPack);
 
         CppUnitTest::assertEquals(t, record->getId(), unpackedRecord->getId());
