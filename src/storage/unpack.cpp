@@ -67,9 +67,13 @@ namespace SecureStore::Storage
         void* heapData = malloc(sizeof(uint8_t) * heapSize);
         memcpy(heapData, (uint8_t*) rawData + rawOffset, heapSize * sizeof(uint8_t));
 
+        Record* record;
+        record = new Record;
+
         // id
         uint16_t id;
         memcpy(&id, headerData, sizeof(uint16_t));
+        record->setId(id);
 
         uint16_t currentOffsetHeader = 2;
 
@@ -87,11 +91,17 @@ namespace SecureStore::Storage
             uint16_t userLength;
             memcpy(&userLength, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
             currentOffsetHeader += 2;
-        }
 
-        Record* record;
-        record = new Record;
-        record->setId(id);
+            char* strUser = (char*) malloc(sizeof(uint8_t) * (userLength + 1));
+            memset(strUser, 0, (userLength + 1) * sizeof(uint8_t));
+            memcpy(strUser, (uint8_t*) heapData + userOffset, userLength);
+
+            std::string* sUser;
+            sUser = new std::string(strUser);
+            record->setUser(sUser);
+
+            free(strUser);
+        }
 
         return record;
     }
