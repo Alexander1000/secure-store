@@ -110,6 +110,27 @@ namespace SecureStore::Storage
             free(strUser);
         }
 
+        // read password_index
+        if ((bitmask & DATA_PACK_PASSWORD) != 0) {
+            uint16_t heapOffset;
+            memcpy(&heapOffset, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
+            currentOffsetHeader += 2;
+
+            uint16_t heapLength;
+            memcpy(&heapLength, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
+            currentOffsetHeader += 2;
+
+            char* str = (char*) malloc(sizeof(uint8_t) * (heapLength + 1));
+            memset(str, 0, (heapLength + 1) * sizeof(uint8_t));
+            memcpy(str, (uint8_t*) heapData + heapOffset, heapLength);
+
+            std::string* sPassword;
+            sPassword = new std::string(str);
+            record->setPassword(sPassword);
+
+            free(str);
+        }
+
         return record;
     }
 }
