@@ -131,6 +131,27 @@ namespace SecureStore::Storage
             free(str);
         }
 
+        // read comment_index
+        if ((bitmask & DATA_PACK_COMMENT) != 0) {
+            uint16_t heapOffset;
+            memcpy(&heapOffset, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
+            currentOffsetHeader += 2;
+
+            uint16_t heapLength;
+            memcpy(&heapLength, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
+            currentOffsetHeader += 2;
+
+            char* str = (char*) malloc(sizeof(uint8_t) * (heapLength + 1));
+            memset(str, 0, (heapLength + 1) * sizeof(uint8_t));
+            memcpy(str, (uint8_t*) heapData + heapOffset, heapLength);
+
+            std::string* sComment;
+            sComment = new std::string(str);
+            record->setComment(sComment);
+
+            free(str);
+        }
+
         return record;
     }
 }
