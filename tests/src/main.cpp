@@ -4,7 +4,7 @@
 int main() {
     CppUnitTest::TestSuite testSuite;
 
-    testSuite.addTestCase(SecureStoreTest::testPack_case0());
+    testSuite.addTestCase(SecureStoreTest::testPackAndUnpack_FullQualifiedData_Case0());
 
     testSuite.printTotal();
 

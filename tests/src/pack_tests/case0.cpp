@@ -6,7 +6,7 @@
 
 namespace SecureStoreTest
 {
-    CppUnitTest::TestCase* testPack_case0()
+    CppUnitTest::TestCase* testPackAndUnpack_FullQualifiedData_Case0()
     {
         CppUnitTest::TestCase* t = nullptr;
         t = new CppUnitTest::TestCase("test case0");
