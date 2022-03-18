@@ -39,6 +39,13 @@ namespace SecureStoreTest
 
         SecureStore::Storage::Record *unpackedRecord = SecureStore::Storage::unpack(dataPack);
 
+        CppUnitTest::assertEquals(t, record->getId(), unpackedRecord->getId());
+        CppUnitTest::assertEquals(t, *record->getName(), *unpackedRecord->getName());
+        CppUnitTest::assertEquals(t, *record->getUser(), *unpackedRecord->getUser());
+        CppUnitTest::assertEquals(t, *record->getPassword(), *unpackedRecord->getPassword());
+        CppUnitTest::assertEquals(t, *record->getComment(), *unpackedRecord->getComment());
+        CppUnitTest::assertEquals(t, (int) record->getCreateTime(), (int) unpackedRecord->getCreateTime());
+
         t->finish();
 
         return t;
