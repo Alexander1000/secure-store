@@ -6,6 +6,7 @@
 namespace SecureStoreTest
 {
     CppUnitTest::TestCase* testPackAndUnpack_FullQualifiedData_Case0();
+    CppUnitTest::TestCase* testPackAndUnpack_MinimumData();
 }
 
 #endif
