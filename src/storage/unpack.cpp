@@ -51,6 +51,17 @@ namespace SecureStore::Storage
         memcpy(&nameLength, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
         currentOffsetHeader += 2;
 
+        // read user_index
+        if ((bitmask & DATA_PACK_USER) != 0) {
+            uint16_t userOffset;
+            memcpy(&userOffset, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
+            currentOffsetHeader += 2;
+
+            uint16_t userLength;
+            memcpy(&userLength, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
+            currentOffsetHeader += 2;
+        }
+
         Record* record;
         record = new Record;
         record->setId(id);
