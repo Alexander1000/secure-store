@@ -81,6 +81,13 @@ namespace SecureStore::Storage
         uint16_t nameLength;
         memcpy(&nameLength, (uint8_t*) headerData + currentOffsetHeader, sizeof(uint16_t));
         currentOffsetHeader += 2;
+        char* strName = (char*) malloc(sizeof(uint8_t) * (nameLength + 1));
+        memset(strName, 0, (nameLength + 1) * sizeof(uint8_t));
+        memcpy(strName, heapData, nameLength * sizeof(uint8_t));
+        std::string* sName;
+        sName = new std::string(strName);
+        free(strName);
+        record->setName(sName);
 
         // read user_index
         if ((bitmask & DATA_PACK_USER) != 0) {
