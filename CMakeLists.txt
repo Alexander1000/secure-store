@@ -16,6 +16,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/storage/pack.cpp
     src/storage/unpack.cpp
     src/storage/record.cpp
+    src/storage/db_record.cpp
 )
 
 set(SECURE_STORE_SOURCES
