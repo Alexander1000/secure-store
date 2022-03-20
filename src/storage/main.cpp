@@ -17,12 +17,16 @@ namespace SecureStore::Storage
 
     DataPack* DB::pack()
     {
-        std::list<DataPack*> dbRecords;
+        std::list<DataPack*> dataPackList;
+
+        uint16_t heapSize = 0;
 
         // pack all secrets
         for (auto & dbRecord : *this->records) {
             if (dbRecord->getRecord() != nullptr) {
-                dbRecords.emplace_back(SecureStore::Storage::pack(dbRecord->getRecord()));
+                DataPack* dp = SecureStore::Storage::pack(dbRecord->getRecord());
+                dataPackList.emplace_back(dp);
+                heapSize += dp->getLength();
             }
         }
 
