@@ -36,11 +36,15 @@ namespace SecureStore::Storage
         uint64_t createTime;
     };
 
+    const uint8_t DB_RECORD_STATUS_ACTIVE = 0;
+
     class DBRecord
     {
     public:
         DBRecord();
-        DBRecord(Record*);
+        explicit DBRecord(Record*);
+        Record* getRecord();
+        uint8_t getStatus();
 
     private:
         Record* record;
