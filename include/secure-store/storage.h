@@ -5,6 +5,12 @@
 
 namespace SecureStore::Storage
 {
+    /**
+     * signature:
+     * +--------+-----------+-----------+
+     * | FORMAT | VER_MAJOR | VER_MINOR |
+     * +--------+-----------+-----------+
+     */
     class DB
     {
     public:
