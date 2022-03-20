@@ -6,10 +6,30 @@
 namespace SecureStore::Storage
 {
     /**
+     * Format stored data
+     * ===================================================
      * signature:
-     * +--------+-----------+-----------+
-     * | FORMAT | VER_MAJOR | VER_MINOR |
-     * +--------+-----------+-----------+
+     * +--------+-----------+-----------+----------+
+     * | FORMAT | VER_MAJOR | VER_MINOR | CHECKSUM |
+     * +--------+-----------+-----------+----------+
+     * format (32-bit) - simple identifier
+     * ver_major (16-bit) - major version
+     * ver_minor (16-bit) - minor version
+     * checksum (32-bit) - checksum of ciphered content
+     * ===================================================
+     * ciphered block:
+     * header:
+     * +--------+--------+--------+
+     * | OFFSET | LENGTH | STATUS |
+     * +--------+--------+--------+
+     * offset (16-bit) - offset in heap data, first element skipped (because always == 0)
+     * length (16-bit) - length of data
+     * status (8-bit) - ACTIVE(0); HIDE(1) - reserved
+     * ===================================================
+     * heap data:
+     * +--------+--------+-----+--------+
+     * | DATA_0 | DATA_1 | ... | DATA_N |
+     * +--------+--------+-----+--------+
      */
     class DB
     {
