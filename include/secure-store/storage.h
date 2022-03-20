@@ -130,6 +130,8 @@ namespace SecureStore::Storage
 
     private:
         std::list<DBRecord*>* records;
+
+        DataPack* pack();
     };
 }
 

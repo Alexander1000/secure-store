@@ -14,4 +14,9 @@ namespace SecureStore::Storage
         dbRecord = new DBRecord(record);
         this->records->emplace_back(dbRecord);
     }
+
+    DataPack* DB::pack()
+    {
+        return nullptr;
+    }
 }
