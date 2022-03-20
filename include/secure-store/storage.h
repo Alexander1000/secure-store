@@ -5,39 +5,6 @@
 
 namespace SecureStore::Storage
 {
-    /**
-     * Format stored data
-     * ===================================================
-     * signature:
-     * +--------+-----------+-----------+----------+
-     * | FORMAT | VER_MAJOR | VER_MINOR | CHECKSUM |
-     * +--------+-----------+-----------+----------+
-     * format (32-bit) - simple identifier
-     * ver_major (16-bit) - major version
-     * ver_minor (16-bit) - minor version
-     * checksum (32-bit) - checksum of ciphered content
-     * ===================================================
-     * ciphered block:
-     * header:
-     * +---------------+--------+--------+
-     * | OFFSET(COUNT) | LENGTH | STATUS |
-     * +---------------+--------+--------+
-     * offset (16-bit) - offset in heap data, but first element means is count records in table (offset always equal 0)
-     * length (16-bit) - length of data
-     * status (8-bit) - ACTIVE(0); HIDE(1) - reserved
-     * ===================================================
-     * heap data:
-     * +--------+--------+-----+--------+
-     * | DATA_0 | DATA_1 | ... | DATA_N |
-     * +--------+--------+-----+--------+
-     */
-    class DB
-    {
-    public:
-        DB();
-        void createEmpty();
-    };
-
     class Record
     {
     public:
@@ -67,6 +34,16 @@ namespace SecureStore::Storage
         std::string* comment;
         std::list<std::string>* keywords;
         uint64_t createTime;
+    };
+
+    class DBRecord
+    {
+    public:
+        DBRecord();
+
+    private:
+        Record* record;
+        uint8_t status;
     };
 
     const uint8_t DATA_PACK_USER     = 0x1;
@@ -112,6 +89,42 @@ namespace SecureStore::Storage
     DataPack* pack(Record*);
 
     Record* unpack(DataPack*);
+
+    /**
+     * Format stored data
+     * ===================================================
+     * signature:
+     * +--------+-----------+-----------+----------+
+     * | FORMAT | VER_MAJOR | VER_MINOR | CHECKSUM |
+     * +--------+-----------+-----------+----------+
+     * format (32-bit) - simple identifier
+     * ver_major (16-bit) - major version
+     * ver_minor (16-bit) - minor version
+     * checksum (32-bit) - checksum of ciphered content
+     * ===================================================
+     * ciphered block:
+     * header:
+     * +---------------+--------+--------+
+     * | OFFSET(COUNT) | LENGTH | STATUS |
+     * +---------------+--------+--------+
+     * offset (16-bit) - offset in heap data, but first element means is count records in table (offset always equal 0)
+     * length (16-bit) - length of data
+     * status (8-bit) - ACTIVE(0); HIDE(1) - reserved
+     * ===================================================
+     * heap data:
+     * +--------+--------+-----+--------+
+     * | DATA_0 | DATA_1 | ... | DATA_N |
+     * +--------+--------+-----+--------+
+     */
+    class DB
+    {
+    public:
+        DB();
+        void createEmpty();
+
+    private:
+        std::list<DBRecord>* records;
+    };
 }
 
 #endif
