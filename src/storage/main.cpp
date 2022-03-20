@@ -17,6 +17,15 @@ namespace SecureStore::Storage
 
     DataPack* DB::pack()
     {
+        std::list<DataPack*> dbRecords;
+
+        // pack all secrets
+        for (auto & dbRecord : *this->records) {
+            if (dbRecord->getRecord() != nullptr) {
+                dbRecords.emplace_back(SecureStore::Storage::pack(dbRecord->getRecord()));
+            }
+        }
+
         return nullptr;
     }
 }
