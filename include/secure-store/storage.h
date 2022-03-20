@@ -40,6 +40,7 @@ namespace SecureStore::Storage
     {
     public:
         DBRecord();
+        DBRecord(Record*);
 
     private:
         Record* record;
@@ -121,9 +122,10 @@ namespace SecureStore::Storage
     public:
         DB();
         void createEmpty();
+        void addRecord(Record*);
 
     private:
-        std::list<DBRecord>* records;
+        std::list<DBRecord*>* records;
     };
 }
 

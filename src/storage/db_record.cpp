@@ -6,4 +6,9 @@ namespace SecureStore::Storage
     {
         // do nothing
     }
+
+    DBRecord::DBRecord(Record *record)
+    {
+        this->record = record;
+    }
 }
