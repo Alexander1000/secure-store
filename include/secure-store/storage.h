@@ -19,10 +19,10 @@ namespace SecureStore::Storage
      * ===================================================
      * ciphered block:
      * header:
-     * +--------+--------+--------+
-     * | OFFSET | LENGTH | STATUS |
-     * +--------+--------+--------+
-     * offset (16-bit) - offset in heap data, first element skipped (because always == 0)
+     * +---------------+--------+--------+
+     * | OFFSET(COUNT) | LENGTH | STATUS |
+     * +---------------+--------+--------+
+     * offset (16-bit) - offset in heap data, but first element means is count records in table (offset always equal 0)
      * length (16-bit) - length of data
      * status (8-bit) - ACTIVE(0); HIDE(1) - reserved
      * ===================================================
