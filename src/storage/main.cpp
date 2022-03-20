@@ -1,5 +1,6 @@
 #include <secure-store.h>
 #include <list>
+#include <memory>
 
 namespace SecureStore::Storage
 {
@@ -29,6 +30,10 @@ namespace SecureStore::Storage
                 heapSize += dp->getLength();
             }
         }
+
+        uint16_t headerSize = dataPackList.size() * 5; // (offset(count) + length + status) * count
+
+        void* rawData = malloc(headerSize + heapSize);
 
         return nullptr;
     }
