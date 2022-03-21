@@ -22,6 +22,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/storage/db_record.cpp
     src/storage/db_encode.cpp
     src/storage/db_encrypt.cpp
+    src/storage/db_decode.cpp
 )
 
 set(SECURE_STORE_SOURCES
