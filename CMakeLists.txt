@@ -6,6 +6,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+set(OPENSSL_USE_STATIC_LIBS TRUE)
+find_package(OpenSSL REQUIRED)
+
 set(SECURE_STORE_SOURCES_SHARED
     src/config.cpp
     src/config/load_config.cpp
@@ -33,6 +36,10 @@ include_directories(
 add_executable(
     ${PROJECT_NAME} src/main.cpp
     ${SECURE_STORE_SOURCES}
+)
+
+target_link_libraries(${PROJECT_NAME}
+    OpenSSL::Crypto
 )
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
