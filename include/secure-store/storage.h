@@ -146,11 +146,13 @@ namespace SecureStore::Storage
     };
 
     typedef struct _cipher_params_t{
-        unsigned char *key;
-        unsigned char *iv;
+        unsigned char* key;
+        unsigned char* iv;
         unsigned int encrypt;
-        const EVP_CIPHER *cipher_type;
+        const EVP_CIPHER* cipher_type;
     } cipher_params_t;
+
+    void encrypt_decrypt(cipher_params_t* params, DataPack* input, DataPack* output);
 }
 
 #endif
