@@ -152,7 +152,7 @@ namespace SecureStore::Storage
         const EVP_CIPHER* cipher_type;
     } cipher_params_t;
 
-    void encrypt_decrypt(cipher_params_t* params, DataPack* input, DataPack* output);
+    DataPack* encrypt_decrypt(cipher_params_t* params, DataPack* input);
 }
 
 #endif
