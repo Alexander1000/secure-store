@@ -127,6 +127,10 @@ namespace SecureStore::Storage
 //        }
         EVP_CIPHER_CTX_cleanup(ctx);
 
-        return nullptr;
+        void* data = malloc(outBuffer.length());
+        outBuffer.setPosition(0);
+        outBuffer.read((char*) data, outBuffer.length());
+
+        return new DataPack(outBuffer.length(), data);
     }
 }
