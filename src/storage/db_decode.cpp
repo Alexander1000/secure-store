@@ -2,7 +2,7 @@
 
 namespace SecureStore::Storage
 {
-    DataPack* DB::decode(DataPack*, std::string*)
+    DataPack* DB::decode(DataPack* input, std::string* password)
     {
         return nullptr;
     }
