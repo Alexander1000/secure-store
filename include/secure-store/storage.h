@@ -2,6 +2,12 @@
 #define H_SECURE_STORE_DB
 
 #include <string>
+#include <openssl/evp.h>
+
+/* 32 byte key (256 bit key) */
+#define AES_256_KEY_SIZE 32
+/* 16 byte block size (128 bits) */
+#define AES_BLOCK_SIZE 16
 
 namespace SecureStore::Storage
 {
@@ -136,6 +142,13 @@ namespace SecureStore::Storage
 
         DataPack* pack();
     };
+
+    typedef struct _cipher_params_t{
+        unsigned char *key;
+        unsigned char *iv;
+        unsigned int encrypt;
+        const EVP_CIPHER *cipher_type;
+    } cipher_params_t;
 }
 
 #endif
