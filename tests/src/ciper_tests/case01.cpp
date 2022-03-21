@@ -38,6 +38,9 @@ namespace SecureStoreTest
         SecureStore::Storage::DB db;
         db.addRecord(record);
 
+        std::string key = "Qwerty123!";
+        auto cipheredData = db.encrypt(&key);
+
         t->finish();
 
         return t;
