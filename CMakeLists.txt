@@ -66,6 +66,7 @@ set(SECURE_STORE_SOURCES_TEST
     ${SECURE_STORE_SOURCES_SHARED}
     tests/src/pack_tests/case0.cpp
     tests/src/pack_tests/case01.cpp
+    tests/src/ciper_tests/case01.cpp
 )
 
 include_directories(

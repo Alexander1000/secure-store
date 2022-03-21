@@ -7,6 +7,9 @@ int main() {
     testSuite.addTestCase(SecureStoreTest::testPackAndUnpack_FullQualifiedData_Case0());
     testSuite.addTestCase(SecureStoreTest::testPackAndUnpack_MinimumData());
 
+    // cipher tests
+    testSuite.addTestCase(SecureStoreTest::testCipherData_case01());
+
     testSuite.printTotal();
 
     return 0;
