@@ -2,8 +2,9 @@
 
 namespace SecureStore::Storage
 {
-    DataPack* DB::encrypt(std::string*)
+    DataPack* DB::encrypt(std::string* key)
     {
-        return nullptr;
+        // todo: mixin signature, headers, checksum
+        return this->encode(this->pack(), key);
     }
 }
