@@ -131,6 +131,9 @@ namespace SecureStore::Storage
     private:
         std::list<DBRecord*>* records;
 
+        DataPack* encode(DataPack*, std::string*);
+        DataPack* decode(DataPack*, std::string*);
+
         DataPack* pack();
     };
 }
