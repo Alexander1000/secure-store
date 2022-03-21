@@ -33,12 +33,16 @@ include_directories(
     /usr/local/include
 )
 
+find_library(IO_BUFFER libio-buffer.a)
+message(STATUS "Found io-buffer library: ${IO_BUFFER}")
+
 add_executable(
     ${PROJECT_NAME} src/main.cpp
     ${SECURE_STORE_SOURCES}
 )
 
 target_link_libraries(${PROJECT_NAME}
+    ${IO_BUFFER}
     OpenSSL::Crypto
 )
 
@@ -81,6 +85,7 @@ add_executable(
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
 target_link_libraries(${PROJECT_NAME}
+    ${IO_BUFFER}
     ${CPP_UNIT_TEST}
     OpenSSL::Crypto
 )
