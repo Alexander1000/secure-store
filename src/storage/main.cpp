@@ -73,6 +73,6 @@ namespace SecureStore::Storage
             }
         }
 
-        return nullptr;
+        return new DataPack(headerSize + heapSize, rawData);
     }
 }
