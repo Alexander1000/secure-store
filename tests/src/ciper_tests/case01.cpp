@@ -41,6 +41,10 @@ namespace SecureStoreTest
         std::string key = "Qwerty123!";
         auto cipheredData = db.encrypt(&key);
 
+        auto f = fopen("test.db", "a+");
+        fwrite(cipheredData->getData(), cipheredData->getLength(), sizeof(uint8_t), f);
+        fclose(f);
+
         t->finish();
 
         return t;
