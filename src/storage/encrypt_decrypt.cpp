@@ -42,8 +42,6 @@ namespace SecureStore::Storage
             EVP_CIPHER_CTX_cleanup(ctx);
         }
 
-        int index = 0;
-
         IOBuffer::IOMemoryBuffer buffer(BUFSIZE);
         buffer.write((char*) input->getData(), input->getLength());
         buffer.setPosition(0);
