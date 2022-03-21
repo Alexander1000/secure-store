@@ -134,6 +134,8 @@ namespace SecureStore::Storage
         void createEmpty();
         void addRecord(Record*);
 
+        DataPack* encrypt(std::string*);
+
     private:
         std::list<DBRecord*>* records;
 
