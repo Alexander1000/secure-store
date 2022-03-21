@@ -79,21 +79,22 @@ namespace SecureStore::Storage
         buffer.write((char*) input->getData(), input->getLength());
         buffer.setPosition(0);
 
-//        while(1) {
-//            // Read in data in blocks until EOF. Update the ciphering with each read.
-//            memcpy(in_buf, (uint8_t*) input->getData() + index * BUFSIZ, sizeof(uint8_t) * BUFSIZE);
-//            num_bytes_read = fread(in_buf, sizeof(unsigned char), BUFSIZE, ifp);
+        while(1) {
+            // Read in data in blocks until EOF. Update the ciphering with each read.
+            // memcpy(in_buf, (uint8_t*) input->getData() + index * BUFSIZ, sizeof(uint8_t) * BUFSIZE);
+            // num_bytes_read = buffer.read();
+            num_bytes_read = buffer.read((char*) in_buf, BUFSIZE);
 //            if (ferror(ifp)){
 //                fprintf(stderr, "ERROR: fread error: %s\n", strerror(errno));
 //                EVP_CIPHER_CTX_cleanup(ctx);
 //                // cleanup(params, ifp, ofp, errno);
 //            }
-//            if(!EVP_CipherUpdate(ctx, out_buf, &out_len, in_buf, num_bytes_read)){
-//                fprintf(stderr, "ERROR: EVP_CipherUpdate failed. OpenSSL error: %s\n",
-//                        ERR_error_string(ERR_get_error(), NULL));
-//                EVP_CIPHER_CTX_cleanup(ctx);
-//                // cleanup(params, ifp, ofp, ERR_EVP_CIPHER_UPDATE);
-//            }
+            if(!EVP_CipherUpdate(ctx, out_buf, &out_len, in_buf, num_bytes_read)){
+                fprintf(stderr, "ERROR: EVP_CipherUpdate failed. OpenSSL error: %s\n",
+                        ERR_error_string(ERR_get_error(), NULL));
+                EVP_CIPHER_CTX_cleanup(ctx);
+                // cleanup(params, ifp, ofp, ERR_EVP_CIPHER_UPDATE);
+            }
 //            fwrite(out_buf, sizeof(unsigned char), out_len, ofp);
 //            if (ferror(ofp)) {
 //                fprintf(stderr, "ERROR: fwrite error: %s\n", strerror(errno));
@@ -104,9 +105,9 @@ namespace SecureStore::Storage
 //                /* Reached End of file */
 //                break;
 //            }
-//        }
-//
-//        /* Now cipher the final block and write it out to file */
+        }
+
+        /* Now cipher the final block and write it out to file */
 //        if(!EVP_CipherFinal_ex(ctx, out_buf, &out_len)){
 //            fprintf(stderr, "ERROR: EVP_CipherFinal_ex failed. OpenSSL error: %s\n",
 //                    ERR_error_string(ERR_get_error(), NULL));
