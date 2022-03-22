@@ -27,10 +27,18 @@ namespace SecureStore::Storage
             auto params = (SecureStore::Storage::cipher_params_t*) malloc(sizeof(SecureStore::Storage::cipher_params_t));
             unsigned char key[AES_256_KEY_SIZE];
             memset(key, 0, sizeof(key));
+            int passwordLength = password->length();
+            if (passwordLength > 32) {
+                passwordLength = 32;
+            }
+            memcpy(key, password->c_str(), passwordLength);
             unsigned char iv[AES_BLOCK_SIZE];
             RAND_bytes(iv, sizeof(iv));
+            params->key = key;
+            params->iv = iv;
             params->encrypt = 1;
             params->cipher_type = EVP_aes_256_cbc();
+            auto encryptedSecrets = encrypt_decrypt(params, rawSecrets);
         }
     }
 }
