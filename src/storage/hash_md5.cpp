@@ -9,7 +9,6 @@ namespace SecureStore::Storage
     {
         EVP_MD_CTX *ctx;
         ctx = EVP_MD_CTX_new();
-
         EVP_DigestInit(ctx, EVP_md5());
         EVP_DigestUpdate(ctx, input->getData(), input->getLength());
         uint8_t* md5 = (uint8_t*) malloc(16);
