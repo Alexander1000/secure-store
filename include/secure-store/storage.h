@@ -144,7 +144,7 @@ namespace SecureStore::Storage
         void createEmpty();
         void addRecord(Record*);
 
-        void open(std::string* fileName, std::string* key); // open file
+        void open(std::string* fileName, std::string* password); // open file
 
         void save(); // save opened file
 
