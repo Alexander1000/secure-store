@@ -142,7 +142,7 @@ namespace SecureStore::Storage
         void createEmpty();
         void addRecord(Record*);
 
-        void open(std::string* fileName, std::string* key);
+        void open(std::string* fileName, std::string* key); // open file
 
         void save(); // save opened file
 
@@ -152,6 +152,8 @@ namespace SecureStore::Storage
 
     private:
         std::list<DBRecord*>* records;
+
+        std::string* fileName;
 
         uint8_t cipherAlgorithm;
         uint16_t verMajor;
