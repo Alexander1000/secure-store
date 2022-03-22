@@ -1,7 +1,6 @@
 #include <tests.h>
 #include <secure-store.h>
 #include <cpp-unit-test.h>
-#include <list>
 #include <string>
 #include <memory>
 
