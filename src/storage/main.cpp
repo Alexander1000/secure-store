@@ -6,8 +6,7 @@ namespace SecureStore::Storage
 {
     DB::DB()
     {
-        this->records = new std::list<DBRecord*>;
-        this->fileName = nullptr;
+        this->createEmpty();
     }
 
     void DB::addRecord(Record *record)

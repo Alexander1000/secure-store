@@ -108,6 +108,8 @@ namespace SecureStore::Storage
 
     Record* unpack(DataPack*);
 
+    const uint8_t CIPHER_ALGORITHM_AES_256_CBC = 1;
+
     /**
      * Format stored data
      * ===================================================
