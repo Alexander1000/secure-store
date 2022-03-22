@@ -114,14 +114,14 @@ namespace SecureStore::Storage
      * Format stored data
      * ===================================================
      * signature:
-     * +--------+-------------+-----------+-----------+----------+
-     * | FORMAT | CIPHER_ALGO | VER_MAJOR | VER_MINOR | CHECKSUM |
-     * +--------+-------------+-----------+-----------+----------+
+     * +--------+-------------+-----------+-----------+---------------+
+     * | FORMAT | CIPHER_ALGO | VER_MAJOR | VER_MINOR | CHECKSUM(md5) |
+     * +--------+-------------+-----------+-----------+---------------+
      * format (24-bit) - simple identifier
      * cipher_algo (8-bit) - cipher algorithm, identifier
      * ver_major (16-bit) - major version
      * ver_minor (16-bit) - minor version
-     * checksum (32-bit) - checksum of ciphered content
+     * checksum (128-bit) - checksum of ciphered content
      * ===================================================
      * ciphered block:
      * header:
