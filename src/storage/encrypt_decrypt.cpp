@@ -15,6 +15,7 @@ namespace SecureStore::Storage
         /* Key to use for encrpytion and decryption */
         // костыль, где-то утечка памяти
         unsigned char key[AES_256_KEY_SIZE];
+        memset(key, 0, 32 * sizeof(uint8_t));
 
         /* Allow enough space in output buffer for additional block */
         int cipher_block_size = EVP_CIPHER_block_size(params->cipher_type);
