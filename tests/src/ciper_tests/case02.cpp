@@ -7,10 +7,10 @@
 
 namespace SecureStoreTest
 {
-    CppUnitTest::TestCase* testEncyptDecrypt_Data_case02()
+    CppUnitTest::TestCase* testEncryptDecrypt_Data_case02()
     {
         CppUnitTest::TestCase* t = nullptr;
-        t = new CppUnitTest::TestCase("cipher data test-case 01");
+        t = new CppUnitTest::TestCase("cipher data test-case 02");
         t->printTitle();
 
         SecureStore::Storage::cipher_params_t* params = (SecureStore::Storage::cipher_params_t*) malloc(sizeof(SecureStore::Storage::cipher_params_t));
