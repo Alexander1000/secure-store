@@ -23,12 +23,14 @@ namespace SecureStore::Storage
         if(ctx == NULL){
             fprintf(stderr, "ERROR: EVP_CIPHER_CTX_new failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
+            return nullptr;
         }
 
         /* Don't set key or IV right away; we want to check lengths */
         if(!EVP_CipherInit_ex(ctx, params->cipher_type, NULL, NULL, NULL, params->encrypt)){
             fprintf(stderr, "ERROR: EVP_CipherInit_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
+            return nullptr;
         }
 
         OPENSSL_assert(EVP_CIPHER_CTX_key_length(ctx) == AES_256_KEY_SIZE);
@@ -39,6 +41,7 @@ namespace SecureStore::Storage
             fprintf(stderr, "ERROR: EVP_CipherInit_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
             EVP_CIPHER_CTX_cleanup(ctx);
+            return nullptr;
         }
 
         IOBuffer::IOMemoryBuffer buffer;
@@ -54,6 +57,7 @@ namespace SecureStore::Storage
                 fprintf(stderr, "ERROR: EVP_CipherUpdate failed. OpenSSL error: %s\n",
                         ERR_error_string(ERR_get_error(), NULL));
                 EVP_CIPHER_CTX_cleanup(ctx);
+                return nullptr;
             }
 
             outBuffer.write((char*) out_buf, out_len);
@@ -68,6 +72,7 @@ namespace SecureStore::Storage
             fprintf(stderr, "ERROR: EVP_CipherFinal_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
             EVP_CIPHER_CTX_cleanup(ctx);
+            return nullptr;
         }
 
         outBuffer.write((char*) out_buf, out_len);
