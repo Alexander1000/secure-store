@@ -29,7 +29,6 @@ namespace SecureStore::Storage
         if(!EVP_CipherInit_ex(ctx, params->cipher_type, NULL, NULL, NULL, params->encrypt)){
             fprintf(stderr, "ERROR: EVP_CipherInit_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
-            // cleanup(params, ifp, ofp, ERR_EVP_CIPHER_INIT);
         }
 
         OPENSSL_assert(EVP_CIPHER_CTX_key_length(ctx) == AES_256_KEY_SIZE);
