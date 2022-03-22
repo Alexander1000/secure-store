@@ -4,6 +4,6 @@ namespace SecureStore::Storage
 {
     void DB::save(std::string* fileName, std::string* key)
     {
-        // do save
+        this->fileName = fileName;
     }
 }
