@@ -13,7 +13,7 @@ namespace SecureStoreTest
         t = new CppUnitTest::TestCase("cipher data test-case 02");
         t->printTitle();
 
-        SecureStore::Storage::cipher_params_t* params = (SecureStore::Storage::cipher_params_t*) malloc(sizeof(SecureStore::Storage::cipher_params_t));
+        auto params = (SecureStore::Storage::cipher_params_t*) malloc(sizeof(SecureStore::Storage::cipher_params_t));
 
         /* Key to use for encrpytion and decryption */
         unsigned char key[AES_256_KEY_SIZE] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32};
@@ -41,6 +41,12 @@ namespace SecureStoreTest
         SecureStore::Storage::DataPack input((int) textForCipher.length(), (void*) textForCipher.c_str());
 
         SecureStore::Storage::DataPack* output = SecureStore::Storage::encrypt_decrypt(params, &input);
+
+        params->encrypt = 0;
+        SecureStore::Storage::DataPack* decoded = SecureStore::Storage::encrypt_decrypt(params, output);
+
+        CppUnitTest::assertEquals(t, input.getLength(), decoded->getLength());
+        CppUnitTest::assertEquals(t, std::string((char*) input.getData()), std::string((char*) decoded->getData()));
 
         free(params);
 
