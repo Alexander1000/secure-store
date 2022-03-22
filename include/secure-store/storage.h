@@ -11,6 +11,13 @@
 
 namespace SecureStore::Storage
 {
+    typedef struct _cipher_params_t{
+        unsigned char* key;
+        unsigned char* iv;
+        unsigned int encrypt;
+        const EVP_CIPHER* cipher_type;
+    } cipher_params_t;
+
     class Record
     {
     public:
@@ -105,10 +112,11 @@ namespace SecureStore::Storage
      * Format stored data
      * ===================================================
      * signature:
-     * +--------+-----------+-----------+----------+
-     * | FORMAT | VER_MAJOR | VER_MINOR | CHECKSUM |
-     * +--------+-----------+-----------+----------+
-     * format (32-bit) - simple identifier
+     * +--------+-------------+-----------+-----------+----------+
+     * | FORMAT | CIPHER_ALGO | VER_MAJOR | VER_MINOR | CHECKSUM |
+     * +--------+-------------+-----------+-----------+----------+
+     * format (24-bit) - simple identifier
+     * cipher_algo (8-bit) - cipher algorithm, identifier
      * ver_major (16-bit) - major version
      * ver_minor (16-bit) - minor version
      * checksum (32-bit) - checksum of ciphered content
@@ -139,18 +147,15 @@ namespace SecureStore::Storage
     private:
         std::list<DBRecord*>* records;
 
+        uint8_t cipherAlgorithm;
+        uint16_t verMajor;
+        uint16_t verMinor;
+
         DataPack* encode(DataPack*, std::string*);
         DataPack* decode(DataPack*, std::string*);
 
         DataPack* pack();
     };
-
-    typedef struct _cipher_params_t{
-        unsigned char* key;
-        unsigned char* iv;
-        unsigned int encrypt;
-        const EVP_CIPHER* cipher_type;
-    } cipher_params_t;
 
     DataPack* encrypt_decrypt(cipher_params_t* params, DataPack* input);
 }
