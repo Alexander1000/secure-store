@@ -12,6 +12,9 @@ namespace SecureStoreTest
     // cipher tests
     CppUnitTest::TestCase* testCipherData_case01();
     CppUnitTest::TestCase* testEncryptDecrypt_Data_case02();
+
+    // save tests
+    CppUnitTest::TestCase* testSaveDb_Data_case01();
 }
 
 #endif
