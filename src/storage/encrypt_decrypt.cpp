@@ -25,14 +25,14 @@ namespace SecureStore::Storage
         EVP_CIPHER_CTX *ctx;
 
         ctx = EVP_CIPHER_CTX_new();
-        if(ctx == NULL){
+        if (ctx == NULL) {
             fprintf(stderr, "ERROR: EVP_CIPHER_CTX_new failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
             return nullptr;
         }
 
         /* Don't set key or IV right away; we want to check lengths */
-        if(!EVP_CipherInit_ex(ctx, params->cipher_type, NULL, NULL, NULL, params->encrypt)){
+        if (!EVP_CipherInit_ex(ctx, params->cipher_type, NULL, NULL, NULL, params->encrypt)) {
             fprintf(stderr, "ERROR: EVP_CipherInit_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
             return nullptr;
@@ -42,7 +42,7 @@ namespace SecureStore::Storage
         OPENSSL_assert(EVP_CIPHER_CTX_iv_length(ctx) == AES_BLOCK_SIZE);
 
         /* Now we can set key and IV */
-        if(!EVP_CipherInit_ex(ctx, NULL, NULL, params->key, params->iv, params->encrypt)){
+        if (!EVP_CipherInit_ex(ctx, NULL, NULL, params->key, params->iv, params->encrypt)) {
             fprintf(stderr, "ERROR: EVP_CipherInit_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
             EVP_CIPHER_CTX_cleanup(ctx);
@@ -55,7 +55,7 @@ namespace SecureStore::Storage
 
         IOBuffer::IOMemoryBuffer outBuffer;
 
-        while(1) {
+        while (true) {
             // Read in data in blocks until EOF. Update the ciphering with each read.
             num_bytes_read = buffer.read((char*) in_buf, BUFSIZE);
             if(!EVP_CipherUpdate(ctx, out_buf, &out_len, in_buf, num_bytes_read)){
@@ -73,7 +73,7 @@ namespace SecureStore::Storage
         }
 
         /* Now cipher the final block and write it out to file */
-        if(!EVP_CipherFinal_ex(ctx, out_buf, &out_len)){
+        if (!EVP_CipherFinal_ex(ctx, out_buf, &out_len)) {
             fprintf(stderr, "ERROR: EVP_CipherFinal_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
             EVP_CIPHER_CTX_cleanup(ctx);
