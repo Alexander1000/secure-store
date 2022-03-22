@@ -20,5 +20,6 @@ namespace SecureStore::Storage
 
         auto rawSecrets = this->pack();
         auto md5Hash = hash_md5(rawSecrets);
+        memcpy(headerData + 8, md5Hash, 16 * sizeof(uint8_t));
     }
 }
