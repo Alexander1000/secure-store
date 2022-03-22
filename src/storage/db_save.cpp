@@ -1,5 +1,6 @@
 #include <secure-store.h>
 #include <openssl/rand.h>
+#include <io-buffer.h>
 
 namespace SecureStore::Storage
 {
@@ -39,6 +40,11 @@ namespace SecureStore::Storage
             params->encrypt = 1;
             params->cipher_type = EVP_aes_256_cbc();
             auto encryptedSecrets = encrypt_decrypt(params, rawSecrets);
+
+            IOBuffer::IOFileWriter fileWriter(*this->fileName);
+            fileWriter.write((char*) headerData, 24);
+            fileWriter.write((char*) iv, AES_BLOCK_SIZE);
+            fileWriter.write((char*) encryptedSecrets->getData(), encryptedSecrets->getLength());
         }
     }
 }
