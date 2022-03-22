@@ -78,7 +78,7 @@ namespace SecureStore::Storage
         outBuffer.write((char*) out_buf, out_len);
         EVP_CIPHER_CTX_cleanup(ctx);
 
-        void* data = malloc(outBuffer.length());
+        void* data = malloc(outBuffer.length() * sizeof(uint8_t));
         memset(data, 0, sizeof(uint8_t) * outBuffer.length());
         outBuffer.setPosition(0);
         outBuffer.read((char*) data, outBuffer.length());
