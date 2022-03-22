@@ -12,6 +12,10 @@ namespace SecureStore::Storage
 {
     DataPack* encrypt_decrypt(cipher_params_t* params, DataPack* input)
     {
+        /* Key to use for encrpytion and decryption */
+        // костыль, где-то утечка памяти
+        unsigned char key[AES_256_KEY_SIZE];
+
         /* Allow enough space in output buffer for additional block */
         int cipher_block_size = EVP_CIPHER_block_size(params->cipher_type);
         unsigned char in_buf[BUFSIZE], out_buf[BUFSIZE + cipher_block_size];
