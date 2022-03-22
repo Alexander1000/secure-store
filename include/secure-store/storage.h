@@ -157,6 +157,8 @@ namespace SecureStore::Storage
 
         std::string* fileName;
 
+        unsigned char* format;
+
         uint8_t cipherAlgorithm;
         uint16_t verMajor;
         uint16_t verMinor;
