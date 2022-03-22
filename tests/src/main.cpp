@@ -9,6 +9,7 @@ int main() {
 
     // cipher tests
     testSuite.addTestCase(SecureStoreTest::testCipherData_case01());
+    testSuite.addTestCase(SecureStoreTest::testEncyptDecrypt_Data_case02());
 
     testSuite.printTotal();
 
