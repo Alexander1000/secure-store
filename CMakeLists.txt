@@ -27,6 +27,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/storage/db_decode.cpp
     src/storage/encrypt_decrypt.cpp
     src/storage/db_save.cpp
+    src/storage/hash_md5.cpp
 )
 
 set(SECURE_STORE_SOURCES

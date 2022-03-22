@@ -168,6 +168,8 @@ namespace SecureStore::Storage
     };
 
     DataPack* encrypt_decrypt(cipher_params_t* params, DataPack* input);
+
+    uint8_t* hash_md5(DataPack* input);
 }
 
 #endif
