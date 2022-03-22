@@ -41,11 +41,11 @@ namespace SecureStore::Storage
             EVP_CIPHER_CTX_cleanup(ctx);
         }
 
-        IOBuffer::IOMemoryBuffer buffer(BUFSIZE);
+        IOBuffer::IOMemoryBuffer buffer;
         buffer.write((char*) input->getData(), input->getLength());
         buffer.setPosition(0);
 
-        IOBuffer::IOMemoryBuffer outBuffer(BUFSIZE);
+        IOBuffer::IOMemoryBuffer outBuffer;
 
         while(1) {
             // Read in data in blocks until EOF. Update the ciphering with each read.
