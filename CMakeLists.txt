@@ -17,7 +17,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/menu/main.cpp
     src/storage/main.cpp
     src/storage/create_empty.cpp
-    src/storage/data_pack.cpp
+    src/data_pack.cpp
     src/storage/pack.cpp
     src/storage/unpack.cpp
     src/storage/record.cpp

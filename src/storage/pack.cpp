@@ -4,7 +4,7 @@
 
 namespace SecureStore::Storage
 {
-    DataPack* pack(Record* record)
+    SecureStore::DataPack* pack(Record* record)
     {
         if (record == nullptr || record->getId() == 0 || record->getName() == nullptr) {
             return nullptr;
@@ -169,8 +169,8 @@ namespace SecureStore::Storage
         // write heap
         memcpy((uint8_t*) rawData + 1 + headerSize + sizeof(uint16_t) * countKeywords, heapData, heapSize);
 
-        DataPack* pack;
-        pack = new DataPack(totalSize, rawData);
+        SecureStore::DataPack* pack;
+        pack = new SecureStore::DataPack(totalSize, rawData);
 
         // free allocated memory
 

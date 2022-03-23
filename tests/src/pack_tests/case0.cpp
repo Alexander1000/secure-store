@@ -35,7 +35,7 @@ namespace SecureStoreTest
 
         record->setCreateTime(187766224);
 
-        SecureStore::Storage::DataPack *dataPack = SecureStore::Storage::pack(record);
+        SecureStore::DataPack *dataPack = SecureStore::Storage::pack(record);
 
         CppUnitTest::assertNotNull(t, dataPack);
         CppUnitTest::assertEquals(t, 116, dataPack->getLength());

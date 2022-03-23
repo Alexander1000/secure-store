@@ -8,5 +8,6 @@
 #include <secure-store/config.h>
 #include <secure-store/menu.h>
 #include <secure-store/storage.h>
+#include <secure-store/data-pack.h>
 
 #endif

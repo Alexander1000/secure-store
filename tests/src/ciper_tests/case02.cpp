@@ -37,12 +37,12 @@ namespace SecureStoreTest
                                     "per inceptos himenaeos. Ut ullamcorper lorem nec tellus rutrum placerat. "
                                     "Nullam urna urna, ultricies sed neque nec, aliquam scelerisque magna.\n";
 
-        SecureStore::Storage::DataPack input((int) textForCipher.length(), (void*) textForCipher.c_str());
+        SecureStore::DataPack input((int) textForCipher.length(), (void*) textForCipher.c_str());
 
-        SecureStore::Storage::DataPack* output = SecureStore::Storage::encrypt_decrypt(params, &input);
+        SecureStore::DataPack* output = SecureStore::Storage::encrypt_decrypt(params, &input);
 
         params->encrypt = 0;
-        SecureStore::Storage::DataPack* decoded = SecureStore::Storage::encrypt_decrypt(params, output);
+        SecureStore::DataPack* decoded = SecureStore::Storage::encrypt_decrypt(params, output);
 
         CppUnitTest::assertEquals(t, input.getLength(), decoded->getLength());
         CppUnitTest::assertEquals(t, std::string((char*) input.getData()), std::string((char*) decoded->getData()));

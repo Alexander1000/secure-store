@@ -1,6 +1,6 @@
 #include <secure-store.h>
 
-namespace SecureStore::Storage
+namespace SecureStore
 {
     DataPack::DataPack(int length, void* data)
     {

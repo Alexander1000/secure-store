@@ -10,7 +10,7 @@
 
 namespace SecureStore::Storage
 {
-    DataPack* encrypt_decrypt(cipher_params_t* params, DataPack* input)
+    DataPack* encrypt_decrypt(cipher_params_t* params, SecureStore::DataPack* input)
     {
         /* Key to use for encrpytion and decryption */
         // костыль, где-то утечка памяти
@@ -88,6 +88,6 @@ namespace SecureStore::Storage
         outBuffer.setPosition(0);
         outBuffer.read((char*) data, outBuffer.length());
 
-        return new DataPack(outBuffer.length(), data);
+        return new SecureStore::DataPack(outBuffer.length(), data);
     }
 }

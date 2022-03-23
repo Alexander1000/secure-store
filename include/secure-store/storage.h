@@ -3,6 +3,7 @@
 
 #include <string>
 #include <openssl/evp.h>
+#include <secure-store/data-pack.h>
 
 /* 32 byte key (256 bit key) */
 #define AES_256_KEY_SIZE 32
@@ -92,21 +93,10 @@ namespace SecureStore::Storage
      * | plain_text_0 | plain_text_1 | ... | plain_text_N |
      * +--------------+--------------+-----+--------------+
      */
-    class DataPack
-    {
-    public:
-        DataPack(int, void*);
 
-        int getLength();
-        void* getData();
-    private:
-        int length;
-        void* data;
-    };
+    SecureStore::DataPack* pack(Record*);
 
-    DataPack* pack(Record*);
-
-    Record* unpack(DataPack*);
+    Record* unpack(SecureStore::DataPack*);
 
     const uint8_t CIPHER_ALGORITHM_AES_256_CBC = 1;
 
@@ -150,7 +140,7 @@ namespace SecureStore::Storage
 
         void save(std::string* fileName, std::string* key); // save new file
 
-        DataPack* encrypt(std::string*);
+        SecureStore::DataPack* encrypt(std::string*);
 
     private:
         std::list<DBRecord*>* records;
@@ -163,15 +153,15 @@ namespace SecureStore::Storage
         uint16_t verMajor;
         uint16_t verMinor;
 
-        DataPack* encode(DataPack*, std::string*);
-        DataPack* decode(DataPack*, std::string*);
+        SecureStore::DataPack* encode(SecureStore::DataPack*, std::string*);
+        SecureStore::DataPack* decode(SecureStore::DataPack*, std::string*);
 
-        DataPack* pack();
+        SecureStore::DataPack* pack();
     };
 
-    DataPack* encrypt_decrypt(cipher_params_t* params, DataPack* input);
+    SecureStore::DataPack* encrypt_decrypt(cipher_params_t* params, SecureStore::DataPack* input);
 
-    uint8_t* hash_md5(DataPack* input);
+    uint8_t* hash_md5(SecureStore::DataPack* input);
 }
 
 #endif

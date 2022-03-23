@@ -5,7 +5,7 @@
 
 namespace SecureStore::Storage
 {
-    uint8_t* hash_md5(DataPack* input)
+    uint8_t* hash_md5(SecureStore::DataPack* input)
     {
         EVP_MD_CTX *ctx;
         ctx = EVP_MD_CTX_new();

@@ -10,7 +10,7 @@
 
 namespace SecureStore::Storage
 {
-    DataPack *DB::encode(DataPack* input, std::string* password)
+    SecureStore::DataPack *DB::encode(SecureStore::DataPack* input, std::string* password)
     {
         cipher_params_t *params = (cipher_params_t*) malloc(sizeof(cipher_params_t));
         if (!params) {
@@ -131,6 +131,6 @@ namespace SecureStore::Storage
         outBuffer.setPosition(0);
         outBuffer.read((char*) data, outBuffer.length());
 
-        return new DataPack(outBuffer.length(), data);
+        return new SecureStore::DataPack(outBuffer.length(), data);
     }
 }

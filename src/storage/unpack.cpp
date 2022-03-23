@@ -4,7 +4,7 @@
 
 namespace SecureStore::Storage
 {
-    Record* unpack(DataPack* dataPack)
+    Record* unpack(SecureStore::DataPack* dataPack)
     {
         int length = dataPack->getLength();
         void* rawData = dataPack->getData();
