@@ -33,5 +33,8 @@ namespace SecureStore::Storage
         }
 
         memcpy(&this->verMinor, headerData + 6, sizeof(uint16_t));
+
+        auto checksum = (uint8_t*) malloc(16 * sizeof(uint8_t));
+        memcpy(checksum, headerData + 8, 16 * sizeof(uint8_t));
     }
 }
