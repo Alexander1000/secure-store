@@ -84,6 +84,20 @@ namespace SecureStore::Storage
         memoryBuffer.read((char*) data, memoryBuffer.length());
         DataPack dataPack(memoryBuffer.length(), data);
 
-        SecureStore::Crypto::encrypt_decrypt(params, &dataPack);
+        auto decrypted = SecureStore::Crypto::encrypt_decrypt(params, &dataPack);
+        auto hashDecrypted = SecureStore::Crypto::hash_md5(decrypted);
+
+        bool equal = true;
+        for (uint8_t i = 0; i < 16; i++) {
+            if (checksum[i] != hashDecrypted[i]) {
+                equal = false;
+                break;
+            }
+        }
+
+        if (!equal) {
+            // error: wrong decrypt
+            return;
+        }
     }
 }
