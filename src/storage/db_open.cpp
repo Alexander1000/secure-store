@@ -12,7 +12,11 @@ namespace SecureStore::Storage
         auto headerData = (uint8_t*) malloc(DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
         memset(headerData, 0, DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
 
-        fileReader.read((char*) headerData, DB_HEADER_BYTE_SIZE);
+        int readLength = fileReader.read((char*) headerData, DB_HEADER_BYTE_SIZE);
+        if (readLength < DB_HEADER_BYTE_SIZE) {
+            // error: incorrect file length
+            return;
+        }
 
         memcpy(this->format, headerData, 3 * sizeof(uint8_t));
         if (std::string((char*) this->format) != "xdb") {
@@ -38,6 +42,10 @@ namespace SecureStore::Storage
         memcpy(checksum, headerData + 8, 16 * sizeof(uint8_t));
 
         unsigned char iv[AES_BLOCK_SIZE];
-        fileReader.read((char*) iv, AES_BLOCK_SIZE);
+        readLength = fileReader.read((char*) iv, AES_BLOCK_SIZE);
+        if (readLength != AES_BLOCK_SIZE) {
+            // error: corrupted file
+            return;
+        }
     }
 }
