@@ -87,10 +87,12 @@ namespace SecureStore::Storage
 
     const uint8_t CIPHER_ALGORITHM_AES_256_CBC = 1;
 
+    const uint8_t DB_HEADER_BYTE_SIZE = 24;
+
     /**
      * Format stored data
      * ===================================================
-     * signature:
+     * signature (24 bytes):
      * +--------+-------------+-----------+-----------+---------------+
      * | FORMAT | CIPHER_ALGO | VER_MAJOR | VER_MINOR | CHECKSUM(md5) |
      * +--------+-------------+-----------+-----------+---------------+

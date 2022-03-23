@@ -8,8 +8,8 @@ namespace SecureStore::Storage
     {
         this->fileName = fileName;
 
-        auto headerData = (uint8_t*) malloc(24 * sizeof(uint8_t));
-        memset(headerData, 0, 24 * sizeof(uint8_t));
+        auto headerData = (uint8_t*) malloc(DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
+        memset(headerData, 0, DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
 
         // format
         memcpy(headerData, this->format, 3 * sizeof(uint8_t));
@@ -42,7 +42,7 @@ namespace SecureStore::Storage
             auto encryptedSecrets = encrypt_decrypt(params, rawSecrets);
 
             IOBuffer::IOFileWriter fileWriter(*this->fileName);
-            fileWriter.write((char*) headerData, 24);
+            fileWriter.write((char*) headerData, DB_HEADER_BYTE_SIZE);
             fileWriter.write((char*) iv, AES_BLOCK_SIZE);
             fileWriter.write((char*) encryptedSecrets->getData(), encryptedSecrets->getLength());
         }
