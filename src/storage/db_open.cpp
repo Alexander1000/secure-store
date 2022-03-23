@@ -25,5 +25,13 @@ namespace SecureStore::Storage
             // error: unsupported cipher algorithm
             return;
         }
+
+        memcpy(&this->verMajor, headerData + 4, sizeof(uint16_t));
+        if (this->verMajor > VERSION_MAJOR) {
+            // error: unsupported version
+            return;
+        }
+
+        memcpy(&this->verMinor, headerData + 6, sizeof(uint16_t));
     }
 }
