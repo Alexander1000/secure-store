@@ -15,8 +15,15 @@ namespace SecureStore::Storage
         fileReader.read((char*) headerData, DB_HEADER_BYTE_SIZE);
 
         memcpy(this->format, headerData, 3 * sizeof(uint8_t));
-        if (std::string((char*) this->format) == "xdb") {
-            // it is xdb
+        if (std::string((char*) this->format) != "xdb") {
+            // error: unsupported format
+            return;
+        }
+
+        memcpy(&this->cipherAlgorithm, headerData + 3, sizeof(uint8_t));
+        if (this->cipherAlgorithm != CIPHER_ALGORITHM_AES_256_CBC) {
+            // error: unsupported cipher algorithm
+            return;
         }
     }
 }
