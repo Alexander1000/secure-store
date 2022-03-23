@@ -25,6 +25,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/storage/record.cpp
     src/storage/db_record.cpp
     src/storage/db_save.cpp
+    src/storage/db_open.cpp
 )
 
 set(SECURE_STORE_SOURCES
