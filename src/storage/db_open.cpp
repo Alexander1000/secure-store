@@ -47,5 +47,23 @@ namespace SecureStore::Storage
             // error: corrupted file
             return;
         }
+
+        // read data
+        int ioBufferSize = 4096;
+        IOBuffer::IOMemoryBuffer memoryBuffer;
+        auto buffer = (char*) malloc(ioBufferSize * sizeof(uint8_t));
+
+        do {
+            memset(buffer, 0, ioBufferSize * sizeof(uint8_t));
+            readLength = fileReader.read(buffer, ioBufferSize);
+
+            if (readLength > 0) {
+                memoryBuffer.write(buffer, readLength);
+            }
+
+            if (readLength != ioBufferSize) {
+                break;
+            }
+        } while (true);
     }
 }
