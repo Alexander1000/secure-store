@@ -99,5 +99,14 @@ namespace SecureStore::Storage
             // error: wrong decrypt
             return;
         }
+
+        int headBlockRecordSize = 5;
+        auto decryptedData = decrypted->getData();
+        uint16_t countRecords;
+        memcpy(&countRecords, decryptedData, sizeof(uint16_t));
+
+        for (uint16_t i = 0; i < countRecords; i++) {
+            // unpack data
+        }
     }
 }
