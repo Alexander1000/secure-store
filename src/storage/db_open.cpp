@@ -65,5 +65,25 @@ namespace SecureStore::Storage
                 break;
             }
         } while (true);
+
+        auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
+        unsigned char key[AES_256_KEY_SIZE];
+        memset(key, 0, sizeof(key));
+        int passwordLength = password->length();
+        if (passwordLength > 32) {
+            passwordLength = 32;
+        }
+        memcpy(key, password->c_str(), passwordLength);
+        params->key = key;
+        params->iv = iv;
+        params->encrypt = 0;
+        params->cipher_type = EVP_aes_256_cbc();
+
+        void* data = malloc(memoryBuffer.length());
+        memset(data, 0, memoryBuffer.length());
+        memoryBuffer.read((char*) data, memoryBuffer.length());
+        DataPack dataPack(memoryBuffer.length(), data);
+
+        SecureStore::Crypto::encrypt_decrypt(params, &dataPack);
     }
 }
