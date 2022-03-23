@@ -15,19 +15,16 @@ set(SECURE_STORE_SOURCES_SHARED
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp
+    src/crypto/encrypt_decrypt.cpp
+    src/crypto/hash_md5.cpp
+    src/data_pack.cpp
     src/storage/main.cpp
     src/storage/create_empty.cpp
-    src/data_pack.cpp
     src/storage/pack.cpp
     src/storage/unpack.cpp
     src/storage/record.cpp
     src/storage/db_record.cpp
-    src/storage/db_encode.cpp
-    src/storage/db_encrypt.cpp
-    src/storage/db_decode.cpp
-    src/storage/encrypt_decrypt.cpp
     src/storage/db_save.cpp
-    src/storage/hash_md5.cpp
 )
 
 set(SECURE_STORE_SOURCES
@@ -73,7 +70,6 @@ set(SECURE_STORE_SOURCES_TEST
     ${SECURE_STORE_SOURCES_SHARED}
     tests/src/pack_tests/case0.cpp
     tests/src/pack_tests/case01.cpp
-    tests/src/ciper_tests/case01.cpp
     tests/src/ciper_tests/case02.cpp
     tests/src/save/case01.cpp
 )

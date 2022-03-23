@@ -21,11 +21,11 @@ namespace SecureStore::Storage
         memcpy(headerData + 6, &this->verMinor, sizeof(uint16_t));
 
         auto rawSecrets = this->pack();
-        auto md5Hash = hash_md5(rawSecrets);
+        auto md5Hash = SecureStore::Crypto::hash_md5(rawSecrets);
         memcpy(headerData + 8, md5Hash, 16 * sizeof(uint8_t));
 
         if (this->cipherAlgorithm == CIPHER_ALGORITHM_AES_256_CBC) {
-            auto params = (SecureStore::Storage::cipher_params_t*) malloc(sizeof(SecureStore::Storage::cipher_params_t));
+            auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
             unsigned char key[AES_256_KEY_SIZE];
             memset(key, 0, sizeof(key));
             int passwordLength = password->length();

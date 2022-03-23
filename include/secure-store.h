@@ -9,5 +9,6 @@
 #include <secure-store/menu.h>
 #include <secure-store/storage.h>
 #include <secure-store/data-pack.h>
+#include <secure-store/crypto.h>
 
 #endif

@@ -8,7 +8,6 @@ int main() {
     testSuite.addTestCase(SecureStoreTest::testPackAndUnpack_MinimumData());
 
     // cipher tests
-    testSuite.addTestCase(SecureStoreTest::testCipherData_case01());
     testSuite.addTestCase(SecureStoreTest::testEncryptDecrypt_Data_case02());
 
     // save tests

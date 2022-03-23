@@ -2,23 +2,10 @@
 #define H_SECURE_STORE_DB
 
 #include <string>
-#include <openssl/evp.h>
 #include <secure-store/data-pack.h>
-
-/* 32 byte key (256 bit key) */
-#define AES_256_KEY_SIZE 32
-/* 16 byte block size (128 bits) */
-#define AES_BLOCK_SIZE 16
 
 namespace SecureStore::Storage
 {
-    typedef struct _cipher_params_t{
-        unsigned char* key;
-        unsigned char* iv;
-        unsigned int encrypt;
-        const EVP_CIPHER* cipher_type;
-    } cipher_params_t;
-
     class Record
     {
     public:
@@ -140,8 +127,6 @@ namespace SecureStore::Storage
 
         void save(std::string* fileName, std::string* key); // save new file
 
-        SecureStore::DataPack* encrypt(std::string*);
-
     private:
         std::list<DBRecord*>* records;
 
@@ -153,15 +138,8 @@ namespace SecureStore::Storage
         uint16_t verMajor;
         uint16_t verMinor;
 
-        SecureStore::DataPack* encode(SecureStore::DataPack*, std::string*);
-        SecureStore::DataPack* decode(SecureStore::DataPack*, std::string*);
-
         SecureStore::DataPack* pack();
     };
-
-    SecureStore::DataPack* encrypt_decrypt(cipher_params_t* params, SecureStore::DataPack* input);
-
-    uint8_t* hash_md5(SecureStore::DataPack* input);
 }
 
 #endif
