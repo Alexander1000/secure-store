@@ -1,14 +1,11 @@
 #include <secure-store.h>
 
 #include <openssl/evp.h>
-#include <openssl/rand.h>
 #include <openssl/err.h>
 #include <memory>
 #include <io-buffer.h>
 
-#define BUFSIZE 100
-
-namespace SecureStore::Storage
+namespace SecureStore::Crypto
 {
     DataPack* encrypt_decrypt(cipher_params_t* params, SecureStore::DataPack* input)
     {

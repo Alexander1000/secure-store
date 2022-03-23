@@ -3,7 +3,7 @@
 #include <memory>
 #include <openssl/evp.h>
 
-namespace SecureStore::Storage
+namespace SecureStore::Crypto
 {
     uint8_t* hash_md5(SecureStore::DataPack* input)
     {

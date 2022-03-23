@@ -10,7 +10,6 @@ namespace SecureStoreTest
     CppUnitTest::TestCase* testPackAndUnpack_MinimumData();
 
     // cipher tests
-    CppUnitTest::TestCase* testCipherData_case01();
     CppUnitTest::TestCase* testEncryptDecrypt_Data_case02();
 
     // save tests
