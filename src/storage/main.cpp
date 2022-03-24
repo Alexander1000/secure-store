@@ -46,7 +46,7 @@ namespace SecureStore::Storage
                 uint16_t length = dp->getLength();
 
                 // write heap
-                memcpy((uint8_t*) rawData + heapSize + heapOffset, dp->getData(), length);
+                memcpy((uint8_t*) rawData + headerSize + heapOffset, dp->getData(), length);
 
                 uint16_t indexOffset = index * 5;
 
