@@ -125,6 +125,11 @@ namespace SecureStore::Storage
 
             auto heapData = malloc(length * sizeof(uint8_t));
             memcpy(heapData, (uint8_t*) decryptedData + heapOffsetStart + offset, length * sizeof(uint8_t));
+
+            SecureStore::DataPack dataPackSecret(length, heapData);
+            Record* record = unpack(&dataPackSecret);
+            this->addRecord(record);
+
             free(heapData);
         }
     }
