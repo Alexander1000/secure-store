@@ -105,8 +105,27 @@ namespace SecureStore::Storage
         uint16_t countRecords;
         memcpy(&countRecords, decryptedData, sizeof(uint16_t));
 
+        uint16_t offset;
+        uint16_t length;
+        uint8_t status;
+
+        uint16_t heapOffsetStart = 0;
+
         for (uint16_t i = 0; i < countRecords; i++) {
-            // unpack data
+            memcpy(&offset, (uint8_t*) decryptedData + i * headBlockRecordSize, sizeof(uint16_t));
+            memcpy(&length, (uint8_t*) decryptedData + i * headBlockRecordSize + 2, sizeof(uint16_t));
+            memcpy(&status, (uint8_t*) decryptedData + i * headBlockRecordSize + 4, sizeof(uint8_t));
+
+            if (i == 0) {
+                // first element offset = count elements
+                heapOffsetStart = offset * headBlockRecordSize;
+                // first element always have offset = 0
+                offset = 0;
+            }
+
+            auto heapData = malloc(length * sizeof(uint8_t));
+            memcpy(heapData, (uint8_t*) decryptedData + heapOffsetStart + offset, length * sizeof(uint8_t));
+            free(heapData);
         }
     }
 }
