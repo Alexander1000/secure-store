@@ -15,7 +15,8 @@ namespace SecureStoreTest
         std::string key = "Qwerty123!";
 
         SecureStore::Storage::DB db;
-        db.open(&fileName, &key);
+        int result = db.open(&fileName, &key);
+        CppUnitTest::assertEquals(t, 0, result);
 
         auto recs = db.getRecords();
         CppUnitTest::assertNotNull(t, recs);

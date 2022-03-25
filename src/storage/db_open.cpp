@@ -3,11 +3,11 @@
 
 namespace SecureStore::Storage
 {
-    void DB::open(std::string *fileName, std::string *password)
+    int DB::open(std::string *fileName, std::string *password)
     {
         this->createEmpty();
 
-        IOBuffer::IOFileReader fileReader(*fileName);
+        IOBuffer::IOFileReader fileReader(fileName->c_str());
 
         auto headerData = (uint8_t*) malloc(DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
         memset(headerData, 0, DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
@@ -15,25 +15,25 @@ namespace SecureStore::Storage
         int readLength = fileReader.read((char*) headerData, DB_HEADER_BYTE_SIZE);
         if (readLength < DB_HEADER_BYTE_SIZE) {
             // error: incorrect file length
-            return;
+            return 1;
         }
 
         memcpy(this->format, headerData, 3 * sizeof(uint8_t));
         if (std::string((char*) this->format) != "xdb") {
             // error: unsupported format
-            return;
+            return 2;
         }
 
         memcpy(&this->cipherAlgorithm, headerData + 3, sizeof(uint8_t));
         if (this->cipherAlgorithm != CIPHER_ALGORITHM_AES_256_CBC) {
             // error: unsupported cipher algorithm
-            return;
+            return 3;
         }
 
         memcpy(&this->verMajor, headerData + 4, sizeof(uint16_t));
         if (this->verMajor > VERSION_MAJOR) {
             // error: unsupported version
-            return;
+            return 4;
         }
 
         memcpy(&this->verMinor, headerData + 6, sizeof(uint16_t));
@@ -45,7 +45,7 @@ namespace SecureStore::Storage
         readLength = fileReader.read((char*) iv, AES_BLOCK_SIZE);
         if (readLength != AES_BLOCK_SIZE) {
             // error: corrupted file
-            return;
+            return 5;
         }
 
         // read data
@@ -97,7 +97,7 @@ namespace SecureStore::Storage
 
         if (!equal) {
             // error: wrong decrypt
-            return;
+            return 6;
         }
 
         int headBlockRecordSize = 5;
@@ -132,5 +132,7 @@ namespace SecureStore::Storage
 
             free(heapData);
         }
+
+        return 0;
     }
 }
