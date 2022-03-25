@@ -41,7 +41,7 @@ namespace SecureStore::Storage
             params->cipher_type = EVP_aes_256_cbc();
             auto encryptedSecrets = encrypt_decrypt(params, rawSecrets);
 
-            IOBuffer::IOFileWriter fileWriter(*this->fileName);
+            IOBuffer::IOFileWriter fileWriter(*this->fileName, "w+");
             fileWriter.write((char*) headerData, DB_HEADER_BYTE_SIZE);
             fileWriter.write((char*) iv, AES_BLOCK_SIZE);
             fileWriter.write((char*) encryptedSecrets->getData(), encryptedSecrets->getLength());
