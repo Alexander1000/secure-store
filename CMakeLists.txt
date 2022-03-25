@@ -73,6 +73,7 @@ set(SECURE_STORE_SOURCES_TEST
     tests/src/pack_tests/case01.cpp
     tests/src/ciper_tests/case02.cpp
     tests/src/save/case01.cpp
+    tests/src/open/case01.cpp
 )
 
 include_directories(
