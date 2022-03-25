@@ -22,6 +22,12 @@ namespace SecureStoreTest
         CppUnitTest::assertNotNull(t, recs);
         CppUnitTest::assertEquals(t, 1, recs->size());
 
+        auto dbRecord = *recs->begin();
+        CppUnitTest::assertEquals(t, 0, dbRecord->getStatus());
+
+        auto record = dbRecord->getRecord();
+        CppUnitTest::assertNotNull(t, record);
+
         t->finish();
 
         return t;
