@@ -17,6 +17,9 @@ namespace SecureStoreTest
         SecureStore::Storage::DB db;
         db.open(&fileName, &key);
 
+        auto recs = db.getRecords();
+        CppUnitTest::assertNotNull(t, recs);
+
         t->finish();
 
         return t;

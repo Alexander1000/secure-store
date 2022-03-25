@@ -129,6 +129,8 @@ namespace SecureStore::Storage
 
         void save(std::string* fileName, std::string* key); // save new file
 
+        std::list<DBRecord*>* getRecords();
+
     private:
         std::list<DBRecord*>* records;
 

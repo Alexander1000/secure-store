@@ -75,4 +75,9 @@ namespace SecureStore::Storage
 
         return new SecureStore::DataPack(headerSize + heapSize, rawData);
     }
+
+    std::list<DBRecord*>* DB::getRecords()
+    {
+        return this->records;
+    }
 }
