@@ -11,7 +11,7 @@ namespace SecureStoreTest
         t = new CppUnitTest::TestCase("open db file ciphered by aes 256 cbc");
         t->printTitle();
 
-        std::string fileName = "one_element_aes_256_cbc.xdb";
+        std::string fileName = "tests/fixtures/one_element_aes_256_cbc.xdb";
         std::string key = "Qwerty123!";
 
         SecureStore::Storage::DB db;
