@@ -19,6 +19,7 @@ namespace SecureStoreTest
 
         auto recs = db.getRecords();
         CppUnitTest::assertNotNull(t, recs);
+        CppUnitTest::assertEquals(t, 1, recs->size());
 
         t->finish();
 
