@@ -28,6 +28,19 @@ namespace SecureStoreTest
         auto record = dbRecord->getRecord();
         CppUnitTest::assertNotNull(t, record);
 
+        CppUnitTest::assertEquals(t, "testSaveDb_Data_case01", record->getName());
+        CppUnitTest::assertEquals(t, "some-login", record->getUser());
+        CppUnitTest::assertEquals(t, "12345Qwerty!@#", record->getPassword());
+        CppUnitTest::assertEquals(t, "It is example record in secure store", record->getComment());
+        auto keywords = record->getKeywords();
+        CppUnitTest::assertNotNull(t, keywords);
+        CppUnitTest::assertEquals(t, 2, keywords->size());
+        auto keyword = *keywords->begin();
+        CppUnitTest::assertEquals(t, "system", keyword);
+        keyword = *(++keywords->begin());
+        CppUnitTest::assertEquals(t, "critical", keyword);
+        CppUnitTest::assertEquals(t, 187766224, record->getCreateTime());
+
         t->finish();
 
         return t;
