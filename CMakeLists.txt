@@ -75,6 +75,7 @@ set(SECURE_STORE_SOURCES_TEST
     tests/src/save/case01.cpp
     tests/src/save/save_multi_records.cpp
     tests/src/open/case01.cpp
+    tests/src/open/case02.cpp
 )
 
 include_directories(
