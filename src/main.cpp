@@ -12,6 +12,11 @@
 int main(int argc, char** argv) {
     SecureStore::Config config(argc, argv);
 
+    if (config.getFileName() != nullptr) {
+        std::cout << "Open file: " << config.getFileName()->c_str() << std::endl;
+        return 0;
+    }
+
     struct passwd *pw = getpwuid(getuid());
 
     const char *homedir = pw->pw_dir;
