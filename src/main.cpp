@@ -34,6 +34,7 @@ int main(int argc, char** argv) {
         FILE *fp = stdin;
         ssize_t nchr = 0;
         nchr = SecureStore::getpasswd(&p, 32, '*', fp);
+        std::cout << std::endl;
         if (nchr == 0) {
             std::cout << "Empty password" << std::endl;
             return 1;
