@@ -10,5 +10,6 @@
 #include <secure-store/storage.h>
 #include <secure-store/data-pack.h>
 #include <secure-store/crypto.h>
+#include <secure-store/getpasswd.h>
 
 #endif

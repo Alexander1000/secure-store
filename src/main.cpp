@@ -23,6 +23,14 @@ int main(int argc, char** argv) {
 
         if (info.st_mode & S_IFMT) {
             std::cout << "Open file: " << config.getFileName()->c_str() << std::endl;
+            std::cout << "Enter password: ";
+
+            char pw[32] = {0};
+            char *p = pw;
+            FILE *fp = stdin;
+            ssize_t nchr = 0;
+            nchr = SecureStore::getpasswd(&p, 32, '*', fp);
+            printf ("\n you entered   : %s  (%zu chars)\n", p, nchr);
         }
 
         return 0;
