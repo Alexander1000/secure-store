@@ -61,6 +61,36 @@ namespace SecureStoreTest
         CppUnitTest::assertNull(t, record->getKeywords());
         CppUnitTest::assertEquals(t, 747828722, record->getCreateTime());
 
+        // third record
+        itRecs++;
+        dbRecord = *itRecs;
+        CppUnitTest::assertEquals(t, 0, dbRecord->getStatus());
+
+        record = dbRecord->getRecord();
+        CppUnitTest::assertNotNull(t, record);
+
+        CppUnitTest::assertEquals(t, 3, record->getId());
+        CppUnitTest::assertEquals(t, "testSaveDb_MultiRecordsData_case02_record3", record->getName());
+        CppUnitTest::assertEquals(t, "sashok", record->getUser());
+        CppUnitTest::assertEquals(t, "ojfmlw$2ffs$2fkiib", record->getPassword());
+        CppUnitTest::assertNull(t, record->getComment());
+        keywords = record->getKeywords();
+        CppUnitTest::assertNotNull(t, keywords);
+        CppUnitTest::assertEquals(t, 4, keywords->size());
+        auto itKeywords = keywords->begin();
+        keyword = *itKeywords;
+        CppUnitTest::assertEquals(t, "tests", keyword);
+        itKeywords++;
+        keyword = *itKeywords;
+        CppUnitTest::assertEquals(t, "ololo", keyword);
+        itKeywords++;
+        keyword = *itKeywords;
+        CppUnitTest::assertEquals(t, "super", keyword);
+        itKeywords++;
+        keyword = *itKeywords;
+        CppUnitTest::assertEquals(t, "top", keyword);
+        CppUnitTest::assertEquals(t, 893753837, record->getCreateTime());
+
         t->finish();
 
         return t;
