@@ -13,7 +13,18 @@ int main(int argc, char** argv) {
     SecureStore::Config config(argc, argv);
 
     if (config.getFileName() != nullptr) {
-        std::cout << "Open file: " << config.getFileName()->c_str() << std::endl;
+        struct stat info;
+        int code = stat(config.getFileName()->c_str(), &info);
+
+        if (code != 0) {
+            std::cout << "Cannot access: " << config.getFileName()->c_str() << std::endl;
+            return 1;
+        }
+
+        if (info.st_mode & S_IFMT) {
+            std::cout << "Open file: " << config.getFileName()->c_str() << std::endl;
+        }
+
         return 0;
     }
 
