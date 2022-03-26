@@ -20,15 +20,18 @@ namespace SecureStoreTest
 
         auto recs = db.getRecords();
         CppUnitTest::assertNotNull(t, recs);
-        CppUnitTest::assertEquals(t, 1, recs->size());
+        CppUnitTest::assertEquals(t, 3, recs->size());
 
-        auto dbRecord = *recs->begin();
+        auto itRecs = recs->begin();
+
+        auto dbRecord = *itRecs;
         CppUnitTest::assertEquals(t, 0, dbRecord->getStatus());
 
         auto record = dbRecord->getRecord();
         CppUnitTest::assertNotNull(t, record);
 
-        CppUnitTest::assertEquals(t, "testSaveDb_Data_case01", record->getName());
+        CppUnitTest::assertEquals(t, 1, record->getId());
+        CppUnitTest::assertEquals(t, "testSaveDb_MultiRecordsData_case02_record1", record->getName());
         CppUnitTest::assertEquals(t, "some-login", record->getUser());
         CppUnitTest::assertEquals(t, "12345Qwerty!@#", record->getPassword());
         CppUnitTest::assertEquals(t, "It is example record in secure store", record->getComment());
