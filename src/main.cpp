@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
             return 1;
         }
 
-        if (!(info.st_mode & S_IFMT)) {
+        if (info.st_mode & S_IFDIR) {
             std::cout << config.getFileName()->c_str() << " is not file" << std::endl;
             return 1;
         }
