@@ -9,8 +9,8 @@
 
 #include <memory.h>
 
-int main() {
-    SecureStore::Config config;
+int main(int argc, char** argv) {
+    SecureStore::Config config(argc, argv);
 
     struct passwd *pw = getpwuid(getuid());
 

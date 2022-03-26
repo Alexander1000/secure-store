@@ -12,9 +12,23 @@
 
 namespace SecureStore
 {
-    Config::Config()
+    Config::Config(int argc, char **argv)
     {
-        this->initialize();
+        this->fileName = nullptr;
+
+        for (int i = 1; i < argc; i++) {
+            std::string paramName(argv[i]);
+
+            if ((paramName == "-f" || paramName == "--file") && i + 1 < argc) {
+                this->fileName = new std::string(argv[i+1]);
+                i++;
+                continue;
+            }
+        }
+
+        if (argc == 1) {
+            this->initialize();
+        }
     }
 
     void Config::initialize()
@@ -64,5 +78,10 @@ namespace SecureStore
         struct passwd *pw = getpwuid(getuid());
         const char *homedir = pw->pw_dir;
         return homedir;
+    }
+
+    std::string* Config::getFileName()
+    {
+        return this->fileName;
     }
 }
