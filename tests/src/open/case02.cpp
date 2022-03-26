@@ -24,6 +24,7 @@ namespace SecureStoreTest
 
         auto itRecs = recs->begin();
 
+        // first record
         auto dbRecord = *itRecs;
         CppUnitTest::assertEquals(t, 0, dbRecord->getStatus());
 
@@ -43,6 +44,22 @@ namespace SecureStoreTest
         keyword = *(++keywords->begin());
         CppUnitTest::assertEquals(t, "critical", keyword);
         CppUnitTest::assertEquals(t, 187766224, record->getCreateTime());
+
+        // second record
+        itRecs++;
+        dbRecord = *itRecs;
+        CppUnitTest::assertEquals(t, 0, dbRecord->getStatus());
+
+        record = dbRecord->getRecord();
+        CppUnitTest::assertNotNull(t, record);
+
+        CppUnitTest::assertEquals(t, 2, record->getId());
+        CppUnitTest::assertEquals(t, "testSaveDb_MultiRecordsData_case02_record2", record->getName());
+        CppUnitTest::assertEquals(t, "nagibator_3000", record->getUser());
+        CppUnitTest::assertEquals(t, "zxcvb123$%^", record->getPassword());
+        CppUnitTest::assertEquals(t, "This is secret for me", record->getComment());
+        CppUnitTest::assertNull(t, record->getKeywords());
+        CppUnitTest::assertEquals(t, 747828722, record->getCreateTime());
 
         t->finish();
 
