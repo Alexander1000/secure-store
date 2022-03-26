@@ -34,7 +34,20 @@ int main(int argc, char** argv) {
         FILE *fp = stdin;
         ssize_t nchr = 0;
         nchr = SecureStore::getpasswd(&p, 32, '*', fp);
-        printf ("\n you entered   : %s  (%zu chars)\n", p, nchr);
+        if (nchr == 0) {
+            std::cout << "Empty password" << std::endl;
+            return 1;
+        }
+
+        // open db
+        std::string key = p;
+        SecureStore::Storage::DB db;
+        code = db.open(config.getFileName(), &key);
+
+        if (code != 0) {
+            std::cout << "Failed to open: " << config.getFileName()->c_str() << std::endl;
+            return 1;
+        }
 
         return 0;
     }
