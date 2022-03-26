@@ -5,6 +5,11 @@
 
 namespace SecureStore::View
 {
+    struct TermSize {
+        unsigned short rows;
+        unsigned short cols;
+    };
+
     class Application
     {
     public:
@@ -14,6 +19,8 @@ namespace SecureStore::View
 
     private:
         SecureStore::Storage::DB* db;
+
+        void termSize(TermSize*);
     };
 }
 

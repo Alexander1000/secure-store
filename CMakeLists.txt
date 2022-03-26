@@ -29,6 +29,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/getpasswd.cpp
     src/view/main.cpp
     src/view/run.cpp
+    src/view/term_size.cpp
 )
 
 set(SECURE_STORE_SOURCES
