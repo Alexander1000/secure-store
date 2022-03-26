@@ -12,6 +12,7 @@ int main() {
 
     // save tests
     testSuite.addTestCase(SecureStoreTest::testSaveDb_Data_case01());
+    testSuite.addTestCase(SecureStoreTest::testSaveDb_MultiRecordsData_case02());
 
     // open tests
     testSuite.addTestCase(SecureStoreTest::testOpenDb_OneElementAes256Cbc_case01());
