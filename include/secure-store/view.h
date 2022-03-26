@@ -10,6 +10,7 @@ namespace SecureStore::View
     public:
         Application(SecureStore::Storage::DB*);
         void render();
+        void run();
 
     private:
         SecureStore::Storage::DB* db;

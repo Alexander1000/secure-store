@@ -50,6 +50,9 @@ int main(int argc, char** argv) {
             return 1;
         }
 
+        SecureStore::View::Application app(&db);
+        app.run();
+
         return 0;
     }
 
