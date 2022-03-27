@@ -30,6 +30,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/view/main.cpp
     src/view/run.cpp
     src/view/term_size.cpp
+    src/view/draw_rectangle.cpp
 )
 
 set(SECURE_STORE_SOURCES

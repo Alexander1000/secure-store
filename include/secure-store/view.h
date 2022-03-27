@@ -5,6 +5,11 @@
 
 namespace SecureStore::View
 {
+    struct Point {
+        unsigned short x; // column
+        unsigned short y; // line
+    };
+
     struct TermSize {
         unsigned short rows;
         unsigned short cols;
@@ -22,6 +27,8 @@ namespace SecureStore::View
 
         void termSize(TermSize*);
     };
+
+    void draw_rectangle(Point*, Point*);
 }
 
 #endif
