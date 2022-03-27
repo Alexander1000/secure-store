@@ -21,6 +21,14 @@ namespace SecureStore::View
 
         draw_rectangle(&p1, &p2);
 
+        curs_set(0); // hide cursor
+
+        int cols = 1;
+        for (auto & dbRecord : *db->getRecords()) {
+            mvaddstr(cols, 1, dbRecord->getRecord()->getName()->c_str());
+            cols++;
+        }
+
         refresh();                   // Вывод приветствия на настоящий экран
         getch();                     // Ожидание нажатия какой-либо клавиши пользователем
         endwin();                    // Выход из curses-режима. Обязательная команда.
