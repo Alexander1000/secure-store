@@ -23,10 +23,10 @@ namespace SecureStore::View
 
         curs_set(0); // hide cursor
 
-        int cols = 1;
+        int rows = 1;
         for (auto & dbRecord : *this->db->getRecords()) {
-            mvaddstr(cols, 1, dbRecord->getRecord()->getName()->c_str());
-            cols++;
+            mvaddstr(rows, 1, dbRecord->getRecord()->getName()->c_str());
+            rows++;
         }
 
         refresh();                   // Вывод приветствия на настоящий экран
