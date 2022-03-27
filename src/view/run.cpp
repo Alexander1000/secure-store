@@ -24,7 +24,7 @@ namespace SecureStore::View
         curs_set(0); // hide cursor
 
         int cols = 1;
-        for (auto & dbRecord : *db->getRecords()) {
+        for (auto & dbRecord : *this->db->getRecords()) {
             mvaddstr(cols, 1, dbRecord->getRecord()->getName()->c_str());
             cols++;
         }
