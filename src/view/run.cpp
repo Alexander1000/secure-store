@@ -16,12 +16,11 @@ namespace SecureStore::View
         p1.x = 0;
         p1.y = 0;
 
-        p2.x = size.cols;
-        p2.y = size.rows;
+        p2.x = size.cols - 1;
+        p2.y = size.rows - 1;
 
         draw_rectangle(&p1, &p2);
 
-        printw("Hello world!\n");  // Отображение приветствия в буфер
         refresh();                   // Вывод приветствия на настоящий экран
         getch();                     // Ожидание нажатия какой-либо клавиши пользователем
         endwin();                    // Выход из curses-режима. Обязательная команда.
