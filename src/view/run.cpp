@@ -5,7 +5,7 @@
 
 namespace SecureStore::View
 {
-    void Application::run()
+    int Application::run()
     {
         initscr();                   // Переход в curses-режим
         printw("Hello world!\n");  // Отображение приветствия в буфер
@@ -15,5 +15,6 @@ namespace SecureStore::View
         TermSize size;
         this->termSize(&size);
         std::cout << "Cols: " << size.cols << "; rows: " << size.rows << std::endl;
+        return 0;
     }
 }

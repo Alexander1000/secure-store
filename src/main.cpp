@@ -51,9 +51,7 @@ int main(int argc, char** argv) {
         }
 
         SecureStore::View::Application app(&db);
-        app.run();
-
-        return 0;
+        return app.run();
     }
 
     struct passwd *pw = getpwuid(getuid());
