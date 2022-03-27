@@ -19,8 +19,14 @@ namespace SecureStore::View
 
             switch (getch()) {
                 case KEY_UP:
+                    if (this->currentRow > 0) {
+                        this->currentRow--;
+                    }
                     break;
                 case KEY_DOWN:
+                    if (this->db->getRecords()->size() > this->currentRow) {
+                        this->currentRow++;
+                    }
                     break;
                 default:
                     stop = true;
