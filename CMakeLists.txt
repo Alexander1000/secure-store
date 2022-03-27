@@ -53,6 +53,7 @@ add_executable(
 target_link_libraries(${PROJECT_NAME}
     ${IO_BUFFER}
     OpenSSL::Crypto
+    ncurses
 )
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
