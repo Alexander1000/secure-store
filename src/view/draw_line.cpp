@@ -7,13 +7,13 @@ namespace SecureStore::View
     {
         if (p1->x != p2->x) {
             for (unsigned short i = p1->x; i <= p2->x; i++) {
-                mvaddch(i, p1->y, '-');
+                mvaddch(p1->y, i, '-');
             }
         }
 
         if (p1->y != p2->y) {
             for (unsigned short i = p1->y; i <= p2->y; i++) {
-                mvaddch(p1->x, i, '|');
+                mvaddch(i, p1->x, '|');
             }
         }
     }
