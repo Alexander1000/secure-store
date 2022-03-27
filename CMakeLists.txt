@@ -106,4 +106,5 @@ target_link_libraries(${PROJECT_NAME}
     ${IO_BUFFER}
     ${CPP_UNIT_TEST}
     OpenSSL::Crypto
+    ncurses
 )
