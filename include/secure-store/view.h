@@ -29,6 +29,8 @@ namespace SecureStore::View
     };
 
     void draw_rectangle(Point*, Point*);
+
+    void draw_line(Point*, Point*);
 }
 
 #endif
