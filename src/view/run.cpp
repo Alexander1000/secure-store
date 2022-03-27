@@ -24,8 +24,8 @@ namespace SecureStore::View
                     }
                     break;
                 case KEY_DOWN:
-                    if (this->db->getRecords()->size() > this->currentRow) {
-                        this->currentRow++;
+                    if ((int) this->db->getRecords()->size() > this->currentRow + 1) {
+                        this->currentRow += 1;
                     }
                     break;
                 default:

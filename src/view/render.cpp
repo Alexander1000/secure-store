@@ -24,9 +24,6 @@ namespace SecureStore::View
         p2.y = size.rows - 2;
         draw_line(&p1, &p2);
 
-        // debug
-        // mvprintw(0, 0, "currows: %d", this->currentRow);
-
         int rows = 1;
         for (auto & dbRecord : *this->db->getRecords()) {
             int offset = 1;
