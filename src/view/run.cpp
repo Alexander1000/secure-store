@@ -9,6 +9,7 @@ namespace SecureStore::View
     {
         initscr();                   // Переход в curses-режим
         curs_set(0); // hide cursor
+        keypad(stdscr, true);
         this->render();
 
         getch();                     // Ожидание нажатия какой-либо клавиши пользователем

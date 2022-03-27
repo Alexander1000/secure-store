@@ -25,6 +25,8 @@ namespace SecureStore::View
     private:
         SecureStore::Storage::DB* db;
 
+        int currentRow;
+
         void termSize(TermSize*);
     };
 
