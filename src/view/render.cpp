@@ -17,6 +17,13 @@ namespace SecureStore::View
 
         draw_rectangle(&p1, &p2);
 
+        unsigned short breakLineX = (p2.x - p1.x) >> 1;
+        p1.x = breakLineX;
+        p1.y = 1;
+        p2.x = breakLineX;
+        p2.y = size.rows - 2;
+        draw_line(&p1, &p2);
+
         int rows = 1;
         for (auto & dbRecord : *this->db->getRecords()) {
             mvaddstr(rows, 1, dbRecord->getRecord()->getName()->c_str());
