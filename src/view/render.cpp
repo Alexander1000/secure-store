@@ -26,12 +26,10 @@ namespace SecureStore::View
 
         int rows = 1;
         for (auto & dbRecord : *this->db->getRecords()) {
-            int offset = 1;
             if (this->currentRow + 1 == rows) {
-                mvaddstr(rows, offset, "-> ");
-                offset += 3;
+                mvaddstr(rows, 1, "-> ");
             }
-            mvaddstr(rows, offset, dbRecord->getRecord()->getName()->c_str());
+            mvaddstr(rows, 4, dbRecord->getRecord()->getName()->c_str());
             rows++;
         }
 
