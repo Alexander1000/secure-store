@@ -37,10 +37,17 @@ namespace SecureStore::View
         }
 
         if (selectedRecord != nullptr) {
-            mvprintw(1, breakLineX + 1, "ID: %d", selectedRecord->getId());
-            mvprintw(2, breakLineX + 1, "Name: %s", selectedRecord->getName()->c_str());
+            int offsetLine = 1;
+
+            mvprintw(offsetLine, breakLineX + 1, "ID: %d", selectedRecord->getId());
+            offsetLine++;
+
+            mvprintw(offsetLine, breakLineX + 1, "Name: %s", selectedRecord->getName()->c_str());
+            offsetLine++;
+
             if (selectedRecord->getComment() != nullptr) {
-                mvprintw(3, breakLineX + 1, "Comment: %s", selectedRecord->getComment()->c_str());
+                mvprintw(offsetLine, breakLineX + 1, "Comment: %s", selectedRecord->getComment()->c_str());
+                offsetLine++;
             }
         }
 
