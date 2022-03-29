@@ -38,15 +38,21 @@ namespace SecureStore::View
 
         if (selectedRecord != nullptr) {
             int offsetLine = 1;
+            int columnPosition = breakLineX + 1;
 
-            mvprintw(offsetLine, breakLineX + 1, "ID: %d", selectedRecord->getId());
+            mvprintw(offsetLine, columnPosition, "ID: %d", selectedRecord->getId());
             offsetLine++;
 
-            mvprintw(offsetLine, breakLineX + 1, "Name: %s", selectedRecord->getName()->c_str());
+            mvprintw(offsetLine, columnPosition, "Name: %s", selectedRecord->getName()->c_str());
             offsetLine++;
+
+            if (selectedRecord->getUser() != nullptr) {
+                mvprintw(offsetLine, columnPosition, "User: %s", selectedRecord->getUser()->c_str());
+                offsetLine++;
+            }
 
             if (selectedRecord->getComment() != nullptr) {
-                mvprintw(offsetLine, breakLineX + 1, "Comment: %s", selectedRecord->getComment()->c_str());
+                mvprintw(offsetLine, columnPosition, "Comment: %s", selectedRecord->getComment()->c_str());
                 offsetLine++;
             }
         }
