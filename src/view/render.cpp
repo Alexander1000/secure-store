@@ -51,10 +51,17 @@ namespace SecureStore::View
                 offsetLine++;
             }
 
+            if (selectedRecord->getPassword() != nullptr) {
+                mvprintw(offsetLine, columnPosition, "Password: ***");
+                offsetLine++;
+            }
+
             if (selectedRecord->getComment() != nullptr) {
                 mvprintw(offsetLine, columnPosition, "Comment: %s", selectedRecord->getComment()->c_str());
                 offsetLine++;
             }
+
+            mvprintw(offsetLine, columnPosition, "Create time: %d", selectedRecord->getCreateTime());
         }
 
         refresh();                   // Вывод приветствия на настоящий экран
