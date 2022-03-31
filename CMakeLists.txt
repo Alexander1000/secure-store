@@ -6,7 +6,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(OPENSSL_ROOT_DIR /opt/homebrew/opt/openssl@3)
+if (APPLE)
+    # brew --prefix openssl
+    set(OPENSSL_ROOT_DIR /opt/homebrew/opt/openssl@3)
+endif(APPLE)
 
 set(OPENSSL_USE_STATIC_LIBS TRUE)
 find_package(OpenSSL REQUIRED)
