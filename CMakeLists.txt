@@ -11,6 +11,9 @@ set(OPENSSL_ROOT_DIR /opt/homebrew/opt/openssl@3)
 set(OPENSSL_USE_STATIC_LIBS TRUE)
 find_package(OpenSSL REQUIRED)
 
+find_package(wxWidgets REQUIRED)
+include(${wxWidgets_USE_FILE})
+
 set(SECURE_STORE_SOURCES_SHARED
     src/config.cpp
     src/config/load_config.cpp
@@ -57,6 +60,7 @@ target_link_libraries(${PROJECT_NAME}
     ${IO_BUFFER}
     OpenSSL::Crypto
     ncurses
+    ${wxWidgets_LIBRARIES}
 )
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
@@ -73,6 +77,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+
+find_package(wxWidgets REQUIRED)
+include(${wxWidgets_USE_FILE})
 
 set(SECURE_STORE_SOURCES_TEST
     tests/src/main.cpp
@@ -107,4 +114,5 @@ target_link_libraries(${PROJECT_NAME}
     ${CPP_UNIT_TEST}
     OpenSSL::Crypto
     ncurses
+    ${wxWidgets_LIBRARIES}
 )
