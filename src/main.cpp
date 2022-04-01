@@ -12,7 +12,7 @@
 int main(int argc, char** argv) {
     SecureStore::Config config(argc, argv);
 
-    if (argc > 0) {
+    if (!config.isConsole()) {
         return wxEntry(argc, argv);
     }
 

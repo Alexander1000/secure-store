@@ -15,6 +15,7 @@ namespace SecureStore
     Config::Config(int argc, char **argv)
     {
         this->fileName = nullptr;
+        this->console = false;
 
         for (int i = 1; i < argc; i++) {
             std::string paramName(argv[i]);
@@ -22,6 +23,11 @@ namespace SecureStore
             if ((paramName == "-f" || paramName == "--file") && i + 1 < argc) {
                 this->fileName = new std::string(argv[i+1]);
                 i++;
+                continue;
+            }
+
+            if (paramName == "--console") {
+                this->console = true;
                 continue;
             }
         }
@@ -83,5 +89,10 @@ namespace SecureStore
     std::string* Config::getFileName()
     {
         return this->fileName;
+    }
+
+    bool Config::isConsole()
+    {
+        return this->console;
     }
 }

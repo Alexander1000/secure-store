@@ -10,8 +10,10 @@ namespace SecureStore
     public:
         Config(int argc, char** argv);
         std::string* getFileName();
+        bool isConsole();
     private:
         std::string* fileName;
+        bool console;
 
         void initialize();
         void loadConfig(const char*);
