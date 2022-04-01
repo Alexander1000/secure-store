@@ -12,6 +12,10 @@
 int main(int argc, char** argv) {
     SecureStore::Config config(argc, argv);
 
+    if (argc > 0) {
+        return wxEntry(argc, argv);
+    }
+
     if (config.getFileName() != nullptr) {
         struct stat info;
         int code = stat(config.getFileName()->c_str(), &info);
