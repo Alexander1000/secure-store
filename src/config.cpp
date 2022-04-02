@@ -9,6 +9,7 @@
 #include <memory.h>
 
 #include <fstream>
+#include <wx/wx.h>
 
 namespace SecureStore
 {
@@ -23,6 +24,34 @@ namespace SecureStore
             if ((paramName == "-f" || paramName == "--file") && i + 1 < argc) {
                 this->fileName = new std::string(argv[i+1]);
                 i++;
+                continue;
+            }
+
+            if (paramName == "--console") {
+                this->console = true;
+                continue;
+            }
+        }
+
+        if (argc == 1) {
+            this->initialize();
+        }
+    }
+
+    Config::Config(int argc, wxArrayString *wxArrayString)
+    {
+        this->fileName = nullptr;
+        this->console = false;
+
+        for (auto it = wxArrayString->begin(); it != wxArrayString->end(); it++) {
+            auto paramName = *it;
+
+            auto itNext = it;
+            itNext++;
+
+            if ((paramName == "-f" || paramName == "--file") && itNext != wxArrayString->end()) {
+                this->fileName = new std::string(paramName.c_str().AsChar());
+                it++;
                 continue;
             }
 

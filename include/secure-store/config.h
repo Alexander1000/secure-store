@@ -2,6 +2,7 @@
 #define H_SECURE_STORE_CONFIG
 
 #include <string>
+#include <wx/wx.h>
 
 namespace SecureStore
 {
@@ -9,6 +10,7 @@ namespace SecureStore
     {
     public:
         Config(int argc, char** argv);
+        Config(int argc, wxArrayString* wxArrayString);
         std::string* getFileName();
         bool isConsole();
     private:

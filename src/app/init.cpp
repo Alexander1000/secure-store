@@ -9,21 +9,12 @@ namespace SecureStore::Application {
     IMPLEMENT_APP_NO_MAIN(MainApp) // A macro that tells wxWidgets to create an instance of our application
 
     bool MainApp::OnInit() {
-        std::string title = "secure store: ";
-        if (this->argv.GetArguments().size() > 1) {
-            bool first = true;
-            for (auto & it: this->argv.GetArguments()) {
-                if (first) {
-                    first = false;
-                    continue;
-                }
+        SecureStore::Config config(this->argc, this->argv);
+        std::string title = "Secure store";
 
-                if (it == "-f") {
-                    continue;
-                }
-
-                title += it.c_str();
-            }
+        if (config.getFileName() != nullptr) {
+            title += ": ";
+            title += config.getFileName()->c_str();
         }
 
         // Create an instance of our frame, or window
