@@ -4,6 +4,10 @@
 #include <wx/wx.h>
 
 namespace SecureStore::Application {
+    enum
+    {
+        BUTTON_Hello = wxID_HIGHEST + 1 // declares an id which will be used to call our button
+    };
 
     class MainApp : public wxApp // MainApp is the class for our application
     {
@@ -17,6 +21,10 @@ namespace SecureStore::Application {
         // It contains the window and all objects in it
     public:
         MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
+        wxButton* helloWorld;
+        void OnExit( wxCommandEvent& event );
+
+        DECLARE_EVENT_TABLE()
     };
 
     DECLARE_APP(MainApp)
