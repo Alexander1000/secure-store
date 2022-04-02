@@ -7,8 +7,8 @@
 namespace SecureStore::Application
 {
     MainFrame::MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
-            : wxFrame((wxFrame *) NULL, -1, title, pos, size) {
-
+        : wxFrame((wxFrame *) NULL, -1, title, pos, size)
+    {
         this->helloWorld = new wxButton(this, BUTTON_Hello, _T("Hello World"),wxDefaultPosition, wxDefaultSize, 0);
 
         wxPoint textPosition(100, 0);
