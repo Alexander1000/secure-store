@@ -22,6 +22,9 @@ namespace SecureStore::Application {
         this->helloWorld = new wxButton(this, BUTTON_Hello, _T("Hello World"),
             // shows a button on this window
           wxDefaultPosition, wxDefaultSize, 0); // with the text "hello World"
+
+        wxPoint textPosition(100, 0);
+        this->textCtrl = new wxTextCtrl(this, TEXT_Entry, _T(""), textPosition, wxDefaultSize, 0, wxDefaultValidator);
     }
 
     BEGIN_EVENT_TABLE ( MainFrame, wxFrame )

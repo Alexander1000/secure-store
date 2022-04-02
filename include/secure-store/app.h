@@ -6,7 +6,8 @@
 namespace SecureStore::Application {
     enum
     {
-        BUTTON_Hello = wxID_HIGHEST + 1 // declares an id which will be used to call our button
+        BUTTON_Hello = wxID_HIGHEST + 1, // declares an id which will be used to call our button
+        TEXT_Entry
     };
 
     class MainApp : public wxApp // MainApp is the class for our application
@@ -22,6 +23,7 @@ namespace SecureStore::Application {
     public:
         MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
         wxButton* helloWorld;
+        wxTextCtrl* textCtrl;
         void OnExit( wxCommandEvent& event );
 
         DECLARE_EVENT_TABLE()
