@@ -12,7 +12,7 @@ namespace SecureStore::Application
         this->helloWorld = new wxButton(this, BUTTON_Hello, _T("Hello World"),wxDefaultPosition, wxDefaultSize, 0);
 
         wxPoint textPosition(100, 0);
-        this->textCtrl = new wxTextCtrl(this, TEXT_Entry, _T(""), textPosition, wxDefaultSize, 0, wxDefaultValidator);
+        this->textPasswordCtrl = new wxTextCtrl(this, TEXT_PASSWORD_Entry, _T(""), textPosition, wxDefaultSize, wxTE_PASSWORD, wxDefaultValidator);
     }
 
     BEGIN_EVENT_TABLE ( MainFrame, wxFrame )
