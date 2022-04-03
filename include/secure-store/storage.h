@@ -2,6 +2,7 @@
 #define H_SECURE_STORE_DB
 
 #include <string>
+#include <list>
 #include <secure-store/data-pack.h>
 
 namespace SecureStore::Storage

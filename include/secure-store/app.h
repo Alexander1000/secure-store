@@ -1,6 +1,7 @@
 #ifndef H_SECURE_STORE_APP
 #define H_SECURE_STORE_APP
 
+#include <secure-store/storage.h>
 #include <wx/wx.h>
 
 namespace SecureStore::Application {
@@ -29,6 +30,8 @@ namespace SecureStore::Application {
         wxTextCtrl* textPasswordCtrl;
 
         const char* fileName;
+
+        SecureStore::Storage::DB* storage;
 
         DECLARE_EVENT_TABLE()
     };
