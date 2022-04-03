@@ -8,7 +8,8 @@ namespace SecureStore::Application {
     enum
     {
         BUTTON_PASSWORD_ENTER = wxID_HIGHEST + 1, // declares an id which will be used to call our button
-        TEXT_PASSWORD_Entry
+        TEXT_PASSWORD_Entry,
+        STATIC_TEXT_PASSWORD_RESULT,
     };
 
     class MainApp : public wxApp // MainApp is the class for our application
@@ -28,6 +29,7 @@ namespace SecureStore::Application {
     private:
         wxButton* btnPasswordEnter;
         wxTextCtrl* textPasswordCtrl;
+        wxStaticText* lbPasswordResult;
 
         const char* fileName;
 
