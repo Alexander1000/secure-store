@@ -85,6 +85,10 @@ namespace SecureStore::Storage
         DataPack dataPack(memoryBuffer.length(), data);
 
         auto decrypted = SecureStore::Crypto::encrypt_decrypt(params, &dataPack);
+        if (decrypted == nullptr) {
+            return 6;
+        }
+
         auto hashDecrypted = SecureStore::Crypto::hash_md5(decrypted);
 
         bool equal = true;
@@ -97,7 +101,7 @@ namespace SecureStore::Storage
 
         if (!equal) {
             // error: wrong decrypt
-            return 6;
+            return 7;
         }
 
         int headBlockRecordSize = 5;
