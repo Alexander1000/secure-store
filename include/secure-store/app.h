@@ -22,9 +22,11 @@ namespace SecureStore::Application {
         // It contains the window and all objects in it
     public:
         MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
-        wxButton* helloWorld;
+        void OnPasswordEnter( wxCommandEvent& event );
+
+    private:
+        wxButton* btnPasswordEnter;
         wxTextCtrl* textPasswordCtrl;
-        void OnExit( wxCommandEvent& event );
 
         DECLARE_EVENT_TABLE()
     };
