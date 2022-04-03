@@ -9,6 +9,8 @@ namespace SecureStore::Application
 {
     void MainFrame::renderStorageRecords()
     {
+        this->SetSize(800, 600);
+
         this->treeRecords = new wxTreeListCtrl(this, TREE_DB_RECORDS, wxDefaultPosition, wxSize(300, 200));
 
         this->treeRecords->AppendColumn("Name",
