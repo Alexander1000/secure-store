@@ -6,7 +6,7 @@
 namespace SecureStore::Application {
     enum
     {
-        BUTTON_Hello = wxID_HIGHEST + 1, // declares an id which will be used to call our button
+        BUTTON_PASSWORD_ENTER = wxID_HIGHEST + 1, // declares an id which will be used to call our button
         TEXT_PASSWORD_Entry
     };
 
