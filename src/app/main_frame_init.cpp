@@ -26,7 +26,8 @@ namespace SecureStore::Application
 
     void MainFrame::OnPasswordEnter( wxCommandEvent& event )
     {
-        // this->storage->open();
+        auto value = this->textPasswordCtrl->GetValue();
+        int code = this->storage->open(new std::string(this->fileName), new std::string(value.c_str().AsChar()));
         Close(TRUE);
     }
 }
