@@ -35,6 +35,8 @@ namespace SecureStore::Application {
 
         SecureStore::Storage::DB* storage;
 
+        void renderStorageRecords();
+
         DECLARE_EVENT_TABLE()
     };
 

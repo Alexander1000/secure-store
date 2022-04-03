@@ -39,6 +39,8 @@ namespace SecureStore::Application
             this->lbPasswordResult->Hide();
             this->textPasswordCtrl->Hide();
             this->btnPasswordEnter->Hide();
+
+            this->renderStorageRecords();
         }
     }
 }

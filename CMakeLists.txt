@@ -20,6 +20,7 @@ include(${wxWidgets_USE_FILE})
 set(SECURE_STORE_SOURCES_SHARED
     src/app/init.cpp
     src/app/main_frame_init.cpp
+    src/app/render_storage_records.cpp
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp
