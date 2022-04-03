@@ -12,13 +12,15 @@ namespace SecureStore::Application {
     {
         SecureStore::Config config(this->argc, this->argv);
         std::string title = "Secure store";
+        const char* fileName = nullptr;
 
         if (config.getFileName() != nullptr) {
             title += ": ";
             title += config.getFileName()->c_str();
+            fileName = config.getFileName()->c_str();
         }
 
-        MainFrame* mainWin = new MainFrame(_(title), wxDefaultPosition, wxSize(300, 200));
+        MainFrame* mainWin = new MainFrame(_(title), wxDefaultPosition, wxSize(300, 200), fileName);
         mainWin->Show(true);
         SetTopWindow(mainWin);
 
