@@ -18,6 +18,7 @@ namespace SecureStore::Application
         this->textPasswordCtrl = new wxTextCtrl(this, TEXT_PASSWORD_Entry, _T(""), wxPoint(5, 5), wxSize(100, 20), wxTE_PASSWORD, wxDefaultValidator);
 
         this->lbPasswordResult = new wxStaticText(this, STATIC_TEXT_PASSWORD_RESULT, wxEmptyString);
+        this->lbPasswordResult->Hide();
     }
 
     BEGIN_EVENT_TABLE ( MainFrame, wxFrame )
@@ -28,6 +29,16 @@ namespace SecureStore::Application
     {
         auto value = this->textPasswordCtrl->GetValue();
         int code = this->storage->open(new std::string(this->fileName), new std::string(value.c_str().AsChar()));
-        Close(TRUE);
+
+        if (code > 0) {
+            this->lbPasswordResult->SetLabel("Error");
+            this->lbPasswordResult->Show();
+            this->lbPasswordResult->SetPosition(wxPoint(5, 25));
+            this->lbPasswordResult->SetFont(wxFont(wxFontInfo().Bold(true)));
+        } else {
+            this->lbPasswordResult->Hide();
+            this->textPasswordCtrl->Hide();
+            this->btnPasswordEnter->Hide();
+        }
     }
 }
