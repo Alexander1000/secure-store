@@ -19,6 +19,9 @@ namespace SecureStore::Application
 
         this->lbPasswordResult = new wxStaticText(this, STATIC_TEXT_PASSWORD_RESULT, wxEmptyString);
         this->lbPasswordResult->Hide();
+
+        // db records page
+        this->treeRecords = nullptr;
     }
 
     BEGIN_EVENT_TABLE ( MainFrame, wxFrame )

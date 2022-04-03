@@ -3,6 +3,7 @@
 
 #include <secure-store/storage.h>
 #include <wx/wx.h>
+#include <wx/treelist.h>
 
 namespace SecureStore::Application {
     enum
@@ -10,6 +11,7 @@ namespace SecureStore::Application {
         BUTTON_PASSWORD_ENTER = wxID_HIGHEST + 1, // declares an id which will be used to call our button
         TEXT_PASSWORD_Entry,
         STATIC_TEXT_PASSWORD_RESULT,
+        TREE_DB_RECORDS,
     };
 
     class MainApp : public wxApp // MainApp is the class for our application
@@ -27,9 +29,13 @@ namespace SecureStore::Application {
         void OnPasswordEnter( wxCommandEvent& event );
 
     private:
+        // auth page
         wxButton* btnPasswordEnter;
         wxTextCtrl* textPasswordCtrl;
         wxStaticText* lbPasswordResult;
+
+        // db page:
+        wxTreeListCtrl* treeRecords;
 
         const char* fileName;
 

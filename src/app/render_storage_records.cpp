@@ -3,11 +3,12 @@
 #	include <wx/wx.h>
 #endif
 #include <secure-store.h>
+#include <wx/treelist.h>
 
 namespace SecureStore::Application
 {
     void MainFrame::renderStorageRecords()
     {
-        // do render
+        this->treeRecords = new wxTreeListCtrl(this, TREE_DB_RECORDS);
     }
 }
