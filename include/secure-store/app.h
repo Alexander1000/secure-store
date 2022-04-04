@@ -4,6 +4,7 @@
 #include <secure-store/storage.h>
 #include <wx/wx.h>
 #include <wx/treelist.h>
+#include <wx/grid.h>
 
 namespace SecureStore::Application {
     enum
@@ -12,6 +13,7 @@ namespace SecureStore::Application {
         TEXT_PASSWORD_Entry,
         STATIC_TEXT_PASSWORD_RESULT,
         TREE_DB_RECORDS,
+        DB_GRID,
     };
 
     class MainApp : public wxApp // MainApp is the class for our application
@@ -36,6 +38,7 @@ namespace SecureStore::Application {
 
         // db page:
         wxTreeListCtrl* treeRecords;
+        wxGrid* grid;
 
         const char* fileName;
 

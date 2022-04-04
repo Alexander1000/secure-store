@@ -22,6 +22,7 @@ namespace SecureStore::Application
 
         // db records page
         this->treeRecords = nullptr;
+        this->grid = nullptr;
     }
 
     BEGIN_EVENT_TABLE ( MainFrame, wxFrame )

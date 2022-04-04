@@ -4,6 +4,7 @@
 #endif
 #include <secure-store.h>
 #include <wx/treelist.h>
+#include <wx/grid.h>
 
 namespace SecureStore::Application
 {
@@ -26,5 +27,7 @@ namespace SecureStore::Application
             wxString name(secret->getName()->c_str());
             wxTreeListItem item = this->treeRecords->AppendItem(root, name);
         }
+
+        this->grid = new wxGrid(this, DB_GRID, wxPoint(300, 0), wxSize(500, 200));
     }
 }
