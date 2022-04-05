@@ -51,6 +51,19 @@ namespace SecureStore::Application
 
     void MainFrame::OnChoiceSecret(wxTreeListEvent &event)
     {
+        int index = 0;
+        auto treeItem = this->treeRecords->GetFirstItem();
+        do {
+            if (treeItem.IsOk()) {
+                if (this->treeRecords->IsSelected(treeItem)) {
+                    break;
+                }
+            }
+
+            index++;
+            treeItem = this->treeRecords->GetNextItem(treeItem);
+        } while (treeItem.IsOk());
+
         std::cout << "Test" << std::endl;
     }
 }
