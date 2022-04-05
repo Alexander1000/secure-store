@@ -29,6 +29,7 @@ namespace SecureStore::Application {
     public:
         MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size, const char* fileName);
         void OnPasswordEnter( wxCommandEvent& event );
+        void OnChoiceSecret(wxTreeListEvent& event);
 
     private:
         // auth page

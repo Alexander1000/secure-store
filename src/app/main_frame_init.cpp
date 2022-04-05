@@ -27,6 +27,7 @@ namespace SecureStore::Application
 
     BEGIN_EVENT_TABLE ( MainFrame, wxFrame )
         EVT_BUTTON ( BUTTON_PASSWORD_ENTER, MainFrame::OnPasswordEnter )
+        EVT_TREELIST_SELECTION_CHANGED(TREE_DB_RECORDS, MainFrame::OnChoiceSecret)
     END_EVENT_TABLE()
 
     void MainFrame::OnPasswordEnter( wxCommandEvent& event )
@@ -46,5 +47,10 @@ namespace SecureStore::Application
 
             this->renderStorageRecords();
         }
+    }
+
+    void MainFrame::OnChoiceSecret(wxTreeListEvent &event)
+    {
+        std::cout << "Test" << std::endl;
     }
 }
