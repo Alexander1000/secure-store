@@ -23,6 +23,8 @@ namespace SecureStore::Application
         // db records page
         this->treeRecords = nullptr;
         this->grid = nullptr;
+
+        this->selectedSecretIndex = -1;
     }
 
     BEGIN_EVENT_TABLE ( MainFrame, wxFrame )
@@ -64,6 +66,6 @@ namespace SecureStore::Application
             treeItem = this->treeRecords->GetNextItem(treeItem);
         } while (treeItem.IsOk());
 
-        std::cout << "Test" << std::endl;
+        this->selectedSecretIndex = index;
     }
 }
