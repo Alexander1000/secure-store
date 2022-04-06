@@ -88,8 +88,17 @@ namespace SecureStore::Application
         this->grid->SetCellValue(1, 0, "Name");
         this->grid->SetCellValue(1, 1, wxString(*secret->getName()));
         this->grid->SetCellValue(2, 0, "User");
+        if (secret->getUser() != nullptr) {
+            this->grid->SetCellValue(2, 1, wxString(*secret->getUser()));
+        }
         this->grid->SetCellValue(3, 0, "Password");
+        if (secret->getPassword() != nullptr) {
+            this->grid->SetCellValue(3, 1, wxString(*secret->getPassword()));
+        }
         this->grid->SetCellValue(4, 0, "Comment");
+        if (secret->getComment() != nullptr) {
+            this->grid->SetCellValue(4, 1, wxString(*secret->getComment()));
+        }
         this->grid->SetCellValue(5, 0, "Create Time");
     }
 }
