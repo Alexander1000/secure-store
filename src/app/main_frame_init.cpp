@@ -67,5 +67,25 @@ namespace SecureStore::Application
         } while (treeItem.IsOk());
 
         this->selectedSecretIndex = index;
+
+        SecureStore::Storage::Record* secret = nullptr;
+
+        index = 0;
+        for (auto & it : *this->storage->getRecords()) {
+            auto record = it->getRecord();
+            if (index == this->selectedSecretIndex) {
+                secret = record;
+                break;
+            }
+            index++;
+        }
+
+        if (secret == nullptr) {
+            return;
+        }
+
+        this->grid->SetCellValue(0, 0, "ID");
+        this->grid->SetCellValue(1, 0, "Name");
+        this->grid->SetCellValue(1, 1, wxString(*secret->getName()));
     }
 }
