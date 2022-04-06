@@ -30,6 +30,8 @@ namespace SecureStore::Application
 
         this->grid = new wxGrid(this, DB_GRID, wxPoint(300, 0), wxSize(500, 200));
         this->grid->CreateGrid(10, 2);
+        this->grid->HideColLabels();
+        this->grid->HideRowLabels();
         this->grid->SetColSize(0, 150);
         this->grid->SetColSize(1, 350);
     }
