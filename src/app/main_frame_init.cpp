@@ -3,6 +3,7 @@
 #	include <wx/wx.h>
 #endif
 #include <secure-store.h>
+#include <memory>
 
 namespace SecureStore::Application
 {
@@ -85,6 +86,10 @@ namespace SecureStore::Application
         }
 
         this->grid->SetCellValue(0, 0, "ID");
+        char* strId = (char*) malloc(10);
+        memset(strId, 0, 10 * sizeof(char));
+        sprintf(strId, "%d", secret->getId());
+        this->grid->SetCellValue(0, 1, wxString(strId));
         this->grid->SetCellValue(1, 0, "Name");
         this->grid->SetCellValue(1, 1, wxString(*secret->getName()));
         this->grid->SetCellValue(2, 0, "User");
