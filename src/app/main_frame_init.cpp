@@ -90,6 +90,7 @@ namespace SecureStore::Application
         memset(strId, 0, 10 * sizeof(char));
         sprintf(strId, "%d", secret->getId());
         this->grid->SetCellValue(0, 1, wxString(strId));
+        free(strId);
         this->grid->SetCellValue(1, 0, "Name");
         this->grid->SetCellValue(1, 1, wxString(*secret->getName()));
         this->grid->SetCellValue(2, 0, "User");
