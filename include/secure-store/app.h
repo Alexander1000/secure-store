@@ -40,6 +40,8 @@ namespace SecureStore::Application {
         // db page:
         wxTreeListCtrl* treeRecords;
         wxGrid* grid;
+        wxButton* btnSaveSecret;
+        wxButton* btnAddSecret;
 
         const char* fileName;
 

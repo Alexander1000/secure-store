@@ -24,6 +24,8 @@ namespace SecureStore::Application
         // db records page
         this->treeRecords = nullptr;
         this->grid = nullptr;
+        this->btnSaveSecret = nullptr;
+        this->btnAddSecret = nullptr;
 
         this->selectedSecretIndex = -1;
     }
