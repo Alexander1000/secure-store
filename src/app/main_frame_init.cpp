@@ -106,5 +106,9 @@ namespace SecureStore::Application
             this->grid->SetCellValue(4, 1, wxString(*secret->getComment()));
         }
         this->grid->SetCellValue(5, 0, "Create Time");
+        char* strCreateTime = (char*) malloc(16 * sizeof(char));
+        memset(strCreateTime, 0, sizeof(char) * 16);
+        sprintf(strCreateTime, "%llu", secret->getCreateTime());
+        this->grid->SetCellValue(5, 1, wxString(strCreateTime));
     }
 }
