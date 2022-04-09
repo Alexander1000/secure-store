@@ -55,6 +55,8 @@ namespace SecureStore::Application {
 
         void renderStorageRecords();
 
+        SecureStore::Storage::Record* getSelectedSecret();
+
         DECLARE_EVENT_TABLE()
     };
 
