@@ -7,6 +7,9 @@ namespace SecureStore::Storage
     {
         this->createEmpty();
 
+        this->fileName = fileName;
+        this->password = password;
+
         IOBuffer::IOFileReader fileReader(fileName->c_str());
 
         auto headerData = (uint8_t*) malloc(DB_HEADER_BYTE_SIZE * sizeof(uint8_t));

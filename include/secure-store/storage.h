@@ -136,6 +136,7 @@ namespace SecureStore::Storage
         std::list<DBRecord*>* records;
 
         std::string* fileName;
+        std::string* password;
 
         unsigned char* format;
 
