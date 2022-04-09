@@ -32,5 +32,16 @@ namespace SecureStore::Application
             secret->setUser(new std::string(wxStrUser.c_str().AsChar()));
             dirty = true;
         }
+
+        // password
+        auto wxStrPassword = this->grid->GetCellValue(3, 1);
+        if (wxStrPassword.empty() && secret->getPassword() != nullptr) {
+            secret->setPassword(nullptr);
+            dirty = true;
+        }
+        if (!wxStrPassword.empty() && (secret->getPassword() == nullptr || wxStrPassword != secret->getPassword())) {
+            secret->setPassword(new std::string(wxStrPassword.c_str().AsChar()));
+            dirty = true;
+        }
     }
 }
