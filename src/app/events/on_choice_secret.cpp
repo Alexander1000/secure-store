@@ -23,17 +23,7 @@ namespace SecureStore::Application
 
         this->selectedSecretIndex = index;
 
-        SecureStore::Storage::Record* secret = nullptr;
-
-        index = 0;
-        for (auto & it : *this->storage->getRecords()) {
-            auto record = it->getRecord();
-            if (index == this->selectedSecretIndex) {
-                secret = record;
-                break;
-            }
-            index++;
-        }
+        SecureStore::Storage::Record* secret = this->getSelectedSecret();
 
         if (secret == nullptr) {
             return;
