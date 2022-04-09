@@ -8,6 +8,9 @@ namespace SecureStore::Application
 {
     void MainFrame::OnSaveSecretClick(wxCommandEvent &event)
     {
-        // do something
+        auto secret = this->getSelectedSecret();
+        if (secret == nullptr) {
+            return;
+        }
     }
 }
