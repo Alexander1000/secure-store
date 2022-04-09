@@ -12,5 +12,11 @@ namespace SecureStore::Application
         if (secret == nullptr) {
             return;
         }
+
+        // name
+        auto wxStrName = this->grid->GetCellValue(1, 1);
+        if (wxStrName != secret->getName()) {
+            secret->setName(new std::string(wxStrName.c_str().AsChar()));
+        }
     }
 }
