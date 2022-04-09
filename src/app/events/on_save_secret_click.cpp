@@ -43,5 +43,16 @@ namespace SecureStore::Application
             secret->setPassword(new std::string(wxStrPassword.c_str().AsChar()));
             dirty = true;
         }
+
+        // comment
+        auto wxStrComment = this->grid->GetCellValue(4, 1);
+        if (wxStrComment.empty() && secret->getComment() != nullptr) {
+            secret->setComment(nullptr);
+            dirty = true;
+        }
+        if (!wxStrComment.empty() && (secret->getComment() == nullptr || wxStrComment != secret->getComment())) {
+            secret->setComment(new std::string(wxStrComment.c_str().AsChar()));
+            dirty = true;
+        }
     }
 }
