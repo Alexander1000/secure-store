@@ -21,6 +21,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/app/init.cpp
     src/app/main_frame_init.cpp
     src/app/render_storage_records.cpp
+    src/app/events/event_table.cpp
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp
