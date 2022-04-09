@@ -35,6 +35,7 @@ namespace SecureStore::Application
         this->grid->SetColSize(0, 150);
         this->grid->SetColSize(1, 350);
 
+        this->btnAddSecret = new wxButton(this, BUTTON_ADD_SECRET, _T("Add"), wxPoint(600, 200), wxSize(100, 20));
         this->btnSaveSecret = new wxButton(this, BUTTON_SAVE_SECRET, _T("Save"), wxPoint(700, 200), wxSize(100, 20));
     }
 }

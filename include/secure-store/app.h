@@ -14,6 +14,7 @@ namespace SecureStore::Application {
         STATIC_TEXT_PASSWORD_RESULT,
         TREE_DB_RECORDS,
         DB_GRID,
+        BUTTON_ADD_SECRET,
         BUTTON_SAVE_SECRET,
     };
 
