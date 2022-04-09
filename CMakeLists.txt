@@ -23,6 +23,8 @@ set(SECURE_STORE_SOURCES_SHARED
     src/app/render_storage_records.cpp
     src/app/events/event_table.cpp
     src/app/events/on_password_enter.cpp
+    src/app/events/on_save_secret_click.cpp
+    src/app/events/on_add_secret_click.cpp
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp
