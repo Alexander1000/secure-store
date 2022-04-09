@@ -54,5 +54,9 @@ namespace SecureStore::Application
             secret->setComment(new std::string(wxStrComment.c_str().AsChar()));
             dirty = true;
         }
+
+        if (dirty) {
+            this->storage->save();
+        }
     }
 }

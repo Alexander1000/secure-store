@@ -41,6 +41,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/storage/db_record.cpp
     src/storage/db_save.cpp
     src/storage/db_open.cpp
+    src/storage/db_save_current.cpp
     src/getpasswd.cpp
     src/view/main.cpp
     src/view/run.cpp
