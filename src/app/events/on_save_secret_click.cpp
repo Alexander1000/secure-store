@@ -13,10 +13,24 @@ namespace SecureStore::Application
             return;
         }
 
+        bool dirty = false;
+
         // name
         auto wxStrName = this->grid->GetCellValue(1, 1);
         if (wxStrName != secret->getName()) {
             secret->setName(new std::string(wxStrName.c_str().AsChar()));
+            dirty = true;
+        }
+
+        // user
+        auto wxStrUser = this->grid->GetCellValue(2, 1);
+        if (wxStrUser.empty() && secret->getUser() != nullptr) {
+            secret->setUser(nullptr);
+            dirty = true;
+        }
+        if (!wxStrUser.empty() && (secret->getUser() == nullptr || wxStrUser != secret->getUser())) {
+            secret->setUser(new std::string(wxStrUser.c_str().AsChar()));
+            dirty = true;
         }
     }
 }
