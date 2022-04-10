@@ -24,6 +24,8 @@ namespace SecureStore::Application
         wxStaticText* lbPassword;
         wxStaticText* lbComment;
 
+        wxStaticText* lbTitleText;
+
         void initialize();
 
         DECLARE_EVENT_TABLE()

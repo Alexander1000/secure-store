@@ -30,6 +30,7 @@ namespace SecureStore::Application
         F_AS_LB_USER,
         F_AS_LB_PASSWORD,
         F_AS_LB_COMMENT,
+        F_AS_LB_TITLE_TEXT,
     };
 
     class MainApp : public wxApp // MainApp is the class for our application
