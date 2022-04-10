@@ -25,15 +25,24 @@ namespace SecureStore::Application
         this->lbUser = new wxStaticText(this, F_AS_LB_USER, _T("User:"));
         this->lbUser->SetPosition(wxPoint(5, 40));
 
+        this->txUser = new wxTextCtrl(this, F_AS_TX_USER, wxEmptyString);
+        this->txUser->SetPosition(wxPoint(120, 40));
+
         // password
 
         this->lbPassword = new wxStaticText(this, F_AS_LB_PASSWORD, _T("Password:"));
         this->lbPassword->SetPosition(wxPoint(5, 60));
 
+        this->txPassword = new wxTextCtrl(this, F_AS_TX_PASSWORD, wxEmptyString);
+        this->txPassword->SetPosition(wxPoint(120, 60));
+
         // comment
 
         this->lbComment = new wxStaticText(this, F_AS_LB_COMMENT, _T("Comment:"));
         this->lbComment->SetPosition(wxPoint(5, 80));
+
+        this->txComment = new wxTextCtrl(this, F_AS_TX_COMMENT, wxEmptyString);
+        this->txComment->SetPosition(wxPoint(120, 80));
 
         // buttons
 
