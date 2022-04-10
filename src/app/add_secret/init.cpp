@@ -7,5 +7,9 @@
 
 namespace SecureStore::Application
 {
-    // declare form
+    AddSecretFrame::AddSecretFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
+            : wxFrame((wxFrame *) NULL, -1, title, pos, size)
+    {
+        // initialize frame controls
+    }
 }
