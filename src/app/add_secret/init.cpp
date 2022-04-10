@@ -14,8 +14,10 @@ namespace SecureStore::Application
             : wxFrame(parent, id, title, pos, size)
     {
         this->GetParent()->Disable();
+        this->GetParent()->SetTransparent(wxByte(220));
         this->Bind(wxEVT_CLOSE_WINDOW, [&](wxCloseEvent& event)
         {
+            this->GetParent()->SetTransparent(wxByte(255));
             this->GetParent()->Enable();
             event.Skip();
         });
