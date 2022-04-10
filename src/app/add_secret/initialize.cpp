@@ -19,6 +19,8 @@ namespace SecureStore::Application
         int yInterval = 25;
         int nRow = 0;
         int xTextOffset = 120;
+        int xTextSize = this->GetSize().GetWidth() - xTextOffset - 7;
+        int yTextSize = 20;
 
         // name
 
@@ -27,6 +29,7 @@ namespace SecureStore::Application
 
         this->txName = new wxTextCtrl(this, F_AS_TX_NAME, wxEmptyString);
         this->txName->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
+        this->txName->SetSize(wxSize(xTextSize, yTextSize));
 
         // user
 
@@ -37,6 +40,7 @@ namespace SecureStore::Application
 
         this->txUser = new wxTextCtrl(this, F_AS_TX_USER, wxEmptyString);
         this->txUser->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
+        this->txUser->SetSize(wxSize(xTextSize, yTextSize));
 
         // password
 
@@ -47,6 +51,7 @@ namespace SecureStore::Application
 
         this->txPassword = new wxTextCtrl(this, F_AS_TX_PASSWORD, wxEmptyString);
         this->txPassword->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
+        this->txPassword->SetSize(wxSize(xTextSize, yTextSize));
 
         // comment
 
@@ -57,6 +62,7 @@ namespace SecureStore::Application
 
         this->txComment = new wxTextCtrl(this, F_AS_TX_COMMENT, wxEmptyString);
         this->txComment->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
+        this->txComment->SetSize(wxSize(xTextSize, yTextSize));
 
         // buttons
 
