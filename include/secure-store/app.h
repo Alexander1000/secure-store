@@ -13,10 +13,13 @@ namespace SecureStore::Application
         BUTTON_PASSWORD_ENTER = wxID_HIGHEST + 1, // declares an id which will be used to call our button
         TEXT_PASSWORD_Entry,
         STATIC_TEXT_PASSWORD_RESULT,
+        // main window form controls
         TREE_DB_RECORDS,
         DB_GRID,
         BUTTON_ADD_SECRET,
         BUTTON_SAVE_SECRET,
+        // add secret form controls
+        FRAME_ADD_SECRET,
     };
 
     class MainApp : public wxApp // MainApp is the class for our application
