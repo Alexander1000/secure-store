@@ -21,5 +21,7 @@ namespace SecureStore::Application
             this->GetParent()->Enable();
             event.Skip();
         });
+
+        this->initialize();
     }
 }

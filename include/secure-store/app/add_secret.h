@@ -14,6 +14,18 @@ namespace SecureStore::Application
         wxButton* btnSave;
         wxButton* btnCancel;
 
+        wxTextCtrl* txName;
+        wxTextCtrl* txUser;
+        wxTextCtrl* txPassword;
+        wxTextCtrl* txComment;
+
+        wxStaticText* lbName;
+        wxStaticText* lbUser;
+        wxStaticText* lbPassword;
+        wxStaticText* lbComment;
+
+        void initialize();
+
         DECLARE_EVENT_TABLE()
     };
 }

@@ -28,6 +28,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/app/events/on_choice_secret.cpp
     src/app/get_selected_secret.cpp
     src/app/add_secret/init.cpp
+    src/app/add_secret/initialize.cpp
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp
