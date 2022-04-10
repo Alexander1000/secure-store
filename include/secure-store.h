@@ -6,6 +6,7 @@
 #define VERSION_PATCH 1
 
 #include <secure-store/app.h>
+#include <secure-store/app/add_secret.h>
 #include <secure-store/config.h>
 #include <secure-store/menu.h>
 #include <secure-store/storage.h>

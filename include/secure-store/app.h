@@ -6,7 +6,8 @@
 #include <wx/treelist.h>
 #include <wx/grid.h>
 
-namespace SecureStore::Application {
+namespace SecureStore::Application
+{
     enum
     {
         BUTTON_PASSWORD_ENTER = wxID_HIGHEST + 1, // declares an id which will be used to call our button
