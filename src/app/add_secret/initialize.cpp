@@ -15,17 +15,19 @@ namespace SecureStore::Application
 
         // render parameters
 
+        int xMarginOffset = 7;
         int yOffset = 30;
         int yInterval = 25;
         int nRow = 0;
         int xTextOffset = 120;
-        int xTextSize = this->GetSize().GetWidth() - xTextOffset - 7;
+        int xTextSize = this->GetSize().GetWidth() - xTextOffset - xMarginOffset;
         int yTextSize = 20;
 
         // name
 
         this->lbName = new wxStaticText(this, F_AS_LB_NAME, _T("Name:"));
-        this->lbName->SetPosition(wxPoint(5, yOffset + yInterval * nRow));
+        int xLbPosition = xTextOffset - this->lbName->GetSize().GetWidth() - xMarginOffset;
+        this->lbName->SetPosition(wxPoint(xLbPosition, yOffset + yInterval * nRow));
 
         this->txName = new wxTextCtrl(this, F_AS_TX_NAME, wxEmptyString);
         this->txName->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
@@ -36,7 +38,8 @@ namespace SecureStore::Application
         nRow++;
 
         this->lbUser = new wxStaticText(this, F_AS_LB_USER, _T("User:"));
-        this->lbUser->SetPosition(wxPoint(5, yOffset + yInterval * nRow));
+        xLbPosition = xTextOffset - this->lbUser->GetSize().GetWidth() - xMarginOffset;
+        this->lbUser->SetPosition(wxPoint(xLbPosition, yOffset + yInterval * nRow));
 
         this->txUser = new wxTextCtrl(this, F_AS_TX_USER, wxEmptyString);
         this->txUser->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
@@ -47,7 +50,8 @@ namespace SecureStore::Application
         nRow++;
 
         this->lbPassword = new wxStaticText(this, F_AS_LB_PASSWORD, _T("Password:"));
-        this->lbPassword->SetPosition(wxPoint(5, yOffset + yInterval * nRow));
+        xLbPosition = xTextOffset - this->lbPassword->GetSize().GetWidth() - xMarginOffset;
+        this->lbPassword->SetPosition(wxPoint(xLbPosition, yOffset + yInterval * nRow));
 
         this->txPassword = new wxTextCtrl(this, F_AS_TX_PASSWORD, wxEmptyString);
         this->txPassword->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
@@ -58,7 +62,8 @@ namespace SecureStore::Application
         nRow++;
 
         this->lbComment = new wxStaticText(this, F_AS_LB_COMMENT, _T("Comment:"));
-        this->lbComment->SetPosition(wxPoint(5, yOffset + yInterval * nRow));
+        xLbPosition = xTextOffset - this->lbComment->GetSize().GetWidth() - xMarginOffset;
+        this->lbComment->SetPosition(wxPoint(xLbPosition, yOffset + yInterval * nRow));
 
         this->txComment = new wxTextCtrl(this, F_AS_TX_COMMENT, wxEmptyString);
         this->txComment->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
