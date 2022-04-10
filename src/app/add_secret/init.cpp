@@ -6,9 +6,18 @@
 
 namespace SecureStore::Application
 {
+    BEGIN_EVENT_TABLE ( AddSecretFrame, wxFrame )
+        EVT_WINDOW_MODAL_DIALOG_CLOSED(FRAME_ADD_SECRET, AddSecretFrame::OnCloseWindow)
+    END_EVENT_TABLE()
+
     AddSecretFrame::AddSecretFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size)
             : wxFrame(parent, id, title, pos, size)
     {
-        // initialize frame controls
+        this->GetParent()->Disable();
+    }
+
+    void AddSecretFrame::OnCloseWindow(wxWindowModalDialogEvent &event)
+    {
+        this->GetParent()->Enable();
     }
 }
