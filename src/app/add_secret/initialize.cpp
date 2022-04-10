@@ -18,12 +18,13 @@ namespace SecureStore::Application
         int yOffset = 30;
         int yInterval = 25;
         int nRow = 0;
+        int xTextOffset = 120;
 
         this->lbName = new wxStaticText(this, F_AS_LB_NAME, _T("Name:"));
         this->lbName->SetPosition(wxPoint(5, yOffset + yInterval * nRow));
 
         this->txName = new wxTextCtrl(this, F_AS_TX_NAME, wxEmptyString);
-        this->txName->SetPosition(wxPoint(120, yOffset + yInterval * nRow));
+        this->txName->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
 
         // user
 
@@ -33,7 +34,7 @@ namespace SecureStore::Application
         this->lbUser->SetPosition(wxPoint(5, yOffset + yInterval * nRow));
 
         this->txUser = new wxTextCtrl(this, F_AS_TX_USER, wxEmptyString);
-        this->txUser->SetPosition(wxPoint(120, yOffset + yInterval * nRow));
+        this->txUser->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
 
         // password
 
@@ -43,7 +44,7 @@ namespace SecureStore::Application
         this->lbPassword->SetPosition(wxPoint(5, yOffset + yInterval * nRow));
 
         this->txPassword = new wxTextCtrl(this, F_AS_TX_PASSWORD, wxEmptyString);
-        this->txPassword->SetPosition(wxPoint(120, yOffset + yInterval * nRow));
+        this->txPassword->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
 
         // comment
 
@@ -53,7 +54,7 @@ namespace SecureStore::Application
         this->lbComment->SetPosition(wxPoint(5, yOffset + yInterval * nRow));
 
         this->txComment = new wxTextCtrl(this, F_AS_TX_COMMENT, wxEmptyString);
-        this->txComment->SetPosition(wxPoint(120, yOffset + yInterval * nRow));
+        this->txComment->SetPosition(wxPoint(xTextOffset, yOffset + yInterval * nRow));
 
         // buttons
 
