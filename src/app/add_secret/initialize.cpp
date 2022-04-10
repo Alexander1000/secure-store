@@ -13,12 +13,14 @@ namespace SecureStore::Application
         this->lbTitleText->SetPosition(wxPosTitleText);
         this->lbTitleText->SetFont(wxFont(wxFontInfo().Bold()));
 
-        // name
+        // render parameters
 
         int yOffset = 30;
         int yInterval = 25;
         int nRow = 0;
         int xTextOffset = 120;
+
+        // name
 
         this->lbName = new wxStaticText(this, F_AS_LB_NAME, _T("Name:"));
         this->lbName->SetPosition(wxPoint(5, yOffset + yInterval * nRow));
