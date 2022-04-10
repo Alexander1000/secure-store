@@ -19,7 +19,7 @@ namespace SecureStore::Application
         int yOffset = 30;
         int yInterval = 25;
         int nRow = 0;
-        int xTextOffset = 120;
+        int xTextOffset = 80;
         int xTextSize = this->GetSize().GetWidth() - xTextOffset - xMarginOffset;
         int yTextSize = 20;
 
