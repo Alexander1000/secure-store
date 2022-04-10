@@ -3,12 +3,11 @@
 #	include <wx/wx.h>
 #endif
 #include <secure-store.h>
-#include <memory>
 
 namespace SecureStore::Application
 {
-    AddSecretFrame::AddSecretFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
-            : wxFrame((wxFrame *) NULL, -1, title, pos, size)
+    AddSecretFrame::AddSecretFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size)
+            : wxFrame(parent, id, title, pos, size)
     {
         // initialize frame controls
     }

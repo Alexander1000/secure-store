@@ -8,7 +8,7 @@ namespace SecureStore::Application
     class AddSecretFrame : public wxFrame
     {
     public:
-        AddSecretFrame(const wxString &title, const wxPoint &pos, const wxSize &size);
+        AddSecretFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size);
     };
 }
 
