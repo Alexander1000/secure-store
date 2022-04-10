@@ -27,6 +27,9 @@ namespace SecureStore::Application
         this->btnSaveSecret = nullptr;
         this->btnAddSecret = nullptr;
 
+        // add secret frame
+        this->addSecretFrame = nullptr;
+
         this->selectedSecretIndex = -1;
     }
 }

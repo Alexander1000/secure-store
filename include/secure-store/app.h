@@ -57,6 +57,8 @@ namespace SecureStore::Application
 
         int selectedSecretIndex;
 
+        wxFrame* addSecretFrame;
+
         void renderStorageRecords();
 
         SecureStore::Storage::Record* getSelectedSecret();
