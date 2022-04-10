@@ -9,7 +9,6 @@ namespace SecureStore::Application
     {
     public:
         AddSecretFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size);
-        void OnCloseWindow(wxWindowModalDialogEvent &event);
 
         DECLARE_EVENT_TABLE()
     };
