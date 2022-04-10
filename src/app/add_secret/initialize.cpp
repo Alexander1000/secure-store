@@ -71,7 +71,10 @@ namespace SecureStore::Application
 
         // buttons
 
-        this->btnSave = new wxButton(this, F_AS_BTN_SAVE, _T("Save"), wxPoint(xMarginOffset, this->GetSize().GetHeight() - 60));
-        this->btnCancel = new wxButton(this, F_AS_BTN_CANCEL, _T("Cancel"), wxPoint(xMarginOffset + this->btnSave->GetSize().GetWidth(), this->GetSize().GetHeight() - 60));
+        this->btnSave = new wxButton(this, F_AS_BTN_SAVE, _T("Save"));
+        this->btnSave->SetPosition(wxPoint(xMarginOffset, this->GetSize().GetHeight() - 60));
+
+        this->btnCancel = new wxButton(this, F_AS_BTN_CANCEL, _T("Cancel"));
+        this->btnCancel->SetPosition(wxPoint(xMarginOffset + this->btnSave->GetSize().GetWidth(), this->GetSize().GetHeight() - 60));
     }
 }
