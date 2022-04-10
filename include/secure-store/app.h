@@ -20,6 +20,16 @@ namespace SecureStore::Application
         BUTTON_SAVE_SECRET,
         // add secret form controls
         FRAME_ADD_SECRET,
+        F_AS_BTN_SAVE,
+        F_AS_BTN_CANCEL,
+        F_AS_TX_NAME,
+        F_AS_TX_USER,
+        F_AS_TX_PASSWORD,
+        F_AS_TX_COMMENT,
+        F_AS_LB_NAME,
+        F_AS_LB_USER,
+        F_AS_LB_PASSWORD,
+        F_AS_LB_COMMENT,
     };
 
     class MainApp : public wxApp // MainApp is the class for our application

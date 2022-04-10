@@ -8,6 +8,7 @@ namespace SecureStore::Application
 {
     void AddSecretFrame::initialize()
     {
-        // do initialize
+        this->btnSave = new wxButton(this, F_AS_BTN_SAVE, _T("Save"));
+        this->btnCancel = new wxButton(this, F_AS_BTN_CANCEL, _T("Cancel"));
     }
 }
