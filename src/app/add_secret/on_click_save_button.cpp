@@ -11,6 +11,17 @@ namespace SecureStore::Application
         SecureStore::Storage::Record* record = nullptr;
         record = new SecureStore::Storage::Record;
 
+        int maxItemId = 0;
+
+        for (auto & it : *this->storage->getRecords()) {
+            int currentId = it->getRecord()->getId();
+            if (currentId > maxItemId) {
+                maxItemId = currentId;
+            }
+        }
+
+        record->setId(maxItemId + 1);
+
         auto wxName = this->txName->GetValue();
         record->setName(new std::string(wxName.c_str().AsChar()));
 
