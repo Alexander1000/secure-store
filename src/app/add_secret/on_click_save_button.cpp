@@ -45,5 +45,7 @@ namespace SecureStore::Application
         this->storage->addRecord(record);
 
         this->storage->save();
+
+        this->Close();
     }
 }
