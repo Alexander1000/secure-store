@@ -8,8 +8,9 @@ namespace SecureStore::Application
 {
     void MainFrame::reloadContent()
     {
+        this->selectedSecretIndex = -1;
         this->treeRecords->UnselectAll();
-        this->treeRecords->ClearColumns();
+        this->treeRecords->DeleteAllItems();
         wxTreeListItem root = this->treeRecords->GetRootItem();
 
         for (auto & dbRecord : *this->storage->getRecords()) {
