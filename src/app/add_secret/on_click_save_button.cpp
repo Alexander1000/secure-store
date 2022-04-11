@@ -18,5 +18,15 @@ namespace SecureStore::Application
         if (!wxUser.empty()) {
             record->setUser(new std::string(wxName.c_str().AsChar()));
         }
+
+        auto wxPassword = this->txPassword->GetValue();
+        if (!wxPassword.empty()) {
+            record->setPassword(new std::string(wxPassword.c_str().AsChar()));
+        }
+
+        auto wxComment = this->txComment->GetValue();
+        if (!wxComment.empty()) {
+            record->setComment(new std::string(wxComment.c_str().AsChar()));
+        }
     }
 }
