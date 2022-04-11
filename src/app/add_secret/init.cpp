@@ -7,7 +7,8 @@
 namespace SecureStore::Application
 {
     BEGIN_EVENT_TABLE ( AddSecretFrame, wxFrame )
-        // EVT_WINDOW_MODAL_DIALOG_CLOSED(FRAME_ADD_SECRET, AddSecretFrame::OnCloseWindow)
+        EVT_BUTTON(F_AS_BTN_CANCEL, AddSecretFrame::OnClickCancelButton)
+        EVT_BUTTON(F_AS_BTN_SAVE, AddSecretFrame::OnClickSaveButton)
     END_EVENT_TABLE()
 
     AddSecretFrame::AddSecretFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size)
