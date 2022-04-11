@@ -50,6 +50,8 @@ namespace SecureStore::Application
         void OnSaveSecretClick(wxCommandEvent& event);
         void OnAddSecretClick(wxCommandEvent& event);
 
+        void reloadContent();
+
     private:
         // auth page
         wxButton* btnPasswordEnter;
