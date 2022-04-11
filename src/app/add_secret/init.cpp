@@ -6,7 +6,7 @@
 
 namespace SecureStore::Application
 {
-    BEGIN_EVENT_TABLE ( AddSecretFrame, wxFrame )
+    BEGIN_EVENT_TABLE(AddSecretFrame, wxFrame)
         EVT_BUTTON(F_AS_BTN_CANCEL, AddSecretFrame::OnClickCancelButton)
         EVT_BUTTON(F_AS_BTN_SAVE, AddSecretFrame::OnClickSaveButton)
     END_EVENT_TABLE()
