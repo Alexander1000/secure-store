@@ -2,18 +2,21 @@
 #define H_SECURE_STORE_APP_ADD_SECRET
 
 #include <wx/wx.h>
+#include <secure-store/storage.h>
 
 namespace SecureStore::Application
 {
     class AddSecretFrame : public wxFrame
     {
     public:
-        AddSecretFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size);
+        AddSecretFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size, SecureStore::Storage::DB* storage);
 
         void OnClickSaveButton(wxCommandEvent &event);
         void OnClickCancelButton(wxCommandEvent &event);
 
     private:
+        SecureStore::Storage::DB* storage;
+
         wxButton* btnSave;
         wxButton* btnCancel;
 
