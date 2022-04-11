@@ -10,6 +10,9 @@ namespace SecureStore::Application
     public:
         AddSecretFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size);
 
+        void OnClickSaveButton(wxCommandEvent &event);
+        void OnClickCancelButton(wxCommandEvent &event);
+
     private:
         wxButton* btnSave;
         wxButton* btnCancel;
