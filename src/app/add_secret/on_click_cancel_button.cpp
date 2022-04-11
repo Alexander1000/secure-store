@@ -8,6 +8,6 @@ namespace SecureStore::Application
 {
     void AddSecretFrame::OnClickCancelButton(wxCommandEvent &event)
     {
-        // do cancel
+        this->Close();
     }
 }

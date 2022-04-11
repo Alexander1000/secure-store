@@ -28,7 +28,7 @@ namespace SecureStore::Application
 
         auto wxUser = this->txUser->GetValue();
         if (!wxUser.empty()) {
-            record->setUser(new std::string(wxName.c_str().AsChar()));
+            record->setUser(new std::string(wxUser.c_str().AsChar()));
         }
 
         auto wxPassword = this->txPassword->GetValue();
