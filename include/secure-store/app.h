@@ -10,9 +10,14 @@ namespace SecureStore::Application
 {
     enum
     {
+        // auth page
         BUTTON_PASSWORD_ENTER = wxID_HIGHEST + 1, // declares an id which will be used to call our button
+        F_AUTH_LB_PASSWORD,
         TEXT_PASSWORD_Entry,
         STATIC_TEXT_PASSWORD_RESULT,
+        F_AUTH_LB_FILE_BROWSE,
+        F_AUTH_TX_FILE_PATH,
+        F_AUTH_BTN_FILE_BROWSE,
         // main window form controls
         TREE_DB_RECORDS,
         DB_GRID,
@@ -54,6 +59,10 @@ namespace SecureStore::Application
 
     private:
         // auth page
+        wxStaticText* lbFileBrowse;
+        wxTextCtrl* txFilePath;
+        wxButton* btnFileBrowse;
+        wxStaticText* lbPasswordEnter;
         wxButton* btnPasswordEnter;
         wxTextCtrl* textPasswordCtrl;
         wxStaticText* lbPasswordResult;
