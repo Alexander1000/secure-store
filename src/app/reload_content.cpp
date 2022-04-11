@@ -8,6 +8,17 @@ namespace SecureStore::Application
 {
     void MainFrame::reloadContent()
     {
-        // reload content
+        this->treeRecords->UnselectAll();
+        this->treeRecords->ClearColumns();
+        wxTreeListItem root = this->treeRecords->GetRootItem();
+
+        for (auto & dbRecord : *this->storage->getRecords()) {
+            auto secret = dbRecord->getRecord();
+
+            wxString name(secret->getName()->c_str());
+            this->treeRecords->AppendItem(root, name);
+        }
+
+        this->grid->ClearGrid();
     }
 }
