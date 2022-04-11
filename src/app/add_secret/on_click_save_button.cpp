@@ -39,5 +39,11 @@ namespace SecureStore::Application
         if (!wxComment.empty()) {
             record->setComment(new std::string(wxComment.c_str().AsChar()));
         }
+
+        // todo: get current unix time
+
+        this->storage->addRecord(record);
+
+        this->storage->save();
     }
 }
