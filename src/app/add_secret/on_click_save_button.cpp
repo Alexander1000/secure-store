@@ -3,6 +3,7 @@
 #	include <wx/wx.h>
 #endif
 #include <secure-store.h>
+#include <ctime>
 
 namespace SecureStore::Application
 {
@@ -40,7 +41,8 @@ namespace SecureStore::Application
             record->setComment(new std::string(wxComment.c_str().AsChar()));
         }
 
-        // todo: get current unix time
+        std::time_t t = std::time(nullptr);
+        record->setCreateTime(t);
 
         this->storage->addRecord(record);
 
