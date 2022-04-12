@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include <string>
 #include <memory.h>
 
 int main(int argc, char** argv) {
@@ -64,7 +65,7 @@ int main(int argc, char** argv) {
 
     std::cout << "Home dir: " << homedir << std::endl;
 
-    int nLen = std::strlen(homedir) + 5; // homeDir + "/.sec"
+    int nLen = strlen(homedir) + 5; // homeDir + "/.sec"
     char* str = new char[nLen];
     memset(str, 0, nLen * sizeof(char));
     sprintf(str, "%s/.sec", homedir);
