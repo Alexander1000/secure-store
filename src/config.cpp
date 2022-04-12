@@ -10,6 +10,7 @@
 
 #include <fstream>
 #include <wx/wx.h>
+#include <string>
 
 namespace SecureStore
 {
@@ -69,7 +70,7 @@ namespace SecureStore
     void Config::initialize()
     {
         const char* homedir = this->getHomeDir();
-        int nLen = std::strlen(homedir) + 5; // homeDir + "/.sec"
+        int nLen = strlen(homedir) + 5; // homeDir + "/.sec"
         char* str = new char[nLen];
         memset(str, 0, nLen * sizeof(char));
         sprintf(str, "%s/.sec", homedir);
