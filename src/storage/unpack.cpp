@@ -1,5 +1,6 @@
 #include <secure-store.h>
 
+#include <string>
 #include <memory>
 
 namespace SecureStore::Storage
@@ -165,7 +166,7 @@ namespace SecureStore::Storage
                     // unpack offset in heap
                     uint16_t offset;
                     memcpy(&offset, (uint8_t*) keywordsIndex + i * 2, sizeof(uint16_t));
-                    uint16_t length = std::strlen((char*) heapData + offset);
+                    uint16_t length = strlen((char*) heapData + offset);
                     char* str = (char*) malloc((length + 1) * sizeof(char));
                     memset(str, 0, (length + 1) * sizeof(char));
                     memcpy(str, (uint8_t*) heapData + offset, length * sizeof(uint8_t));
