@@ -17,12 +17,18 @@ namespace SecureStore::Application
         int xMargin = 7;
         int yMargin = 7;
 
-        int yOffset = 0;
+        int yOffset = yMargin;
 
-        this->lbFileBrowse = new wxStaticText(this, F_AUTH_LB_FILE_BROWSE, _T("File:"), wxPoint(xMargin, yMargin));
-        this->txFilePath = new wxTextCtrl(this, F_AUTH_TX_FILE_PATH, wxEmptyString, wxPoint(xMargin + this->lbFileBrowse->GetSize().GetWidth() + xMargin, yMargin));
+        this->lbFileBrowse = new wxStaticText(this, F_AUTH_LB_FILE_BROWSE, _T("File:"), wxPoint(xMargin, yOffset));
+        this->txFilePath = new wxTextCtrl(this, F_AUTH_TX_FILE_PATH, wxEmptyString, wxPoint(xMargin + this->lbFileBrowse->GetSize().GetWidth() + xMargin, yOffset));
+        this->btnFileBrowse = new wxButton(
+            this,
+            F_AUTH_BTN_FILE_BROWSE,
+            _T("Browse"),
+            wxPoint(this->txFilePath->GetPosition().x + this->txFilePath->GetSize().GetWidth() + xMargin, yOffset)
+        );
 
-        yOffset = yMargin + 30;
+        yOffset += 30;
         this->lbPasswordEnter = new wxStaticText(this, F_AUTH_LB_PASSWORD, _T("Password:"), wxPoint(xMargin, yOffset));
         this->textPasswordCtrl = new wxTextCtrl(
             this,
