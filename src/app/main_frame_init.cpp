@@ -14,9 +14,17 @@ namespace SecureStore::Application
 
         this->storage = new SecureStore::Storage::DB;
 
-        this->btnPasswordEnter = new wxButton(this, BUTTON_PASSWORD_ENTER, _T("Enter"), wxPoint(110, 5), wxDefaultSize, 0);
+        int xMargin = 7;
+        int yMargin = 7;
 
-        this->textPasswordCtrl = new wxTextCtrl(this, TEXT_PASSWORD_Entry, _T(""), wxPoint(5, 5), wxSize(100, 20), wxTE_PASSWORD, wxDefaultValidator);
+        int yOffset = 0;
+
+        this->lbFileBrowse = new wxStaticText(this, F_AUTH_LB_FILE_BROWSE, _("File:"), wxPoint(xMargin, yMargin));
+        this->txFilePath = new wxTextCtrl(this, F_AUTH_TX_FILE_PATH, wxEmptyString, wxPoint(xMargin + this->lbFileBrowse->GetSize().GetWidth() + xMargin, yMargin));
+
+        yOffset = yMargin + 30;
+        this->btnPasswordEnter = new wxButton(this, BUTTON_PASSWORD_ENTER, _T("Enter"), wxPoint(110, yOffset), wxDefaultSize, 0);
+        this->textPasswordCtrl = new wxTextCtrl(this, TEXT_PASSWORD_Entry, _T(""), wxPoint(xMargin, yOffset), wxSize(100, 20), wxTE_PASSWORD, wxDefaultValidator);
 
         this->lbPasswordResult = new wxStaticText(this, STATIC_TEXT_PASSWORD_RESULT, wxEmptyString);
         this->lbPasswordResult->Hide();
