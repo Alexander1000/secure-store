@@ -50,7 +50,12 @@ namespace SecureStore::Application
         // It contains the window and all objects in it
     public:
         MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size, const char* fileName);
-        void OnPasswordEnter( wxCommandEvent& event );
+
+        // auth window
+        void OnFileBrowseClick(wxCommandEvent& event);
+        void OnPasswordEnter(wxCommandEvent& event);
+
+        // main window
         void OnChoiceSecret(wxTreeListEvent& event);
         void OnSaveSecretClick(wxCommandEvent& event);
         void OnAddSecretClick(wxCommandEvent& event);
