@@ -8,6 +8,9 @@ namespace SecureStore::Application
 {
     void MainFrame::OnFileBrowseClick(wxCommandEvent &event)
     {
-        // do something
+        auto browseFile = new wxFileDialog;
+        browseFile->ShowModal();
+        auto sFileName = browseFile->GetFilename();
+        this->txFilePath->SetValue(sFileName);
     }
 }
