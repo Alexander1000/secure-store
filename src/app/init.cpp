@@ -20,7 +20,7 @@ namespace SecureStore::Application {
             fileName = config.getFileName()->c_str();
         }
 
-        MainFrame* mainWin = new MainFrame(_(title), wxDefaultPosition, wxSize(300, 200), fileName);
+        MainFrame* mainWin = new MainFrame(_(title), wxDefaultPosition, wxSize(600, 200), fileName);
         mainWin->Show(true);
         SetTopWindow(mainWin);
 
