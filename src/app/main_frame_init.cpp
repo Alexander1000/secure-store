@@ -79,5 +79,9 @@ namespace SecureStore::Application
         this->addSecretFrame = nullptr;
 
         this->selectedSecretIndex = -1;
+
+        if (fileName != nullptr) {
+            this->txFilePath->SetValue(wxString(fileName));
+        }
     }
 }
