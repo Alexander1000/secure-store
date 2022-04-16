@@ -60,6 +60,7 @@ namespace SecureStore::Application
         // make margin
         xLabelBlockWidth += xMargin << 1;
 
+        // align elements
         this->txFilePath->SetPosition(wxPoint(xLabelBlockWidth, this->txFilePath->GetPosition().y));
         this->btnFileBrowse->SetPosition(wxPoint(this->txFilePath->GetPosition().x + this->txFilePath->GetSize().GetWidth() + xMargin, this->txFilePath->GetPosition().y));
         this->textPasswordCtrl->SetPosition(wxPoint(xLabelBlockWidth, this->textPasswordCtrl->GetPosition().y));
