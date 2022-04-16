@@ -22,6 +22,7 @@ namespace SecureStore::Application
         this->lbFileBrowse = new wxStaticText(this, F_AUTH_LB_FILE_BROWSE, _T("File:"), wxPoint(xMargin, yOffset));
         this->txFilePath = new wxTextCtrl(this, F_AUTH_TX_FILE_PATH, wxEmptyString, wxPoint(xMargin + this->lbFileBrowse->GetSize().GetWidth() + xMargin, yOffset));
         this->txFilePath->SetSize(wxSize(400, 20));
+        this->txFilePath->Disable();
         int xLabelFileBrowseWidth = this->lbFileBrowse->GetSize().GetWidth();
         this->btnFileBrowse = new wxButton(
             this,
