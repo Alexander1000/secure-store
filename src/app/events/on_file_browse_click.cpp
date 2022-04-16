@@ -3,6 +3,7 @@
 #	include <wx/wx.h>
 #endif
 #include <secure-store.h>
+#include <string>
 
 namespace SecureStore::Application
 {
@@ -12,6 +13,8 @@ namespace SecureStore::Application
         browseFile->ShowModal();
         auto sFileName = browseFile->GetFilename();
         this->txFilePath->SetValue(browseFile->GetDirectory() + "/" + sFileName);
-        this->fileName = this->txFilePath->GetValue().c_str().AsChar();
+        std::string *fName = nullptr;
+        fName = new std::string(this->txFilePath->GetValue().utf8_string().c_str());
+        this->fileName = fName->c_str();
     }
 }
