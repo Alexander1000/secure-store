@@ -11,6 +11,7 @@ namespace SecureStore::Application
         auto browseFile = new wxFileDialog;
         browseFile->ShowModal();
         auto sFileName = browseFile->GetFilename();
-        this->txFilePath->SetValue(sFileName);
+        this->txFilePath->SetValue(browseFile->GetDirectory() + "/" + sFileName);
+        this->fileName = this->txFilePath->GetValue().c_str().AsChar();
     }
 }
