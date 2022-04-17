@@ -12,8 +12,6 @@ namespace SecureStore::Application
         if (value.empty()) {
             this->lbPasswordResult->SetLabel("Empty password");
             this->lbPasswordResult->Show();
-            // this->lbPasswordResult->SetPosition(wxPoint(5, 25));
-            // this->lbPasswordResult->SetFont(wxFont(wxFontInfo().Bold(true)));
             return;
         }
 
@@ -22,8 +20,6 @@ namespace SecureStore::Application
         if (code > 0) {
             this->lbPasswordResult->SetLabel("Error");
             this->lbPasswordResult->Show();
-//            this->lbPasswordResult->SetPosition(wxPoint(5, 25));
-//            this->lbPasswordResult->SetFont(wxFont(wxFontInfo().Bold(true)));
         } else {
             this->notebook->Hide();
             this->lbPasswordResult->Hide();
