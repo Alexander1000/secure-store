@@ -18,7 +18,7 @@ namespace SecureStore::Application
             this->lbPasswordResult->SetFont(wxFont(wxFontInfo().Bold(true)));
         } else {
             this->notebook->Hide();
-
+            this->lbPasswordResult->Hide();
             this->renderStorageRecords();
         }
     }
