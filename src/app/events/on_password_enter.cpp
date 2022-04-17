@@ -17,9 +17,7 @@ namespace SecureStore::Application
             this->lbPasswordResult->SetPosition(wxPoint(5, 25));
             this->lbPasswordResult->SetFont(wxFont(wxFontInfo().Bold(true)));
         } else {
-            this->lbPasswordResult->Hide();
-            this->textPasswordCtrl->Hide();
-            this->btnPasswordEnter->Hide();
+            this->notebook->Hide();
 
             this->renderStorageRecords();
         }
