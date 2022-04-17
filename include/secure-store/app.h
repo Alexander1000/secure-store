@@ -95,6 +95,7 @@ namespace SecureStore::Application
         SecureStore::Storage::Record* getSelectedSecret();
 
         wxPanel* getPanelOpenFile(wxWindow* parent);
+        wxPanel* getPanelNewFile(wxWindow* parent);
 
         DECLARE_EVENT_TABLE()
     };

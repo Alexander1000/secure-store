@@ -34,6 +34,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/app/add_secret/on_click_save_button.cpp
     src/app/add_secret/on_click_cancel_button.cpp
     src/app/main/get_panel_open_file.cpp
+    src/app/main/get_panel_new_file.cpp
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp

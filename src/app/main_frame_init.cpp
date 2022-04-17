@@ -21,8 +21,7 @@ namespace SecureStore::Application
 
         this->notebook = new wxNotebook(this, wxID_ANY);
         this->notebook->AddPage(this->getPanelOpenFile(this->notebook), "Open");
-        auto pageNewFile = new wxPanel(this->notebook);
-        this->notebook->AddPage(pageNewFile, "New");
+        this->notebook->AddPage(this->getPanelNewFile(this->notebook), "New");
         this->notebook->SetSize(wxSize(this->GetSize().GetWidth() - xMargin * 2, this->GetSize().GetHeight() - yMargin * 2));
 
         // db records page
