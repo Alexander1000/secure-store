@@ -9,6 +9,7 @@ namespace SecureStore::Application
     void MainFrame::switchToShowFrame()
     {
         this->getApp()->mainFrame->Hide();
+        this->getApp()->mainFrame->Close();
         auto showFrame = (ShowFrame*) this->getApp()->showFrame;
         showFrame->storage = this->storage;
         showFrame->renderStorageRecords();
