@@ -6,7 +6,7 @@
 
 namespace SecureStore::Application
 {
-    void MainFrame::OnChoiceSecret(wxTreeListEvent &event)
+    void ShowFrame::OnChoiceSecret(wxTreeListEvent &event)
     {
         int index = 0;
         auto treeItem = this->treeRecords->GetFirstItem();

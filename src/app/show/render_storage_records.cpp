@@ -8,7 +8,7 @@
 
 namespace SecureStore::Application
 {
-    void MainFrame::renderStorageRecords()
+    void ShowFrame::renderStorageRecords()
     {
         this->SetSize(800, 600);
 

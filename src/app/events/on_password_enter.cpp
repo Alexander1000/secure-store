@@ -23,7 +23,7 @@ namespace SecureStore::Application
         } else {
             this->notebook->Hide();
             this->lbPasswordResult->Hide();
-            this->renderStorageRecords();
+            this->switchToShowFrame();
         }
     }
 }

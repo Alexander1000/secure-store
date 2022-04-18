@@ -6,7 +6,7 @@
 
 namespace SecureStore::Application
 {
-    void MainFrame::OnSaveSecretClick(wxCommandEvent &event)
+    void ShowFrame::OnSaveSecretClick(wxCommandEvent &event)
     {
         auto secret = this->getSelectedSecret();
         if (secret == nullptr) {

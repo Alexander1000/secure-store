@@ -45,26 +45,22 @@ namespace SecureStore::Application
         // MainApp just acts as a container for the window, or frame in MainFrame
     public:
         virtual bool OnInit();
+
+        wxFrame* mainFrame;
+        wxFrame* showFrame;
     };
 
     class MainFrame : public wxFrame // MainFrame is the class for our window,
     {
-        // It contains the window and all objects in it
     public:
-        MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size, const char* fileName);
+        MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size, const char* fileName, MainApp* app);
 
-        // auth window
         void OnFileBrowseClick(wxCommandEvent& event);
         void OnPasswordEnter(wxCommandEvent& event);
 
-        // main window
-        void OnChoiceSecret(wxTreeListEvent& event);
-        void OnSaveSecretClick(wxCommandEvent& event);
-        void OnAddSecretClick(wxCommandEvent& event);
-
-        void reloadContent();
-
     private:
+        MainApp* app;
+
         wxNotebook* notebook;
 
         // open file page
@@ -86,26 +82,16 @@ namespace SecureStore::Application
         wxTextCtrl* txPassword;
         wxButton* btnCreateFile;
 
-        // db page:
-        wxTreeListCtrl* treeRecords;
-        wxGrid* grid;
-        wxButton* btnSaveSecret;
-        wxButton* btnAddSecret;
-
         const char* fileName;
 
         SecureStore::Storage::DB* storage;
 
-        int selectedSecretIndex;
-
-        wxFrame* addSecretFrame;
-
-        void renderStorageRecords();
-
-        SecureStore::Storage::Record* getSelectedSecret();
-
         wxPanel* getPanelOpenFile(wxWindow* parent);
         wxPanel* getPanelNewFile(wxWindow* parent);
+
+        MainApp* getApp();
+
+        void switchToShowFrame();
 
         DECLARE_EVENT_TABLE()
     };

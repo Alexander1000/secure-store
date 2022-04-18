@@ -20,9 +20,11 @@ namespace SecureStore::Application {
             fileName = config.getFileName()->c_str();
         }
 
-        MainFrame* mainWin = new MainFrame(_(title), wxDefaultPosition, wxSize(600, 200), fileName);
-        mainWin->Show(true);
-        SetTopWindow(mainWin);
+        this->mainFrame = new MainFrame(_(title), wxDefaultPosition, wxSize(600, 200), fileName, this);
+        this->mainFrame->Show(true);
+        this->SetTopWindow(this->mainFrame);
+
+        this->showFrame = new ShowFrame(nullptr, wxID_ANY, _(title), wxDefaultPosition, wxSize(600, 200), nullptr);
 
         return true;
     }

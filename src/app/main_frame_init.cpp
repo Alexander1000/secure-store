@@ -9,9 +9,10 @@
 
 namespace SecureStore::Application
 {
-    MainFrame::MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size, const char* fileName)
+    MainFrame::MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size, const char* fileName, MainApp* app)
         : wxFrame((wxFrame *) NULL, -1, title, pos, size)
     {
+        this->app = app;
         this->fileName = fileName;
 
         this->storage = new SecureStore::Storage::DB;
@@ -23,17 +24,6 @@ namespace SecureStore::Application
         this->notebook->AddPage(this->getPanelOpenFile(this->notebook), "Open");
         this->notebook->AddPage(this->getPanelNewFile(this->notebook), "New");
         this->notebook->SetSize(wxSize(this->GetSize().GetWidth() - xMargin * 2, this->GetSize().GetHeight() - yMargin * 2));
-
-        // db records page
-        this->treeRecords = nullptr;
-        this->grid = nullptr;
-        this->btnSaveSecret = nullptr;
-        this->btnAddSecret = nullptr;
-
-        // add secret frame
-        this->addSecretFrame = nullptr;
-
-        this->selectedSecretIndex = -1;
 
         if (fileName != nullptr) {
             this->txFilePath->SetValue(wxString(fileName));

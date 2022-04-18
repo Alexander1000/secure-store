@@ -48,7 +48,7 @@ namespace SecureStore::Application
 
         this->storage->save();
 
-        ((MainFrame*) this->GetParent())->reloadContent();
+        ((ShowFrame*) this->GetParent())->reloadContent();
 
         this->Close();
     }

@@ -6,7 +6,7 @@
 
 namespace SecureStore::Application
 {
-    void MainFrame::reloadContent()
+    void ShowFrame::reloadContent()
     {
         this->selectedSecretIndex = -1;
         this->treeRecords->UnselectAll();

@@ -19,22 +19,25 @@ include(${wxWidgets_USE_FILE})
 
 set(SECURE_STORE_SOURCES_SHARED
     src/app/init.cpp
+    src/app/get_app.cpp
+    src/app/switch_to_show_frame.cpp
     src/app/main_frame_init.cpp
-    src/app/render_storage_records.cpp
     src/app/events/event_table.cpp
     src/app/events/on_password_enter.cpp
-    src/app/events/on_save_secret_click.cpp
-    src/app/events/on_add_secret_click.cpp
-    src/app/events/on_choice_secret.cpp
     src/app/events/on_file_browse_click.cpp
-    src/app/get_selected_secret.cpp
-    src/app/reload_content.cpp
     src/app/add_secret/init.cpp
     src/app/add_secret/initialize.cpp
     src/app/add_secret/on_click_save_button.cpp
     src/app/add_secret/on_click_cancel_button.cpp
     src/app/main/get_panel_open_file.cpp
     src/app/main/get_panel_new_file.cpp
+    src/app/show/init.cpp
+    src/app/show/reload_content.cpp
+    src/app/show/get_selected_secret.cpp
+    src/app/show/render_storage_records.cpp
+    src/app/show/events/on_save_secret_click.cpp
+    src/app/show/events/on_add_secret_click.cpp
+    src/app/show/events/on_choice_secret.cpp
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp

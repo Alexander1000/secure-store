@@ -2,7 +2,7 @@
 
 namespace SecureStore::Application
 {
-    SecureStore::Storage::Record* MainFrame::getSelectedSecret()
+    SecureStore::Storage::Record* ShowFrame::getSelectedSecret()
     {
         if (this->selectedSecretIndex < 0
             || this->storage == nullptr
