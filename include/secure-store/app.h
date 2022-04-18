@@ -65,7 +65,9 @@ namespace SecureStore::Application
         void reloadContent();
 
     private:
-        // auth page
+        wxNotebook* notebook;
+
+        // open file page
         wxStaticText* lbFileBrowse;
         wxTextCtrl* txFilePath;
         wxButton* btnFileBrowse;
@@ -74,7 +76,15 @@ namespace SecureStore::Application
         wxTextCtrl* textPasswordCtrl;
         wxStaticText* lbPasswordResult;
 
-        wxNotebook* notebook;
+        // new file page
+        wxStaticText* lbOpenDirectory;
+        wxTextCtrl* txOpenDirectory;
+        wxButton* btnOpenDirectory;
+        wxStaticText* lbFileName;
+        wxTextCtrl* txFileName;
+        wxStaticText* lbPassword;
+        wxTextCtrl* txPassword;
+        wxButton* btnCreateFile;
 
         // db page:
         wxTreeListCtrl* treeRecords;
