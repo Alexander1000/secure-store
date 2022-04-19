@@ -21,6 +21,7 @@ namespace SecureStore::Application
         int xLbOpenDirectoryWidth = this->lbOpenDirectory->GetSize().GetWidth();
         this->txOpenDirectory = new wxTextCtrl(panel, F_NEW_FILE_TX_OPEN_DIRECTORY, wxEmptyString);
         this->txOpenDirectory->SetPosition(wxPoint(xMargin + this->lbOpenDirectory->GetSize().GetWidth() + xMargin, yOffset));
+        this->txOpenDirectory->SetSize(wxSize(400, 20));
         this->btnOpenDirectory = new wxButton(panel, F_NEW_FILE_BTN_OPEN_DIRECTORY, _T("select"));
         this->btnOpenDirectory->SetPosition(wxPoint(
             this->txOpenDirectory->GetPosition().x + this->txOpenDirectory->GetSize().GetWidth() + xMargin,
@@ -34,6 +35,7 @@ namespace SecureStore::Application
         int xLbFileNameWidth = this->lbFileName->GetSize().GetWidth();
         this->txFileName = new wxTextCtrl(panel, F_NEW_FILE_TX_FILE_NAME, wxEmptyString);
         this->txFileName->SetPosition(wxPoint(xMargin + this->lbFileName->GetSize().GetWidth() + xMargin, yOffset));
+        this->txFileName->SetSize(wxSize(400, 20));
 
         yOffset += 25;
 
@@ -42,6 +44,7 @@ namespace SecureStore::Application
         int xLbPasswordWidth = this->lbPassword->GetSize().GetWidth();
         this->txPassword = new wxTextCtrl(panel, F_NEW_FILE_TX_PASSWORD, wxEmptyString);
         this->txPassword->SetPosition(wxPoint(xMargin + this->lbPassword->GetSize().GetWidth() + xMargin, yOffset));
+        this->txPassword->SetSize(wxSize(400, 20));
 
         yOffset += 25;
 
