@@ -14,6 +14,7 @@
 #include <secure-store/data-pack.h>
 #include <secure-store/crypto.h>
 #include <secure-store/getpasswd.h>
+#include <secure-store/utils.h>
 #include <secure-store/view.h>
 
 #endif
