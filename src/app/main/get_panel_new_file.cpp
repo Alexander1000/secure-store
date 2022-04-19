@@ -65,6 +65,11 @@ namespace SecureStore::Application
                 xMargin + xLabelMaxWidth - xLbOpenDirectoryWidth,
                 this->lbOpenDirectory->GetPosition().y
             ));
+
+            this->txOpenDirectory->SetPosition(wxPoint(
+                this->lbOpenDirectory->GetPosition().x + this->lbOpenDirectory->GetSize().GetWidth() + xMargin,
+                this->txOpenDirectory->GetPosition().y
+            ));
         }
 
         if (xLbFileNameWidth != xLabelMaxWidth) {
@@ -72,12 +77,22 @@ namespace SecureStore::Application
                 xMargin + xLabelMaxWidth - xLbFileNameWidth,
                 this->lbFileName->GetPosition().y
             ));
+
+            this->txFileName->SetPosition(wxPoint(
+                this->lbFileName->GetPosition().x + this->lbFileName->GetSize().GetWidth() + xMargin,
+                this->txFileName->GetPosition().y
+            ));
         }
 
         if (xLbPasswordWidth != xLabelMaxWidth) {
             this->lbPassword->SetPosition(wxPoint(
                 xMargin + xLabelMaxWidth - xLbPasswordWidth,
                 this->lbPassword->GetPosition().y
+            ));
+
+            this->txPassword->SetPosition(wxPoint(
+                this->lbPassword->GetPosition().x + this->lbPassword->GetSize().GetWidth() + xMargin,
+                this->txPassword->GetPosition().y
             ));
         }
 
