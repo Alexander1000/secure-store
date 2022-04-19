@@ -55,8 +55,14 @@ namespace SecureStore::Application
     public:
         virtual bool OnInit();
 
+        wxFrame* getMainFrame();
+
         wxFrame* mainFrame;
         wxFrame* showFrame;
+
+    private:
+        char* fileName;
+        char* title;
     };
 
     class MainFrame : public wxFrame // MainFrame is the class for our window,
