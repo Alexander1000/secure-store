@@ -56,6 +56,7 @@ namespace SecureStore::Application
         virtual bool OnInit();
 
         wxFrame* getMainFrame();
+        wxFrame* getShowFrame();
 
         wxFrame* mainFrame;
         wxFrame* showFrame;
