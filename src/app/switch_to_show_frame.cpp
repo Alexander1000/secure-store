@@ -8,11 +8,11 @@ namespace SecureStore::Application
 {
     void MainFrame::switchToShowFrame()
     {
-        this->getApp()->mainFrame->Hide();
-        this->getApp()->mainFrame->Close();
-        auto showFrame = (ShowFrame*) this->getApp()->showFrame;
+        this->getApp()->getMainFrame()->Hide();
+        this->getApp()->getMainFrame()->Close();
+        auto showFrame = (ShowFrame*) this->getApp()->getShowFrame();
         showFrame->storage = this->storage;
         showFrame->renderStorageRecords();
-        this->getApp()->showFrame->Show(true);
+        this->getApp()->getShowFrame()->Show(true);
     }
 }

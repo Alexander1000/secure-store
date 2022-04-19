@@ -15,6 +15,7 @@ namespace SecureStore::Application {
         this->title = nullptr;
 
         this->mainFrame = nullptr;
+        this->showFrame = nullptr;
 
         SecureStore::Config config(this->argc, this->argv);
         std::string title = "Secure store";
@@ -34,8 +35,6 @@ namespace SecureStore::Application {
         mainFrame->Show(true);
         this->SetTopWindow(mainFrame);
 
-        this->showFrame = new ShowFrame(nullptr, wxID_ANY, _(title), wxDefaultPosition, wxSize(600, 200), nullptr);
-
         return true;
     }
 
@@ -48,5 +47,16 @@ namespace SecureStore::Application {
         this->mainFrame = new MainFrame(_(this->title), wxDefaultPosition, wxSize(600, 200), fileName, this);
 
         return this->mainFrame;
+    }
+
+    wxFrame *MainApp::getShowFrame()
+    {
+        if (this->showFrame != nullptr) {
+            return this->showFrame;
+        }
+
+        this->showFrame = new ShowFrame(nullptr, wxID_ANY, _(this->title), wxDefaultPosition, wxSize(600, 200), nullptr);
+
+        return this->showFrame;
     }
 }

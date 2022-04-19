@@ -51,19 +51,18 @@ namespace SecureStore::Application
 
     class MainApp : public wxApp // MainApp is the class for our application
     {
-        // MainApp just acts as a container for the window, or frame in MainFrame
     public:
         virtual bool OnInit();
 
         wxFrame* getMainFrame();
         wxFrame* getShowFrame();
 
-        wxFrame* mainFrame;
-        wxFrame* showFrame;
-
     private:
         char* fileName;
         char* title;
+
+        wxFrame* mainFrame;
+        wxFrame* showFrame;
     };
 
     class MainFrame : public wxFrame // MainFrame is the class for our window,
