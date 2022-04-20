@@ -55,10 +55,17 @@ namespace SecureStore::Storage
         int ioBufferSize = 4096;
         IOBuffer::IOMemoryBuffer memoryBuffer;
         auto buffer = (char*) malloc(ioBufferSize * sizeof(uint8_t));
+        bool first = true;
+        bool empty = false;
 
         do {
             memset(buffer, 0, ioBufferSize * sizeof(uint8_t));
             readLength = fileReader.read(buffer, ioBufferSize);
+
+            if (readLength == 0 && first) {
+                empty = true;
+                break;
+            }
 
             if (readLength > 0) {
                 memoryBuffer.write(buffer, readLength);
@@ -67,7 +74,13 @@ namespace SecureStore::Storage
             if (readLength != ioBufferSize) {
                 break;
             }
+
+            first = false;
         } while (true);
+
+        if (empty) {
+            return 0;
+        }
 
         auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
         unsigned char key[AES_256_KEY_SIZE];
