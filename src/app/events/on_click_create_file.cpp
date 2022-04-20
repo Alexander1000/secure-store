@@ -31,5 +31,7 @@ namespace SecureStore::Application
         this->txOpenDirectory->SetValue(wxEmptyString);
         this->txFileName->SetValue(wxEmptyString);
         this->txPassword->SetValue(wxEmptyString);
+
+        this->switchToShowFrame();
     }
 }
