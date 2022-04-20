@@ -39,12 +39,19 @@ namespace SecureStore::Storage
             params->iv = iv;
             params->encrypt = 1;
             params->cipher_type = EVP_aes_256_cbc();
-            auto encryptedSecrets = encrypt_decrypt(params, rawSecrets);
+            SecureStore::DataPack* encryptedSecrets = nullptr;
+            if (rawSecrets->getLength() > 0) {
+                encryptedSecrets = encrypt_decrypt(params, rawSecrets);
+            }
 
-            IOBuffer::IOFileWriter fileWriter(*this->fileName, "w+");
-            fileWriter.write((char*) headerData, DB_HEADER_BYTE_SIZE);
-            fileWriter.write((char*) iv, AES_BLOCK_SIZE);
-            fileWriter.write((char*) encryptedSecrets->getData(), encryptedSecrets->getLength());
+            IOBuffer::IOFileWriter* fileWriter = nullptr;
+            fileWriter = new IOBuffer::IOFileWriter(*this->fileName, "w+");
+            fileWriter->write((char*) headerData, DB_HEADER_BYTE_SIZE);
+            fileWriter->write((char*) iv, AES_BLOCK_SIZE);
+            if (encryptedSecrets != nullptr) {
+                fileWriter->write((char *) encryptedSecrets->getData(), encryptedSecrets->getLength());
+            }
+            delete fileWriter;
         }
     }
 }
