@@ -24,6 +24,12 @@ namespace SecureStore::Application
         auto sPassword = this->txPassword->GetValue();
 
         this->storage = new SecureStore::Storage::DB;
+        this->storage->createEmpty();
         this->storage->save(new std::string(sPath), new std::string(sPassword.c_str().AsChar()));
+
+        // clean up
+        this->txOpenDirectory->SetValue(wxEmptyString);
+        this->txFileName->SetValue(wxEmptyString);
+        this->txPassword->SetValue(wxEmptyString);
     }
 }
