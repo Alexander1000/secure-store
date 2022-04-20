@@ -7,6 +7,7 @@ namespace SecureStore::Storage
     void DB::save(std::string* fileName, std::string* password)
     {
         this->fileName = fileName;
+        this->password = password;
 
         auto headerData = (uint8_t*) malloc(DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
         memset(headerData, 0, DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
