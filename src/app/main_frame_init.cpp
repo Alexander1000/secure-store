@@ -26,7 +26,8 @@ namespace SecureStore::Application
         this->notebook->SetSize(wxSize(this->GetSize().GetWidth() - xMargin * 2, this->GetSize().GetHeight() - yMargin * 2));
 
         if (fileName != nullptr) {
-            this->txFilePath->SetValue(wxString(fileName));
+            auto fName = new wxString(fileName);
+            this->txFilePath->SetValue(*fName);
         }
     }
 }
