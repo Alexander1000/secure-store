@@ -25,6 +25,8 @@ set(SECURE_STORE_SOURCES_SHARED
     src/app/events/event_table.cpp
     src/app/events/on_password_enter.cpp
     src/app/events/on_file_browse_click.cpp
+    src/app/events/on_click_select_directory.cpp
+    src/app/events/on_click_create_file.cpp
     src/app/add_secret/init.cpp
     src/app/add_secret/initialize.cpp
     src/app/add_secret/on_click_save_button.cpp

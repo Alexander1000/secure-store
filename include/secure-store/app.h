@@ -73,6 +73,9 @@ namespace SecureStore::Application
         void OnFileBrowseClick(wxCommandEvent& event);
         void OnPasswordEnter(wxCommandEvent& event);
 
+        void OnClickSelectDirectory(wxCommandEvent& event);
+        void OnClickCreateFile(wxCommandEvent& event);
+
     private:
         MainApp* app;
 
