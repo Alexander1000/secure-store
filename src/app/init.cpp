@@ -44,7 +44,8 @@ namespace SecureStore::Application {
             return this->mainFrame;
         }
 
-        this->mainFrame = new MainFrame(_(this->title), wxDefaultPosition, wxSize(600, 200), fileName, this);
+        auto szMainFrame = new wxSize(600, 200);
+        this->mainFrame = new MainFrame(_(this->title), wxDefaultPosition, *szMainFrame, fileName, this);
 
         return this->mainFrame;
     }
@@ -55,7 +56,8 @@ namespace SecureStore::Application {
             return this->showFrame;
         }
 
-        this->showFrame = new ShowFrame(nullptr, wxID_ANY, _(this->title), wxDefaultPosition, wxSize(600, 200), nullptr);
+        auto szShowFrame = new wxSize(600, 200);
+        this->showFrame = new ShowFrame(nullptr, wxID_ANY, _(this->title), wxDefaultPosition, *szShowFrame, nullptr);
 
         return this->showFrame;
     }
