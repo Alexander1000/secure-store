@@ -11,7 +11,7 @@ namespace SecureStore::Application
     {
         auto sOpenDirectory = this->txOpenDirectory->GetValue();
         auto sFileName = this->txFileName->GetValue();
-        int nPath = sOpenDirectory.size() + sFileName.size() + 2;
+        int nPath = sOpenDirectory.size() + sFileName.size() + 7; // add end-slash and .xdb extension (if not set)
         INIT_CHAR_STRING(sPath, nPath)
         memcpy(sPath, sOpenDirectory.c_str().AsChar(), sOpenDirectory.size());
         int offset = sOpenDirectory.size();
@@ -20,6 +20,24 @@ namespace SecureStore::Application
             offset++;
         }
         memcpy(sPath + offset, sFileName.c_str().AsChar(), sFileName.size());
+        const char* sName = sFileName.c_str().AsChar();
+        const char* sExt = ".xdb";
+        if (sFileName.size() <= strlen(sExt)) {
+            // minimal file name
+            memcpy(sPath + offset + sFileName.size(), sExt, strlen(sExt));
+        }
+        // check extension exists
+        bool extExists = true;
+        for (int i = 0; i < strlen(sExt); i++) {
+            if (sExt[i] != sName[sFileName.size() - strlen(sExt) + i - 1]) {
+                extExists = false;
+                break;
+            }
+        }
+
+        if (!extExists) {
+            memcpy(sPath + offset + sFileName.size(), sExt, strlen(sExt));
+        }
 
         auto sPassword = this->txPassword->GetValue();
 
