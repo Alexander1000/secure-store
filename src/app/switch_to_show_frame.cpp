@@ -12,7 +12,8 @@ namespace SecureStore::Application
         this->getApp()->getMainFrame()->Close();
         auto showFrame = (ShowFrame*) this->getApp()->getShowFrame();
         showFrame->storage = this->storage;
+        showFrame->SetTitle(_(this->fileName));
         showFrame->renderStorageRecords();
-        this->getApp()->getShowFrame()->Show(true);
+        showFrame->Show(true);
     }
 }

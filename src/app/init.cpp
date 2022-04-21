@@ -50,7 +50,7 @@ namespace SecureStore::Application {
         return this->mainFrame;
     }
 
-    wxFrame *MainApp::getShowFrame()
+    wxFrame* MainApp::getShowFrame()
     {
         if (this->showFrame != nullptr) {
             return this->showFrame;

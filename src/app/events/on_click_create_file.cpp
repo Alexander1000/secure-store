@@ -45,6 +45,8 @@ namespace SecureStore::Application
         this->storage->createEmpty();
         this->storage->save(new std::string(sPath), new std::string(sPassword.c_str().AsChar()));
 
+        this->fileName = sPath;
+
         // clean up
         this->txOpenDirectory->SetValue(wxEmptyString);
         this->txFileName->SetValue(wxEmptyString);
