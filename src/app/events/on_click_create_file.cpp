@@ -29,7 +29,7 @@ namespace SecureStore::Application
         // check extension exists
         bool extExists = true;
         for (int i = 0; i < strlen(sExt); i++) {
-            if (sExt[i] != sName[sFileName.size() - strlen(sExt) + i - 1]) {
+            if (sExt[i] != sName[strlen(sName) - strlen(sExt) + i]) {
                 extExists = false;
                 break;
             }
