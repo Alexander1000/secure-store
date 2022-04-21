@@ -3,6 +3,7 @@
 #	include <wx/wx.h>
 #endif
 #include <secure-store.h>
+#include <memory.h>
 
 namespace SecureStore::Application
 {
@@ -12,7 +13,9 @@ namespace SecureStore::Application
         this->getApp()->getMainFrame()->Close();
         auto showFrame = (ShowFrame*) this->getApp()->getShowFrame();
         showFrame->storage = this->storage;
-        showFrame->SetTitle(_(this->fileName));
+        INIT_CHAR_STRING(sTitle, 15 + strlen(this->fileName)); // "Secure store: " // 14
+        sprintf(sTitle, "Secure store: %s", this->fileName);
+        showFrame->SetTitle(_(sTitle));
         showFrame->renderStorageRecords();
         showFrame->Show(true);
     }
