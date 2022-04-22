@@ -20,6 +20,7 @@ namespace SecureStore::Application
         this->grid = nullptr;
         this->btnSaveSecret = nullptr;
         this->btnAddSecret = nullptr;
+        this->btnRemoveSecret = nullptr;
 
         this->addSecretFrame = nullptr;
 

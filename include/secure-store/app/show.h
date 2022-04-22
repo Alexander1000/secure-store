@@ -28,6 +28,7 @@ namespace SecureStore::Application
         wxGrid* grid;
         wxButton* btnSaveSecret;
         wxButton* btnAddSecret;
+        wxButton* btnRemoveSecret;
 
         const char* fileName;
 
