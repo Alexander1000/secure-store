@@ -35,6 +35,7 @@ namespace SecureStore::Application
         DB_GRID,
         BUTTON_ADD_SECRET,
         BUTTON_SAVE_SECRET,
+        F_SHOW_BTN_REMOVE_SECRET,
         // add secret form controls
         FRAME_ADD_SECRET,
         F_AS_BTN_SAVE,

@@ -10,6 +10,9 @@ namespace SecureStore::Application
 {
     void ShowFrame::renderStorageRecords()
     {
+        int xMargin = 7;
+        int yMargin = 7;
+
         this->SetSize(800, 600);
 
         this->treeRecords = new wxTreeListCtrl(this, TREE_DB_RECORDS, wxDefaultPosition, wxSize(300, 200));
@@ -37,5 +40,10 @@ namespace SecureStore::Application
 
         this->btnAddSecret = new wxButton(this, BUTTON_ADD_SECRET, _T("Add"), wxPoint(600, 200), wxSize(100, 20));
         this->btnSaveSecret = new wxButton(this, BUTTON_SAVE_SECRET, _T("Save"), wxPoint(700, 200), wxSize(100, 20));
+        this->btnRemoveSecret = new wxButton(this, F_SHOW_BTN_REMOVE_SECRET, _T("Remove"));
+        this->btnRemoveSecret->SetPosition(wxPoint(
+            this->grid->GetPosition().x,
+            this->grid->GetPosition().y + this->grid->GetSize().GetHeight() + yMargin
+        ));
     }
 }
