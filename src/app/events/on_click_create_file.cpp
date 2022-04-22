@@ -19,17 +19,19 @@ namespace SecureStore::Application
             return;
         }
 
-        int nPath = sOpenDirectory.size() + sFileName.size() + 7; // add end-slash and .xdb extension (if not set)
+        const char* sExt = ".xdb";
+        const char dirSep = '/';
+
+        int nPath = sOpenDirectory.size() + sizeof(dirSep) + sFileName.size() + strlen(sExt) + 1; // add end-slash and .xdb extension (if not set)
         INIT_CHAR_STRING(sPath, nPath)
         memcpy(sPath, sOpenDirectory.c_str().AsChar(), sOpenDirectory.size());
         int offset = sOpenDirectory.size();
-        if (sPath[sOpenDirectory.size() - 1] != '/') {
-            sPath[sOpenDirectory.size()] = '/';
+        if (sPath[sOpenDirectory.size() - 1] != dirSep) {
+            sPath[sOpenDirectory.size()] = dirSep;
             offset++;
         }
         memcpy(sPath + offset, sFileName.c_str().AsChar(), sFileName.size());
         const char* sName = sFileName.c_str().AsChar();
-        const char* sExt = ".xdb";
         if (sFileName.size() <= strlen(sExt)) {
             // minimal file name
             memcpy(sPath + offset + sFileName.size(), sExt, strlen(sExt));
