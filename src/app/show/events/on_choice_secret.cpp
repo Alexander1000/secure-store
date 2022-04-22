@@ -26,8 +26,11 @@ namespace SecureStore::Application
         SecureStore::Storage::Record* secret = this->getSelectedSecret();
 
         if (secret == nullptr) {
+            this->btnRemoveSecret->Hide();
             return;
         }
+
+        this->btnRemoveSecret->Show();
 
         this->grid->SetCellValue(0, 0, "ID");
         char* strId = (char*) malloc(10);

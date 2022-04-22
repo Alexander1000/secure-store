@@ -45,5 +45,6 @@ namespace SecureStore::Application
             this->grid->GetPosition().x,
             this->grid->GetPosition().y + this->grid->GetSize().GetHeight() + yMargin
         ));
+        this->btnRemoveSecret->Hide();
     }
 }
