@@ -40,6 +40,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/app/show/events/on_save_secret_click.cpp
     src/app/show/events/on_add_secret_click.cpp
     src/app/show/events/on_choice_secret.cpp
+    src/app/show/events/on_click_remove_secret.cpp
     src/config.cpp
     src/config/load_config.cpp
     src/menu/main.cpp

@@ -16,6 +16,7 @@ namespace SecureStore::Application
         void OnChoiceSecret(wxTreeListEvent& event);
         void OnSaveSecretClick(wxCommandEvent& event);
         void OnAddSecretClick(wxCommandEvent& event);
+        void OnClickRemoveSecret(wxCommandEvent& event);
 
         void reloadContent();
 

@@ -10,6 +10,7 @@ namespace SecureStore::Application
         EVT_TREELIST_SELECTION_CHANGED(TREE_DB_RECORDS, ShowFrame::OnChoiceSecret)
         EVT_BUTTON(BUTTON_SAVE_SECRET, ShowFrame::OnSaveSecretClick)
         EVT_BUTTON(BUTTON_ADD_SECRET, ShowFrame::OnAddSecretClick)
+        EVT_BUTTON(F_SHOW_BTN_REMOVE_SECRET, ShowFrame::OnClickRemoveSecret)
     END_EVENT_TABLE()
 
     ShowFrame::ShowFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size, SecureStore::Storage::DB* storage)
