@@ -11,6 +11,14 @@ namespace SecureStore::Application
     {
         auto sOpenDirectory = this->txOpenDirectory->GetValue();
         auto sFileName = this->txFileName->GetValue();
+        auto sPassword = this->txPassword->GetValue();
+
+        if (sOpenDirectory.empty() || sFileName.empty() || sPassword.empty()) {
+            this->lbCreateNewFileError->SetLabel(_T("All fields is required"));
+            this->lbCreateNewFileError->Show();
+            return;
+        }
+
         int nPath = sOpenDirectory.size() + sFileName.size() + 7; // add end-slash and .xdb extension (if not set)
         INIT_CHAR_STRING(sPath, nPath)
         memcpy(sPath, sOpenDirectory.c_str().AsChar(), sOpenDirectory.size());
@@ -38,8 +46,6 @@ namespace SecureStore::Application
         if (!extExists) {
             memcpy(sPath + offset + sFileName.size(), sExt, strlen(sExt));
         }
-
-        auto sPassword = this->txPassword->GetValue();
 
         this->storage = new SecureStore::Storage::DB;
         this->storage->createEmpty();

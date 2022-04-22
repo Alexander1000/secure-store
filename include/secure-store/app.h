@@ -29,6 +29,7 @@ namespace SecureStore::Application
         F_NEW_FILE_LB_PASSWORD,
         F_NEW_FILE_TX_PASSWORD,
         F_NEW_FILE_BTN_CREATE,
+        F_NEW_FILE_LB_ERROR,
         // main window form controls
         TREE_DB_RECORDS,
         DB_GRID,
@@ -99,6 +100,7 @@ namespace SecureStore::Application
         wxStaticText* lbPassword;
         wxTextCtrl* txPassword;
         wxButton* btnCreateFile;
+        wxStaticText* lbCreateNewFileError;
 
         const char* fileName;
 

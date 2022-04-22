@@ -29,6 +29,8 @@ namespace SecureStore::Application
         this->txPassword->SetSize(wxSize(400, 20));
 
         this->btnCreateFile = new wxButton(panel, F_NEW_FILE_BTN_CREATE, _T("Create"));
+        this->lbCreateNewFileError = new wxStaticText(panel, F_NEW_FILE_LB_ERROR, wxEmptyString);
+        this->lbCreateNewFileError->Hide();
 
         int xLabelMaxWidth = xLbFileNameWidth;
         if (xLbOpenDirectoryWidth > xLabelMaxWidth) {
@@ -91,6 +93,11 @@ namespace SecureStore::Application
         yOffset += 25;
 
         this->btnCreateFile->SetPosition(wxPoint(xMargin, yOffset));
+
+        this->lbCreateNewFileError->SetPosition(wxPoint(
+            this->btnCreateFile->GetPosition().x + this->btnCreateFile->GetSize().GetWidth() + xMargin,
+            yOffset
+        ));
 
         return panel;
     }
