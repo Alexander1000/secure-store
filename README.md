@@ -1,5 +1,7 @@
 # Secure Store
 
+Application for store ciphered secrets in local file.
+
 ## How build
 
 ```shell
