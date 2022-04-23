@@ -3,7 +3,7 @@
 ## @TODO for release:
 - close current database (for open other file)
 
-## 0.0.1 (Unreleased yet...)
+## 0.0.1
 
  * desktop application with minimal usable functions:
    * open *.xdb files
