@@ -1,7 +1,6 @@
 # Changelog secure-store
 
 ## @TODO for release:
-- remove old secrets
 - change title of window while select another file
 - close current database (for open other file)
 
@@ -12,4 +11,5 @@
    * create *.xdb files
    * add new secrets
    * edit secrets
+   * remove old secrets
  * support cypher algorithm aes_256_cbc
