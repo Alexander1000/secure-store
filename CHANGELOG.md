@@ -1,7 +1,6 @@
 # Changelog secure-store
 
 ## @TODO for release:
-- change title of window while select another file
 - close current database (for open other file)
 
 ## 0.0.1 (Unreleased yet...)
