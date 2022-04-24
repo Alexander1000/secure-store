@@ -22,6 +22,7 @@ namespace SecureStore::Application
         this->btnSaveSecret = nullptr;
         this->btnAddSecret = nullptr;
         this->btnRemoveSecret = nullptr;
+        this->listSecrets = nullptr;
 
         this->addSecretFrame = nullptr;
 

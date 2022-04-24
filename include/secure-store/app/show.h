@@ -30,6 +30,7 @@ namespace SecureStore::Application
         wxButton* btnSaveSecret;
         wxButton* btnAddSecret;
         wxButton* btnRemoveSecret;
+        wxListBox* listSecrets;
 
         const char* fileName;
 
