@@ -39,7 +39,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/app/show/render_storage_records.cpp
     src/app/show/events/on_save_secret_click.cpp
     src/app/show/events/on_add_secret_click.cpp
-    src/app/show/events/on_choice_secret.cpp
+    src/app/show/events/on_select_item.cpp
     src/app/show/events/on_click_remove_secret.cpp
     src/config.cpp
     src/config/load_config.cpp
