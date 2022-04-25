@@ -19,6 +19,9 @@ namespace SecureStoreTest
     // open tests
     CppUnitTest::TestCase* testOpenDb_OneElementAes256Cbc_case01();
     CppUnitTest::TestCase* testOpenDb_ThreeElementsAes256Cbc_case02();
+
+    // hash tests
+    CppUnitTest::TestCase* testHash_Data_case01();
 }
 
 #endif
