@@ -20,11 +20,18 @@ namespace SecureStore::Crypto
         const EVP_CIPHER* cipher_type;
     } cipher_params_t;
 
+    typedef struct {
+        unsigned char* key;
+        unsigned char* iv;
+    } cipher_key;
+
     SecureStore::DataPack* encrypt_decrypt(cipher_params_t* params, SecureStore::DataPack* input);
 
     uint8_t* hash_md5(SecureStore::DataPack* input);
 
     uint8_t* hash_sha3_512(SecureStore::DataPack* input);
+
+    cipher_key* prepare_credentials(const char* user, const char* password, const char* salt);
 }
 
 #endif
