@@ -29,7 +29,7 @@ namespace SecureStoreTest
         auto data = SecureStore::Crypto::hash_sha3_512(input);
 
         for (int i = 0; i < 64; i++) {
-
+            CppUnitTest::assertEquals(t, cipheredData[i], data[i]);
         }
 
         t->finish();
