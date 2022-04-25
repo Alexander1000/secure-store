@@ -38,12 +38,14 @@ namespace SecureStore::Application
             this->listSecrets->Append(name);
         }
 
-        this->grid = new wxGrid(this, DB_GRID, wxPoint(300, 0), wxSize(500, 200));
+        this->grid = new wxGrid(this, DB_GRID);
+        this->grid->SetPosition(wxPoint(xMargin + this->listSecrets->GetSize().GetWidth() + xMargin, yMargin));
+        this->grid->SetSize(wxSize(500 - xMargin * 3, 200));
         this->grid->CreateGrid(10, 2);
         this->grid->HideColLabels();
         this->grid->HideRowLabels();
-        this->grid->SetColSize(0, 150);
-        this->grid->SetColSize(1, 350);
+        this->grid->SetColSize(0, 150 - xMargin);
+        this->grid->SetColSize(1, 350 - xMargin * 2);
 
         this->btnAddSecret = new wxButton(this, BUTTON_ADD_SECRET, _T("Add"), wxPoint(600, 200), wxSize(100, 20));
         this->btnSaveSecret = new wxButton(this, BUTTON_SAVE_SECRET, _T("Save"), wxPoint(700, 200), wxSize(100, 20));
