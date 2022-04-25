@@ -8,7 +8,6 @@
 namespace SecureStore::Application
 {
     BEGIN_EVENT_TABLE(ShowFrame, wxFrame)
-        EVT_TREELIST_SELECTION_CHANGED(TREE_DB_RECORDS, ShowFrame::OnChoiceSecret)
         EVT_BUTTON(BUTTON_SAVE_SECRET, ShowFrame::OnSaveSecretClick)
         EVT_BUTTON(BUTTON_ADD_SECRET, ShowFrame::OnAddSecretClick)
         EVT_BUTTON(F_SHOW_BTN_REMOVE_SECRET, ShowFrame::OnClickRemoveSecret)
@@ -19,7 +18,6 @@ namespace SecureStore::Application
             : wxFrame(parent, id, title, pos, size)
     {
         this->storage = storage;
-        this->treeRecords = nullptr;
         this->grid = nullptr;
         this->btnSaveSecret = nullptr;
         this->btnAddSecret = nullptr;

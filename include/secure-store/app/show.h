@@ -2,7 +2,6 @@
 #define H_SECURE_STORE_APP_SHOW
 
 #include <wx/wx.h>
-#include <wx/treelist.h>
 #include <wx/grid.h>
 #include <secure-store/storage.h>
 
@@ -13,7 +12,6 @@ namespace SecureStore::Application
     public:
         ShowFrame(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos, const wxSize &size, SecureStore::Storage::DB* storage);
 
-        void OnChoiceSecret(wxTreeListEvent& event);
         void OnSaveSecretClick(wxCommandEvent& event);
         void OnAddSecretClick(wxCommandEvent& event);
         void OnClickRemoveSecret(wxCommandEvent& event);
