@@ -4,6 +4,7 @@
 - close current database (for open other file)
 - generate passwords
 - show page: refactor grid to set of controls
+- add category for secrets and tree of categories
 
 ## 0.0.2 (Unreleased)
 
