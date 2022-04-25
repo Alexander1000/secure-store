@@ -18,7 +18,7 @@ namespace SecureStoreTest
         char* salt = (char*) malloc(32);
         RAND_bytes((unsigned char*) salt, 32);
 
-        SecureStore::Crypto::prepare_credentials(user, password, salt);
+        auto data = SecureStore::Crypto::prepare_credentials(user, password, salt);
 
         t->finish();
         return t;
