@@ -15,7 +15,12 @@ namespace SecureStore::Application
 
         this->SetSize(800, 600);
 
+        this->listSecrets = new wxListBox(this, F_SHOW_LIST_SECRETS);
+        this->listSecrets->SetPosition(wxPoint(xMargin, yMargin));
+        this->listSecrets->SetSize(wxSize(300, 200));
+
         this->treeRecords = new wxTreeListCtrl(this, TREE_DB_RECORDS, wxDefaultPosition, wxSize(300, 200));
+        this->treeRecords->SetPosition(wxPoint(xMargin, this->listSecrets->GetSize().GetHeight() + yMargin));
 
         this->treeRecords->AppendColumn("Name",
            wxCOL_WIDTH_AUTOSIZE,
@@ -29,6 +34,8 @@ namespace SecureStore::Application
 
             wxString name(secret->getName()->c_str());
             wxTreeListItem item = this->treeRecords->AppendItem(root, name);
+
+            this->listSecrets->Append(name);
         }
 
         this->grid = new wxGrid(this, DB_GRID, wxPoint(300, 0), wxSize(500, 200));
