@@ -3,7 +3,6 @@
 
 #include <secure-store/storage.h>
 #include <wx/wx.h>
-#include <wx/treelist.h>
 #include <wx/grid.h>
 #include <wx/notebook.h>
 #include <wx/panel.h>

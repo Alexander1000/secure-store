@@ -2,6 +2,12 @@
 
 ## @TODO for release:
 - close current database (for open other file)
+- generate passwords
+- show page: refactor grid to set of controls
+
+## 0.0.2 (Unreleased)
+
+ * remove tree-list control for list secrets
 
 ## 0.0.1
 

@@ -24,7 +24,6 @@ namespace SecureStore::Application
         SecureStore::Storage::DB* storage;
 
     private:
-        wxTreeListCtrl* treeRecords;
         wxGrid* grid;
         wxButton* btnSaveSecret;
         wxButton* btnAddSecret;
