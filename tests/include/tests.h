@@ -36,6 +36,9 @@ namespace SecureStoreTest
 
     // hash tests
     CppUnitTest::TestCase* testHash_Data_case01();
+
+    // prepare credentials
+    CppUnitTest::TestCase* testPrepareCredentials_Data_case01();
 }
 
 #endif

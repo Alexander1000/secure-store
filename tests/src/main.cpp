@@ -23,6 +23,9 @@ int main() {
     // hash tests
     testSuite.addTestCase(SecureStoreTest::testHash_Data_case01());
 
+    // prepare credentials
+    testSuite.addTestCase(SecureStoreTest::testPrepareCredentials_Data_case01());
+
     testSuite.printTotal();
 
     return 0;
