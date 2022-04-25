@@ -25,6 +25,9 @@ namespace SecureStore::Crypto
         memcpy(baseString + userLength, password, passwordLength);
         memcpy(baseString + userLength + passwordLength, salt, 32);
 
+        auto input = new SecureStore::DataPack(baseStringLength, baseString);
+        auto hashData = hash_sha3_512(input);
+
         return nullptr;
     }
 }
