@@ -15,10 +15,10 @@ namespace SecureStoreTest
 
         const char* user = "alexander";
         const char* password = "123Qwerty!";
-        char* salt = (char*) malloc(32);
-        RAND_bytes((unsigned char*) salt, 32);
+        const char* salt = "qwertyuiopasdfghjklzxcvbnm12345";
 
         auto data = SecureStore::Crypto::prepare_credentials(user, password, salt);
+        CppUnitTest::assertEquals(t, 64, data->getLength());
 
         t->finish();
         return t;
