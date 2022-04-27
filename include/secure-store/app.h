@@ -19,6 +19,8 @@ namespace SecureStore::Application
         F_AUTH_LB_FILE_BROWSE,
         F_AUTH_TX_FILE_PATH,
         F_AUTH_BTN_FILE_BROWSE,
+        F_AUTH_LB_LOGIN,
+        F_AUTH_TX_LOGIN,
         // new file page
         F_NEW_FILE_LB_OPEN_DIRECTORY,
         F_NEW_FILE_TX_OPEN_DIRECTORY,
@@ -86,6 +88,8 @@ namespace SecureStore::Application
         wxStaticText* lbFileBrowse;
         wxTextCtrl* txFilePath;
         wxButton* btnFileBrowse;
+        wxStaticText* lbLogin;
+        wxTextCtrl* txLogin;
         wxStaticText* lbPasswordEnter;
         wxButton* btnPasswordEnter;
         wxTextCtrl* textPasswordCtrl;
