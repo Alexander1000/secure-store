@@ -35,7 +35,7 @@ namespace SecureStore::Application {
             return this->mainFrame;
         }
 
-        auto szMainFrame = new wxSize(600, 200);
+        auto szMainFrame = new wxSize(600, 220);
         this->mainFrame = new MainFrame(_(this->title), wxDefaultPosition, *szMainFrame, this);
 
         return this->mainFrame;
