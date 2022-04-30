@@ -60,7 +60,6 @@ namespace SecureStore::Storage
             IOBuffer::IOFileWriter* fileWriter = nullptr;
             fileWriter = new IOBuffer::IOFileWriter(this->fileName, "w+");
             fileWriter->write((char*) headerData, DB_HEADER_BYTE_SIZE);
-            fileWriter->write((char*) iv, AES_BLOCK_SIZE);
             if (encryptedSecrets != nullptr) {
                 fileWriter->write((char *) encryptedSecrets->getData(), encryptedSecrets->getLength());
             }

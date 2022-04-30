@@ -49,13 +49,6 @@ namespace SecureStore::Storage
         memset(this->_salt, 0, sizeof(unsigned char) * DB_HEADER_SALT_BYTE_SIZE);
         memcpy(this->_salt, headerData + DB_HEADER_BYTE_SIZE - DB_HEADER_SALT_BYTE_SIZE, DB_HEADER_SALT_BYTE_SIZE * sizeof(unsigned char));
 
-        unsigned char iv[AES_BLOCK_SIZE];
-        readLength = fileReader.read((char*) iv, AES_BLOCK_SIZE);
-        if (readLength != AES_BLOCK_SIZE) {
-            // error: corrupted file
-            return 5;
-        }
-
         // read data
         int ioBufferSize = 4096;
         IOBuffer::IOMemoryBuffer memoryBuffer;
@@ -87,14 +80,18 @@ namespace SecureStore::Storage
             return 0;
         }
 
+        auto keyData = SecureStore::Crypto::prepare_credentials(this->user->c_str(), this->password->c_str(), (const char*) this->_salt);
+
         auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
+
         unsigned char key[AES_256_KEY_SIZE];
         memset(key, 0, sizeof(key));
-        int passwordLength = strlen(password);
-        if (passwordLength > 32) {
-            passwordLength = 32;
-        }
-        memcpy(key, password, passwordLength);
+        memcpy(key, keyData->getData(), AES_256_KEY_SIZE);
+
+        unsigned char iv[AES_BLOCK_SIZE];
+        memset(iv, 0, sizeof(AES_BLOCK_SIZE));
+        memcpy(iv, (unsigned char*) keyData->getData() + AES_256_KEY_SIZE, AES_BLOCK_SIZE);
+
         params->key = key;
         params->iv = iv;
         params->encrypt = 0;
