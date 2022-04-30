@@ -5,6 +5,7 @@
 - generate passwords
 - show page: refactor grid to set of controls
 - add category for secrets and tree of categories
+- credentials: user & password for access to storage
 
 ## 0.0.2 (Unreleased)
 
