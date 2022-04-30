@@ -28,7 +28,8 @@ namespace SecureStore::Application
         this->lbNewLogin = new wxStaticText(panel, F_NEW_FILE_LB_LOGIN, _T("Login:"));
         int xLbLoginWidth = this->lbNewLogin->GetSize().GetWidth();
         this->txNewLogin = new wxTextCtrl(panel, F_NEW_FILE_TX_LOGIN, wxEmptyString);
-        this->txNewLogin->SetSize(wxSize(400, 20));
+        auto szTxNewLogin = new wxSize(400, 20);
+        this->txNewLogin->SetSize(*szTxNewLogin);
 
         this->lbPassword = new wxStaticText(panel, F_NEW_FILE_LB_PASSWORD, _T("Password:"));
         int xLbPasswordWidth = this->lbPassword->GetSize().GetWidth();
@@ -94,15 +95,17 @@ namespace SecureStore::Application
 
         yOffset += 25;
 
-        this->lbNewLogin->SetPosition(wxPoint(
+        auto posLbNewLogin = new wxPoint(
             xMargin + xLabelMaxWidth - xLbLoginWidth,
             yOffset
-        ));
+        );
+        this->lbNewLogin->SetPosition(*posLbNewLogin);
 
-        this->txNewLogin->SetPosition(wxPoint(
-            this->lbNewLogin->GetPosition().x + this->lbNewLogin->GetSize().GetWidth() + xMargin,
+        auto posTxNewLogin = new wxPoint(
+            posLbNewLogin->x + this->lbNewLogin->GetSize().GetWidth() + xMargin,
             yOffset
-        ));
+        );
+        this->txNewLogin->SetPosition(*posTxNewLogin);
 
         // password
 
