@@ -89,6 +89,7 @@ namespace SecureStore::Storage
     const uint8_t CIPHER_ALGORITHM_AES_256_CBC = 1;
 
     const uint8_t DB_HEADER_BYTE_SIZE = 56;
+    const uint8_t DB_HEADER_SALT_BYTE_SIZE = 32;
 
     /**
      * Format stored data
