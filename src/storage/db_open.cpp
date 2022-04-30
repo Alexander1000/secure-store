@@ -3,7 +3,7 @@
 
 namespace SecureStore::Storage
 {
-    int DB::open(const char* fileName, const char* password)
+    int DB::open(const char* fileName, const char* user, const char* password)
     {
         this->createEmpty();
 

@@ -124,11 +124,11 @@ namespace SecureStore::Storage
         void createEmpty();
         void addRecord(Record*);
 
-        int open(const char* fileName, const char* password); // open file
+        int open(const char* fileName, const char* user, const char* password); // open file
 
         int save(); // save opened file
 
-        void save(const char* fileName, const char* key); // save new file
+        void save(const char* fileName, const char* user, const char* key); // save new file
 
         std::list<DBRecord*>* getRecords();
 
@@ -136,6 +136,7 @@ namespace SecureStore::Storage
         std::list<DBRecord*>* records;
 
         const char* fileName;
+        const char* user;
         const char* password;
 
         unsigned char* format;

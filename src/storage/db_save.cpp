@@ -4,9 +4,10 @@
 
 namespace SecureStore::Storage
 {
-    void DB::save(const char* fileName, const char* password)
+    void DB::save(const char* fileName, const char* user, const char* password)
     {
         this->fileName = fileName;
+        this->user = user;
         this->password = password;
 
         auto headerData = (uint8_t*) malloc(DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
