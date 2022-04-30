@@ -21,7 +21,8 @@ namespace SecureStore::Application
         this->lbFileBrowse = new wxStaticText(panel, F_AUTH_LB_FILE_BROWSE, _T("File:"), *posLbFileBrowse);
         auto posTxFilePath = new wxPoint(xMargin + this->lbFileBrowse->GetSize().GetWidth() + xMargin, yOffset);
         this->txFilePath = new wxTextCtrl(panel, F_AUTH_TX_FILE_PATH, wxEmptyString, *posTxFilePath);
-        this->txFilePath->SetSize(wxSize(400, 20));
+        auto szTxFilePath = new wxSize(400, 20);
+        this->txFilePath->SetSize(*szTxFilePath);
         this->txFilePath->Disable();
         int xLabelFileBrowseWidth = this->lbFileBrowse->GetSize().GetWidth();
         auto posBtnFileBrowse = new wxPoint(posLbFileBrowse->x + this->txFilePath->GetSize().GetWidth() + xMargin, yOffset);
@@ -33,22 +34,25 @@ namespace SecureStore::Application
         );
 
         yOffset += 30;
-        this->lbPasswordEnter = new wxStaticText(panel, F_AUTH_LB_PASSWORD, _T("Password:"), wxPoint(xMargin, yOffset));
+        auto posLbPasswordEnter = new wxPoint(xMargin, yOffset);
+        this->lbPasswordEnter = new wxStaticText(panel, F_AUTH_LB_PASSWORD, _T("Password:"), *posLbPasswordEnter);
         int xLabelPasswordEnterWidth = this->lbPasswordEnter->GetSize().GetWidth();
+        auto posTextPasswordCtrl = new wxPoint(xMargin + this->lbPasswordEnter->GetSize().GetWidth() + xMargin, yOffset);
         this->textPasswordCtrl = new wxTextCtrl(
             panel,
             TEXT_PASSWORD_Entry,
             _T(""),
-            wxPoint(xMargin + this->lbPasswordEnter->GetSize().GetWidth() + xMargin, yOffset),
+            *posTextPasswordCtrl,
             wxSize(400, 20),
             wxTE_PASSWORD,
             wxDefaultValidator
         );
+        auto posBtnPasswordEnter = new wxPoint(posTextPasswordCtrl->x + this->textPasswordCtrl->GetSize().GetWidth() + xMargin, yOffset);
         this->btnPasswordEnter = new wxButton(
             panel,
             BUTTON_PASSWORD_ENTER,
             _T("Enter"),
-            wxPoint(this->textPasswordCtrl->GetPosition().x + this->textPasswordCtrl->GetSize().GetWidth() + xMargin, yOffset),
+            *posBtnPasswordEnter,
             wxDefaultSize,
             0
         );
