@@ -1,6 +1,7 @@
 #include <secure-store.h>
 #include <openssl/rand.h>
 #include <io-buffer.h>
+#include <memory.h>
 
 namespace SecureStore::Storage
 {
@@ -9,6 +10,10 @@ namespace SecureStore::Storage
         this->fileName = fileName;
         this->user = user;
         this->password = password;
+
+        this->_salt = (unsigned char*) malloc(sizeof(unsigned char) * 32);
+        memset(this->_salt, 0, sizeof(unsigned char) * 32);
+        RAND_bytes(this->_salt, sizeof(unsigned char) * 32);
 
         auto headerData = (uint8_t*) malloc(DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
         memset(headerData, 0, DB_HEADER_BYTE_SIZE * sizeof(uint8_t));

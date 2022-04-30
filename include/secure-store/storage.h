@@ -138,6 +138,7 @@ namespace SecureStore::Storage
         const char* fileName;
         const char* user;
         const char* password;
+        unsigned char* _salt;
 
         unsigned char* format;
 
