@@ -31,6 +31,9 @@ namespace SecureStore::Storage
         auto md5Hash = SecureStore::Crypto::hash_md5(rawSecrets);
         memcpy(headerData + 8, md5Hash, 16 * sizeof(uint8_t));
 
+        // write salt
+        memcpy(headerData + DB_HEADER_BYTE_SIZE - DB_HEADER_SALT_BYTE_SIZE, this->_salt, DB_HEADER_SALT_BYTE_SIZE * sizeof(unsigned char));
+
         if (this->cipherAlgorithm == CIPHER_ALGORITHM_AES_256_CBC) {
             auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
             unsigned char key[AES_256_KEY_SIZE];
