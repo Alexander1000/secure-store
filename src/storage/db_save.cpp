@@ -44,7 +44,7 @@ namespace SecureStore::Storage
             memcpy(key, keyData->getData(), AES_256_KEY_SIZE);
 
             unsigned char iv[AES_BLOCK_SIZE];
-            memset(iv, 0, sizeof(AES_BLOCK_SIZE));
+            memset(iv, 0, sizeof(iv));
             memcpy(iv, (unsigned char*) keyData->getData() + AES_256_KEY_SIZE, AES_BLOCK_SIZE);
 
             params->key = key;
