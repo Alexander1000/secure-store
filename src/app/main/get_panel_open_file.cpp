@@ -34,14 +34,17 @@ namespace SecureStore::Application
         );
 
         yOffset += 30;
-        this->lbLogin = new wxStaticText(panel, F_AUTH_LB_LOGIN, _T("Login:"), wxPoint(xMargin, yOffset));
+        auto posLbLogin = new wxPoint(xMargin, yOffset);
+        this->lbLogin = new wxStaticText(panel, F_AUTH_LB_LOGIN, _T("Login:"), *posLbLogin);
         int xLabelLoginWidth = this->lbLogin->GetSize().GetWidth();
+        auto posTxLogin = new wxPoint(xMargin + this->lbLogin->GetSize().GetWidth() + xMargin, yOffset);
+        auto szTxLogin = new wxSize(400, 20);
         this->txLogin = new wxTextCtrl(
             panel,
             F_AUTH_TX_LOGIN,
             wxEmptyString,
-            wxPoint(xMargin + this->lbLogin->GetSize().GetWidth() + xMargin, yOffset),
-            wxSize(400, 20)
+            *posTxLogin,
+            *szTxLogin
         );
 
         yOffset += 30;
@@ -84,7 +87,8 @@ namespace SecureStore::Application
         this->txFilePath->SetPosition(*posTxFilePath);
         posBtnFileBrowse->x = posTxFilePath->x + this->txFilePath->GetSize().GetWidth() + xMargin;
         this->btnFileBrowse->SetPosition(*posBtnFileBrowse);
-        this->txLogin->SetPosition(wxPoint(xLabelBlockWidth, this->txLogin->GetPosition().y));
+        posTxLogin->x = xLabelBlockWidth;
+        this->txLogin->SetPosition(*posTxLogin);
         posTextPasswordCtrl->x = xLabelBlockWidth;
         this->textPasswordCtrl->SetPosition(*posTextPasswordCtrl);
         posBtnPasswordEnter->x = posTextPasswordCtrl->x + this->textPasswordCtrl->GetSize().GetWidth() + xMargin;
