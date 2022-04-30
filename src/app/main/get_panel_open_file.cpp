@@ -71,8 +71,10 @@ namespace SecureStore::Application
         this->txFilePath->SetPosition(*posTxFilePath);
         posBtnFileBrowse->x = posTxFilePath->x + this->txFilePath->GetSize().GetWidth() + xMargin;
         this->btnFileBrowse->SetPosition(*posBtnFileBrowse);
-        this->textPasswordCtrl->SetPosition(wxPoint(xLabelBlockWidth, this->textPasswordCtrl->GetPosition().y));
-        this->btnPasswordEnter->SetPosition(wxPoint(this->textPasswordCtrl->GetPosition().x + this->textPasswordCtrl->GetSize().GetWidth() + xMargin, this->textPasswordCtrl->GetPosition().y));
+        posTextPasswordCtrl->x = xLabelBlockWidth;
+        this->textPasswordCtrl->SetPosition(*posTextPasswordCtrl);
+        posBtnPasswordEnter->x = posTextPasswordCtrl->x + this->textPasswordCtrl->GetSize().GetWidth() + xMargin;
+        this->btnPasswordEnter->SetPosition(*posBtnPasswordEnter);
 
         this->lbPasswordResult = new wxStaticText(panel, STATIC_TEXT_PASSWORD_RESULT, wxEmptyString);
         auto posLbPasswordResult = new wxPoint(this->textPasswordCtrl->GetPosition().x, this->textPasswordCtrl->GetPosition().y + 20);
