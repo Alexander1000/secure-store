@@ -38,12 +38,13 @@ namespace SecureStore::Application
         this->lbPasswordEnter = new wxStaticText(panel, F_AUTH_LB_PASSWORD, _T("Password:"), *posLbPasswordEnter);
         int xLabelPasswordEnterWidth = this->lbPasswordEnter->GetSize().GetWidth();
         auto posTextPasswordCtrl = new wxPoint(xMargin + this->lbPasswordEnter->GetSize().GetWidth() + xMargin, yOffset);
+        auto szTextPasswordCtrl = new wxSize(400, 20);
         this->textPasswordCtrl = new wxTextCtrl(
             panel,
             TEXT_PASSWORD_Entry,
             _T(""),
             *posTextPasswordCtrl,
-            wxSize(400, 20),
+            *szTextPasswordCtrl,
             wxTE_PASSWORD,
             wxDefaultValidator
         );
