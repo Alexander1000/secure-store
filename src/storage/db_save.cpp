@@ -38,19 +38,20 @@ namespace SecureStore::Storage
             auto keyData = SecureStore::Crypto::prepare_credentials(this->user->c_str(), this->password->c_str(), (const char*) this->_salt);
 
             auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
+
             unsigned char key[AES_256_KEY_SIZE];
             memset(key, 0, sizeof(key));
-            int passwordLength = strlen(password);
-            if (passwordLength > 32) {
-                passwordLength = 32;
-            }
-            memcpy(key, password, passwordLength);
+            memcpy(key, keyData->getData(), AES_256_KEY_SIZE);
+
             unsigned char iv[AES_BLOCK_SIZE];
-            RAND_bytes(iv, sizeof(iv));
+            memset(iv, 0, sizeof(AES_BLOCK_SIZE));
+            memcpy(iv, (unsigned char*) keyData->getData() + AES_256_KEY_SIZE, AES_BLOCK_SIZE);
+
             params->key = key;
             params->iv = iv;
             params->encrypt = 1;
             params->cipher_type = EVP_aes_256_cbc();
+
             SecureStore::DataPack* encryptedSecrets = nullptr;
             if (rawSecrets->getLength() > 0) {
                 encryptedSecrets = encrypt_decrypt(params, rawSecrets);
