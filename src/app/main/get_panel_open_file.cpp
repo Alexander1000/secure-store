@@ -17,16 +17,19 @@ namespace SecureStore::Application
 
         int yOffset = yMargin * 3;
 
-        this->lbFileBrowse = new wxStaticText(panel, F_AUTH_LB_FILE_BROWSE, _T("File:"), wxPoint(xMargin, yOffset));
-        this->txFilePath = new wxTextCtrl(panel, F_AUTH_TX_FILE_PATH, wxEmptyString, wxPoint(xMargin + this->lbFileBrowse->GetSize().GetWidth() + xMargin, yOffset));
+        auto posLbFileBrowse = new wxPoint(xMargin, yOffset);
+        this->lbFileBrowse = new wxStaticText(panel, F_AUTH_LB_FILE_BROWSE, _T("File:"), *posLbFileBrowse);
+        auto posTxFilePath = new wxPoint(xMargin + this->lbFileBrowse->GetSize().GetWidth() + xMargin, yOffset);
+        this->txFilePath = new wxTextCtrl(panel, F_AUTH_TX_FILE_PATH, wxEmptyString, *posTxFilePath);
         this->txFilePath->SetSize(wxSize(400, 20));
         this->txFilePath->Disable();
         int xLabelFileBrowseWidth = this->lbFileBrowse->GetSize().GetWidth();
+        auto posBtnFileBrowse = new wxPoint(posLbFileBrowse->x + this->txFilePath->GetSize().GetWidth() + xMargin, yOffset);
         this->btnFileBrowse = new wxButton(
             panel,
             F_AUTH_BTN_FILE_BROWSE,
             _T("Browse"),
-            wxPoint(this->txFilePath->GetPosition().x + this->txFilePath->GetSize().GetWidth() + xMargin, yOffset)
+            *posBtnFileBrowse
         );
 
         yOffset += 30;
@@ -60,8 +63,10 @@ namespace SecureStore::Application
         xLabelBlockWidth += xMargin << 1;
 
         // align elements
-        this->txFilePath->SetPosition(wxPoint(xLabelBlockWidth, this->txFilePath->GetPosition().y));
-        this->btnFileBrowse->SetPosition(wxPoint(this->txFilePath->GetPosition().x + this->txFilePath->GetSize().GetWidth() + xMargin, this->txFilePath->GetPosition().y));
+        posTxFilePath->x = xLabelBlockWidth;
+        this->txFilePath->SetPosition(*posTxFilePath);
+        posBtnFileBrowse->x = posTxFilePath->x + this->txFilePath->GetSize().GetWidth() + xMargin;
+        this->btnFileBrowse->SetPosition(*posBtnFileBrowse);
         this->textPasswordCtrl->SetPosition(wxPoint(xLabelBlockWidth, this->textPasswordCtrl->GetPosition().y));
         this->btnPasswordEnter->SetPosition(wxPoint(this->textPasswordCtrl->GetPosition().x + this->textPasswordCtrl->GetSize().GetWidth() + xMargin, this->textPasswordCtrl->GetPosition().y));
 
