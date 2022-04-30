@@ -67,7 +67,9 @@ namespace SecureStore::Application
 
         this->lbPasswordResult = new wxStaticText(panel, STATIC_TEXT_PASSWORD_RESULT, wxEmptyString);
         this->lbPasswordResult->SetPosition(wxPoint(this->textPasswordCtrl->GetPosition().x, this->textPasswordCtrl->GetPosition().y + 20));
-        auto font = new wxFont(wxFontInfo().Bold(true));
+        auto fontInfo = new wxFontInfo;
+        fontInfo->Bold(true);
+        auto font = new wxFont(*fontInfo);
         font->SetPointSize(12);
         this->lbPasswordResult->SetFont(*font);
         this->lbPasswordResult->Hide();
