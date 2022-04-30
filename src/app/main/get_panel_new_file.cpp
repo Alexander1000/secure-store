@@ -15,18 +15,21 @@ namespace SecureStore::Application
         this->lbOpenDirectory = new wxStaticText(panel, F_NEW_FILE_LB_OPEN_DIRECTORY, _T("Directory:"));
         int xLbOpenDirectoryWidth = this->lbOpenDirectory->GetSize().GetWidth();
         this->txOpenDirectory = new wxTextCtrl(panel, F_NEW_FILE_TX_OPEN_DIRECTORY, wxEmptyString);
-        this->txOpenDirectory->SetSize(wxSize(400, 20));
+        auto szTxOpenDirectory = new wxSize(400, 20);
+        this->txOpenDirectory->SetSize(*szTxOpenDirectory);
         this->btnOpenDirectory = new wxButton(panel, F_NEW_FILE_BTN_OPEN_DIRECTORY, _T("select"));
 
         this->lbFileName = new wxStaticText(panel, F_NEW_FILE_LB_FILE_NAME, _T("File name:"));
         int xLbFileNameWidth = this->lbFileName->GetSize().GetWidth();
         this->txFileName = new wxTextCtrl(panel, F_NEW_FILE_TX_FILE_NAME, wxEmptyString);
-        this->txFileName->SetSize(wxSize(400, 20));
+        auto szTxFileName = new wxSize(400, 20);
+        this->txFileName->SetSize(*szTxFileName);
 
         this->lbPassword = new wxStaticText(panel, F_NEW_FILE_LB_PASSWORD, _T("Password:"));
         int xLbPasswordWidth = this->lbPassword->GetSize().GetWidth();
         this->txPassword = new wxTextCtrl(panel, F_NEW_FILE_TX_PASSWORD, wxEmptyString);
-        this->txPassword->SetSize(wxSize(400, 20));
+        auto szTxPassword = new wxSize(400, 20);
+        this->txPassword->SetSize(*szTxPassword);
 
         this->btnCreateFile = new wxButton(panel, F_NEW_FILE_BTN_CREATE, _T("Create"));
         this->lbCreateNewFileError = new wxStaticText(panel, F_NEW_FILE_LB_ERROR, wxEmptyString);
@@ -45,59 +48,68 @@ namespace SecureStore::Application
 
         // open directory
 
-        this->lbOpenDirectory->SetPosition(wxPoint(
+        auto posLbOpenDirectory = new wxPoint(
             xMargin + xLabelMaxWidth - xLbOpenDirectoryWidth,
             yOffset
-        ));
+        );
+        this->lbOpenDirectory->SetPosition(*posLbOpenDirectory);
 
-        this->txOpenDirectory->SetPosition(wxPoint(
-            this->lbOpenDirectory->GetPosition().x + this->lbOpenDirectory->GetSize().GetWidth() + xMargin,
+        auto posTxOpenDirectory = new wxPoint(
+            posLbOpenDirectory->x + this->lbOpenDirectory->GetSize().GetWidth() + xMargin,
             yOffset
-        ));
+        );
+        this->txOpenDirectory->SetPosition(*posTxOpenDirectory);
 
-        this->btnOpenDirectory->SetPosition(wxPoint(
-            this->txOpenDirectory->GetPosition().x + this->txOpenDirectory->GetSize().GetWidth() + xMargin,
+        auto posBtnOpenDirectory = new wxPoint(
+            posTxOpenDirectory->x + this->txOpenDirectory->GetSize().GetWidth() + xMargin,
             yOffset
-        ));
+        );
+        this->btnOpenDirectory->SetPosition(*posBtnOpenDirectory);
 
         // file name
 
         yOffset += 25;
 
-        this->lbFileName->SetPosition(wxPoint(
+        auto posLbFileName = new wxPoint(
             xMargin + xLabelMaxWidth - xLbFileNameWidth,
             yOffset
-        ));
+        );
+        this->lbFileName->SetPosition(*posLbFileName);
 
-        this->txFileName->SetPosition(wxPoint(
-            this->lbFileName->GetPosition().x + this->lbFileName->GetSize().GetWidth() + xMargin,
+        auto posTxFileName = new wxPoint(
+            posLbFileName->x + this->lbFileName->GetSize().GetWidth() + xMargin,
             yOffset
-        ));
+        );
+        this->txFileName->SetPosition(*posTxFileName);
 
         // password
 
         yOffset += 25;
 
-        this->lbPassword->SetPosition(wxPoint(
+        auto posLbPassword = new wxPoint(
             xMargin + xLabelMaxWidth - xLbPasswordWidth,
             yOffset
-        ));
+        );
+        this->lbPassword->SetPosition(*posLbPassword);
 
-        this->txPassword->SetPosition(wxPoint(
-            this->lbPassword->GetPosition().x + this->lbPassword->GetSize().GetWidth() + xMargin,
+        auto posTxPassword = new wxPoint(
+            posLbPassword->x + this->lbPassword->GetSize().GetWidth() + xMargin,
             yOffset
-        ));
+        );
+        this->txPassword->SetPosition(*posTxPassword);
 
         // create button
 
         yOffset += 25;
 
-        this->btnCreateFile->SetPosition(wxPoint(xMargin, yOffset));
+        auto posBtnCreateFile = new wxPoint(xMargin, yOffset);
+        this->btnCreateFile->SetPosition(*posBtnCreateFile);
 
-        this->lbCreateNewFileError->SetPosition(wxPoint(
-            this->btnCreateFile->GetPosition().x + this->btnCreateFile->GetSize().GetWidth() + xMargin,
+        auto posLbCreateNewFileError = new wxPoint(
+            posBtnCreateFile->x + this->btnCreateFile->GetSize().GetWidth() + xMargin,
             yOffset
-        ));
+        );
+        this->lbCreateNewFileError->SetPosition(*posLbCreateNewFileError);
 
         return panel;
     }
