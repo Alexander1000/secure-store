@@ -12,8 +12,9 @@ namespace SecureStore::Application
         auto sOpenDirectory = this->txOpenDirectory->GetValue();
         auto sFileName = this->txFileName->GetValue();
         auto sPassword = this->txPassword->GetValue();
+        auto sLogin = this->txNewLogin->GetValue();
 
-        if (sOpenDirectory.empty() || sFileName.empty() || sPassword.empty()) {
+        if (sOpenDirectory.empty() || sFileName.empty() || sLogin.empty() || sPassword.empty()) {
             this->lbCreateNewFileError->SetLabel(_T("All fields is required"));
             this->lbCreateNewFileError->Show();
             return;
@@ -54,7 +55,7 @@ namespace SecureStore::Application
 
         this->storage = new SecureStore::Storage::DB;
         this->storage->createEmpty();
-        this->storage->save(sPath, sPasswordCopy);
+        this->storage->save(sPath, sLogin.c_str().AsChar(), sPasswordCopy);
 
         this->setFileName(sPath);
 

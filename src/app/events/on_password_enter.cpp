@@ -9,17 +9,25 @@ namespace SecureStore::Application
 {
     void MainFrame::OnPasswordEnter( wxCommandEvent& event )
     {
-        auto value = this->textPasswordCtrl->GetValue();
-        if (value.empty()) {
+        auto passwordValue = this->textPasswordCtrl->GetValue();
+        if (passwordValue.empty()) {
             this->lbPasswordResult->SetLabel("Empty password");
             this->lbPasswordResult->Show();
             return;
         }
 
-        auto sPassword = value.c_str().AsChar();
+        auto sPassword = passwordValue.c_str().AsChar();
         INIT_CHAR_STRING(sPasswordCopy, strlen(sPassword) + 1);
         memcpy(sPasswordCopy, sPassword, strlen(sPassword));
-        int code = this->storage->open(this->_fileName, sPasswordCopy);
+
+        auto userValue = this->txLogin->GetValue();
+        if (userValue.empty()) {
+            this->lbPasswordResult->SetLabel("Empty login");
+            this->lbPasswordResult->Show();
+            return;
+        }
+
+        int code = this->storage->open(this->_fileName, userValue.c_str().AsChar(), sPasswordCopy);
 
         if (code > 0) {
             this->lbPasswordResult->SetLabel("Error");
