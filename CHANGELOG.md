@@ -9,6 +9,7 @@
 ## 0.0.2 (Unreleased)
 
  * remove tree-list control for list secrets
+ * `getPanelOpenFile` - use dynamic allocation vars for more stable
 
 ## 0.0.1
 
