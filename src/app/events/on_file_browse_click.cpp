@@ -13,8 +13,6 @@ namespace SecureStore::Application
         browseFile->ShowModal();
         auto sFileName = browseFile->GetFilename();
         this->txFilePath->SetValue(browseFile->GetDirectory() + "/" + sFileName);
-        std::string *fName = nullptr;
-        fName = new std::string(this->txFilePath->GetValue().utf8_string().c_str());
-        this->fileName = fName->c_str();
+        this->setFileName(this->txFilePath->GetValue().c_str().AsChar());
     }
 }

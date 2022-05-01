@@ -22,6 +22,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/app/get_app.cpp
     src/app/switch_to_show_frame.cpp
     src/app/main_frame_init.cpp
+    src/app/set_file_name.cpp
     src/app/events/event_table.cpp
     src/app/events/on_password_enter.cpp
     src/app/events/on_file_browse_click.cpp

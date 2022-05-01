@@ -53,7 +53,7 @@ namespace SecureStore::Application
         this->storage->createEmpty();
         this->storage->save(sPath, sPassword.c_str().AsChar());
 
-        this->fileName = sPath;
+        this->setFileName(sPath);
 
         // clean up
         this->txOpenDirectory->SetValue(wxEmptyString);

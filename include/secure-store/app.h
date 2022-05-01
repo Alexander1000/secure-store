@@ -114,6 +114,8 @@ namespace SecureStore::Application
 
         void switchToShowFrame();
 
+        void setFileName(const char*);
+
         DECLARE_EVENT_TABLE()
     };
 
