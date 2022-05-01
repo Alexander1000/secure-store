@@ -48,7 +48,7 @@ int main(int argc, char** argv) {
         // open db
         std::string key = p;
         SecureStore::Storage::DB db;
-        code = db.open(config.getFileName(), &key);
+        code = db.open(config.getFileName()->c_str(), key.c_str());
 
         if (code != 0) {
             std::cout << "Failed to open: " << config.getFileName()->c_str() << std::endl;

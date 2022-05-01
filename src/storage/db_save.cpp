@@ -4,7 +4,7 @@
 
 namespace SecureStore::Storage
 {
-    void DB::save(std::string* fileName, std::string* password)
+    void DB::save(const char* fileName, const char* password)
     {
         this->fileName = fileName;
         this->password = password;
@@ -29,11 +29,11 @@ namespace SecureStore::Storage
             auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
             unsigned char key[AES_256_KEY_SIZE];
             memset(key, 0, sizeof(key));
-            int passwordLength = password->length();
+            int passwordLength = strlen(password);
             if (passwordLength > 32) {
                 passwordLength = 32;
             }
-            memcpy(key, password->c_str(), passwordLength);
+            memcpy(key, password, passwordLength);
             unsigned char iv[AES_BLOCK_SIZE];
             RAND_bytes(iv, sizeof(iv));
             params->key = key;
@@ -46,7 +46,7 @@ namespace SecureStore::Storage
             }
 
             IOBuffer::IOFileWriter* fileWriter = nullptr;
-            fileWriter = new IOBuffer::IOFileWriter(this->fileName->c_str(), "w+");
+            fileWriter = new IOBuffer::IOFileWriter(this->fileName, "w+");
             fileWriter->write((char*) headerData, DB_HEADER_BYTE_SIZE);
             fileWriter->write((char*) iv, AES_BLOCK_SIZE);
             if (encryptedSecrets != nullptr) {

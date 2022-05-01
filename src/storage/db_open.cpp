@@ -3,14 +3,14 @@
 
 namespace SecureStore::Storage
 {
-    int DB::open(std::string *fileName, std::string *password)
+    int DB::open(const char* fileName, const char* password)
     {
         this->createEmpty();
 
         this->fileName = fileName;
         this->password = password;
 
-        IOBuffer::IOFileReader fileReader(fileName->c_str());
+        IOBuffer::IOFileReader fileReader(fileName);
 
         auto headerData = (uint8_t*) malloc(DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
         memset(headerData, 0, DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
@@ -85,11 +85,11 @@ namespace SecureStore::Storage
         auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
         unsigned char key[AES_256_KEY_SIZE];
         memset(key, 0, sizeof(key));
-        int passwordLength = password->length();
+        int passwordLength = strlen(password);
         if (passwordLength > 32) {
             passwordLength = 32;
         }
-        memcpy(key, password->c_str(), passwordLength);
+        memcpy(key, password, passwordLength);
         params->key = key;
         params->iv = iv;
         params->encrypt = 0;

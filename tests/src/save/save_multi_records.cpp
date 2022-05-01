@@ -88,7 +88,7 @@ namespace SecureStoreTest
         std::string fileName = "save_case02.xdb";
         std::string key = "vmbzyirhkfs342iyvsmm5@%";
 
-        db.save(&fileName, &key);
+        db.save(fileName.c_str(), key.c_str());
 
         t->finish();
 
