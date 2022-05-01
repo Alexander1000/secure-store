@@ -15,7 +15,7 @@ namespace SecureStore::Application
             return;
         }
 
-        int code = this->storage->open(new std::string(this->fileName), new std::string(value.c_str().AsChar()));
+        int code = this->storage->open(this->fileName, value.c_str().AsChar());
 
         if (code > 0) {
             this->lbPasswordResult->SetLabel("Error");

@@ -51,7 +51,7 @@ namespace SecureStore::Application
 
         this->storage = new SecureStore::Storage::DB;
         this->storage->createEmpty();
-        this->storage->save(new std::string(sPath), new std::string(sPassword.c_str().AsChar()));
+        this->storage->save(sPath, sPassword.c_str().AsChar());
 
         this->fileName = sPath;
 

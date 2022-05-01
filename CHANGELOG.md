@@ -11,6 +11,7 @@
  * remove tree-list control for list secrets
  * `getPanelOpenFile` - use dynamic allocation vars for more stable
  * `getPanelNewFile` - use dynamic allocation vars for more stable
+ * db open/save use `const char*` as arguments
 
 ## 0.0.1
 
