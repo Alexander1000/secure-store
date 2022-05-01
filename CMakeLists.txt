@@ -42,8 +42,6 @@ set(SECURE_STORE_SOURCES_SHARED
     src/app/show/events/on_add_secret_click.cpp
     src/app/show/events/on_select_item.cpp
     src/app/show/events/on_click_remove_secret.cpp
-    src/config.cpp
-    src/config/load_config.cpp
     src/menu/main.cpp
     src/crypto/encrypt_decrypt.cpp
     src/crypto/hash_md5.cpp
