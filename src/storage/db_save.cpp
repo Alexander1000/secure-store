@@ -35,7 +35,7 @@ namespace SecureStore::Storage
         memcpy(headerData + DB_HEADER_BYTE_SIZE - DB_HEADER_SALT_BYTE_SIZE, this->_salt, DB_HEADER_SALT_BYTE_SIZE * sizeof(unsigned char));
 
         if (this->cipherAlgorithm == CIPHER_ALGORITHM_AES_256_CBC) {
-            auto keyData = SecureStore::Crypto::prepare_credentials(this->user->c_str(), this->password->c_str(), (const char*) this->_salt);
+            auto keyData = SecureStore::Crypto::prepare_credentials(this->user, this->password, (const char*) this->_salt);
 
             auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
 

@@ -80,7 +80,7 @@ namespace SecureStore::Storage
             return 0;
         }
 
-        auto keyData = SecureStore::Crypto::prepare_credentials(this->user->c_str(), this->password->c_str(), (const char*) this->_salt);
+        auto keyData = SecureStore::Crypto::prepare_credentials(this->user, this->password, (const char*) this->_salt);
 
         auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
 
