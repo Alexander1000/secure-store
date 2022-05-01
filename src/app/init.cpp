@@ -16,15 +16,15 @@ namespace SecureStore::Application {
         this->mainFrame = nullptr;
         this->showFrame = nullptr;
 
-        std::string title = "Secure store";
+        std::string sTitle = "Secure store";
 
-        this->title = (char*) malloc(title.size() + 1);
-        memset(this->title, 0, title.size() + 1);
-        memcpy(this->title, title.c_str(), title.size());
+        this->title = (char*) malloc(sTitle.size() + 1);
+        memset(this->title, 0, sTitle.size() + 1);
+        memcpy(this->title, sTitle.c_str(), sTitle.size());
 
-        auto mainFrame = this->getMainFrame();
-        mainFrame->Show(true);
-        this->SetTopWindow(mainFrame);
+        auto fMainFrame = this->getMainFrame();
+        fMainFrame->Show(true);
+        this->SetTopWindow(fMainFrame);
 
         return true;
     }
