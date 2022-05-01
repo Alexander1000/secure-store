@@ -11,21 +11,12 @@ namespace SecureStore::Application {
 
     bool MainApp::OnInit()
     {
-        this->fileName = nullptr;
         this->title = nullptr;
 
         this->mainFrame = nullptr;
         this->showFrame = nullptr;
 
-        SecureStore::Config config(this->argc, this->argv);
         std::string title = "Secure store";
-        // const char* fileName = nullptr;
-
-        if (config.getFileName() != nullptr) {
-            title += ": ";
-            title += config.getFileName()->c_str();
-            this->fileName = (char*) config.getFileName()->c_str();
-        }
 
         this->title = (char*) malloc(title.size() + 1);
         memset(this->title, 0, title.size() + 1);
@@ -45,7 +36,7 @@ namespace SecureStore::Application {
         }
 
         auto szMainFrame = new wxSize(600, 200);
-        this->mainFrame = new MainFrame(_(this->title), wxDefaultPosition, *szMainFrame, fileName, this);
+        this->mainFrame = new MainFrame(_(this->title), wxDefaultPosition, *szMainFrame, this);
 
         return this->mainFrame;
     }

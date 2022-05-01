@@ -60,7 +60,6 @@ namespace SecureStore::Application
         wxFrame* getShowFrame();
 
     private:
-        char* fileName;
         char* title;
 
         wxFrame* mainFrame;
@@ -70,7 +69,7 @@ namespace SecureStore::Application
     class MainFrame : public wxFrame // MainFrame is the class for our window,
     {
     public:
-        MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size, const char* fileName, MainApp* app);
+        MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size, MainApp* app);
 
         void OnFileBrowseClick(wxCommandEvent& event);
         void OnPasswordEnter(wxCommandEvent& event);
