@@ -5,12 +5,12 @@ namespace SecureStore::Application
 {
     void MainFrame::setFileName(const char* fileName)
     {
-        if (this->fileName != nullptr) {
-            free((void*) this->fileName);
+        if (this->_fileName != nullptr) {
+            free((void*) this->_fileName);
         }
 
-        this->fileName = (const char*) malloc(strlen(fileName) + 1);
-        memset((void*) this->fileName, 0, strlen(fileName) + 1);
-        memcpy((void*) this->fileName, fileName, strlen(fileName));
+        this->_fileName = (const char*) malloc(strlen(fileName) + 1);
+        memset((void*) this->_fileName, 0, strlen(fileName) + 1);
+        memcpy((void*) this->_fileName, fileName, strlen(fileName));
     }
 }

@@ -102,7 +102,7 @@ namespace SecureStore::Application
         wxButton* btnCreateFile;
         wxStaticText* lbCreateNewFileError;
 
-        const char* fileName;
+        const char* _fileName;
 
         SecureStore::Storage::DB* storage;
 

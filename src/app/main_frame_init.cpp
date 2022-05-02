@@ -13,7 +13,7 @@ namespace SecureStore::Application
         : wxFrame((wxFrame *) NULL, -1, title, pos, size)
     {
         this->app = app;
-        this->fileName = nullptr;
+        this->_fileName = nullptr;
 
         this->storage = new SecureStore::Storage::DB;
 
