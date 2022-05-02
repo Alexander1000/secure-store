@@ -1,11 +1,5 @@
-#include <wx/wxprec.h>
-#ifndef WX_PRECOMP
-#	include <wx/wx.h>
-#endif
 #include <secure-store.h>
 #include <memory.h>
-#include <wx/notebook.h>
-#include <wx/panel.h>
 
 namespace SecureStore::Application
 {
