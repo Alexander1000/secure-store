@@ -81,8 +81,9 @@ namespace SecureStoreTest
         db.addRecord(record);
 
         std::string fileName = "save_case02.xdb";
+        std::string login = "Nagibator_3000";
         std::string key = "vmbzyirhkfs342iyvsmm5@%";
 
-        db.save(fileName.c_str(), key.c_str());
+        db.save(fileName.c_str(), login.c_str(), key.c_str());
     END_TEST_CASE()
 }
