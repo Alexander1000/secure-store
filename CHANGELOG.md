@@ -12,6 +12,7 @@
  * `getPanelOpenFile` - use dynamic allocation vars for more stable
  * `getPanelNewFile` - use dynamic allocation vars for more stable
  * db open/save use `const char*` as arguments
+ * fix problems with memory allocation in `SecureStore::Crypto::encrypt_decrypt` method
 
 ## 0.0.1
 

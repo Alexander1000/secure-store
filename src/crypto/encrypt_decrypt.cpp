@@ -9,22 +9,24 @@ namespace SecureStore::Crypto
 {
     DataPack* encrypt_decrypt(cipher_params_t* params, SecureStore::DataPack* input)
     {
-        /* Key to use for encrpytion and decryption */
-        // костыль, где-то утечка памяти
-        unsigned char key[AES_256_KEY_SIZE];
-        memset(key, 0, 32 * sizeof(uint8_t));
-
         /* Allow enough space in output buffer for additional block */
         int cipher_block_size = EVP_CIPHER_block_size(params->cipher_type);
-        unsigned char in_buf[BUFSIZE], out_buf[BUFSIZE + cipher_block_size];
+
+        auto in_buf = (unsigned char*) malloc(BUFSIZE * sizeof(unsigned char));
+        memset(in_buf, 0, BUFSIZE * sizeof(unsigned char));
+
+        auto out_buf = (unsigned char*) malloc((BUFSIZE + cipher_block_size) * sizeof(unsigned char));
+        memset(out_buf, 0, (BUFSIZE + cipher_block_size) * sizeof(unsigned char));
 
         int num_bytes_read, out_len;
         EVP_CIPHER_CTX *ctx;
 
         ctx = EVP_CIPHER_CTX_new();
-        if (ctx == NULL) {
+        if (ctx == nullptr) {
             fprintf(stderr, "ERROR: EVP_CIPHER_CTX_new failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
+            free(in_buf);
+            free(out_buf);
             return nullptr;
         }
 
@@ -32,6 +34,8 @@ namespace SecureStore::Crypto
         if (!EVP_CipherInit_ex(ctx, params->cipher_type, NULL, NULL, NULL, params->encrypt)) {
             fprintf(stderr, "ERROR: EVP_CipherInit_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
+            free(in_buf);
+            free(out_buf);
             return nullptr;
         }
 
@@ -43,6 +47,8 @@ namespace SecureStore::Crypto
             fprintf(stderr, "ERROR: EVP_CipherInit_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
             EVP_CIPHER_CTX_cleanup(ctx);
+            free(in_buf);
+            free(out_buf);
             return nullptr;
         }
 
@@ -59,6 +65,8 @@ namespace SecureStore::Crypto
                 fprintf(stderr, "ERROR: EVP_CipherUpdate failed. OpenSSL error: %s\n",
                         ERR_error_string(ERR_get_error(), NULL));
                 EVP_CIPHER_CTX_cleanup(ctx);
+                free(in_buf);
+                free(out_buf);
                 return nullptr;
             }
 
@@ -74,6 +82,8 @@ namespace SecureStore::Crypto
             fprintf(stderr, "ERROR: EVP_CipherFinal_ex failed. OpenSSL error: %s\n",
                     ERR_error_string(ERR_get_error(), NULL));
             EVP_CIPHER_CTX_cleanup(ctx);
+            free(in_buf);
+            free(out_buf);
             return nullptr;
         }
 
@@ -84,6 +94,9 @@ namespace SecureStore::Crypto
         memset(data, 0, sizeof(uint8_t) * outBuffer.length());
         outBuffer.setPosition(0);
         outBuffer.read((char*) data, outBuffer.length());
+
+        free(in_buf);
+        free(out_buf);
 
         return new SecureStore::DataPack(outBuffer.length(), data);
     }
