@@ -23,6 +23,8 @@ namespace SecureStore::Crypto
     SecureStore::DataPack* encrypt_decrypt(cipher_params_t* params, SecureStore::DataPack* input);
 
     uint8_t* hash_md5(SecureStore::DataPack* input);
+
+    uint8_t* hash_sha3_512(SecureStore::DataPack* input);
 }
 
 #endif
