@@ -5,14 +5,8 @@
 
 namespace SecureStoreTest
 {
-    CppUnitTest::TestCase *testOpenDb_RepeatableOpenDb_case3()
-    {
-        CppUnitTest::TestCase* t = nullptr;
-        t = new CppUnitTest::TestCase("open db files repeatable");
-        t->printTitle();
-
+    BEGIN_TEST_CASE(testOpenDb_RepeatableOpenDb_case3, "open db files repeatable")
         // open first file
-
         std::string fileName = "tests/fixtures/one_element_aes_256_cbc.xdb";
         std::string key = "Qwerty123!";
 
@@ -123,9 +117,5 @@ namespace SecureStoreTest
         keyword = *itKeywords;
         CppUnitTest::assertEquals(t, "top", keyword);
         CppUnitTest::assertEquals(t, 893753837, record->getCreateTime());
-
-        t->finish();
-
-        return t;
-    }
+    END_TEST_CASE()
 }

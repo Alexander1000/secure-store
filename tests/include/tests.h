@@ -3,6 +3,18 @@
 
 #include <cpp-unit-test.h>
 
+#define BEGIN_TEST_CASE(method, description) \
+    CppUnitTest::TestCase *method() \
+    { \
+        CppUnitTest::TestCase* t = nullptr; \
+        t = new CppUnitTest::TestCase(description); \
+        t->printTitle();
+
+#define END_TEST_CASE() \
+        t->finish(); \
+        return t; \
+    }
+
 namespace SecureStoreTest
 {
     // pack & unpack secrets
