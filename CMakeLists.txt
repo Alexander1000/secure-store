@@ -111,6 +111,7 @@ set(SECURE_STORE_SOURCES_TEST
     tests/src/save/save_multi_records.cpp
     tests/src/open/case01.cpp
     tests/src/open/case02.cpp
+    tests/src/open/case03.cpp
     tests/src/hash_tests/case01.cpp
 )
 
