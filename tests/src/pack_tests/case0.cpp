@@ -6,12 +6,7 @@
 
 namespace SecureStoreTest
 {
-    CppUnitTest::TestCase* testPackAndUnpack_FullQualifiedData_Case0()
-    {
-        CppUnitTest::TestCase* t = nullptr;
-        t = new CppUnitTest::TestCase("test case0");
-        t->printTitle();
-
+    BEGIN_TEST_CASE(testPackAndUnpack_FullQualifiedData_Case0, "test case0")
         SecureStore::Storage::Record *record;
         record = new SecureStore::Storage::Record;
 
@@ -64,9 +59,5 @@ namespace SecureStoreTest
         }
 
         CppUnitTest::assertEquals(t, (int) record->getCreateTime(), (int) unpackedRecord->getCreateTime());
-
-        t->finish();
-
-        return t;
-    }
+    END_TEST_CASE()
 }

@@ -5,12 +5,7 @@
 
 namespace SecureStoreTest
 {
-    CppUnitTest::TestCase* testOpenDb_OneElementAes256Cbc_case01()
-    {
-        CppUnitTest::TestCase* t = nullptr;
-        t = new CppUnitTest::TestCase("open db file ciphered by aes 256 cbc");
-        t->printTitle();
-
+    BEGIN_TEST_CASE(testOpenDb_OneElementAes256Cbc_case01, "open db file ciphered by aes 256 cbc")
         std::string fileName = "tests/fixtures/one_element_aes_256_cbc.xdb";
         std::string key = "Qwerty123!";
 
@@ -40,9 +35,5 @@ namespace SecureStoreTest
         keyword = *(++keywords->begin());
         CppUnitTest::assertEquals(t, "critical", keyword);
         CppUnitTest::assertEquals(t, 187766224, record->getCreateTime());
-
-        t->finish();
-
-        return t;
-    }
+    END_TEST_CASE()
 }

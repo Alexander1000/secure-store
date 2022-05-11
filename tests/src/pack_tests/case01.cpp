@@ -6,12 +6,7 @@
 
 namespace SecureStoreTest
 {
-    CppUnitTest::TestCase* testPackAndUnpack_MinimumData()
-    {
-        CppUnitTest::TestCase* t = nullptr;
-        t = new CppUnitTest::TestCase("pack & unpack with minimum data");
-        t->printTitle();
-
+    BEGIN_TEST_CASE(testPackAndUnpack_MinimumData, "pack & unpack with minimum data")
         SecureStore::Storage::Record *record;
         record = new SecureStore::Storage::Record;
 
@@ -35,9 +30,5 @@ namespace SecureStoreTest
         CppUnitTest::assertNull(t, unpackedRecord->getComment());
         CppUnitTest::assertNull(t, unpackedRecord->getKeywords());
         CppUnitTest::assertEquals(t, (int) record->getCreateTime(), (int) unpackedRecord->getCreateTime());
-
-        t->finish();
-
-        return t;
-    }
+    END_TEST_CASE()
 }

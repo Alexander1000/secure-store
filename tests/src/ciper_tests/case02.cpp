@@ -6,12 +6,7 @@
 
 namespace SecureStoreTest
 {
-    CppUnitTest::TestCase* testEncryptDecrypt_Data_case02()
-    {
-        CppUnitTest::TestCase* t = nullptr;
-        t = new CppUnitTest::TestCase("cipher data test-case 02");
-        t->printTitle();
-
+    BEGIN_TEST_CASE(testEncryptDecrypt_Data_case02, "cipher data test-case 02")
         auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
 
         /* Key to use for encrpytion and decryption */
@@ -48,9 +43,5 @@ namespace SecureStoreTest
         CppUnitTest::assertEquals(t, std::string((char*) input.getData()), std::string((char*) decoded->getData()));
 
         free(params);
-
-        t->finish();
-
-        return t;
-    }
+    END_TEST_CASE()
 }

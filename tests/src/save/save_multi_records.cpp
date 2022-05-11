@@ -5,12 +5,7 @@
 
 namespace SecureStoreTest
 {
-    CppUnitTest::TestCase* testSaveDb_MultiRecordsData_case02()
-    {
-        CppUnitTest::TestCase* t = nullptr;
-        t = new CppUnitTest::TestCase("testSaveDb_MultiRecordsData_case02");
-        t->printTitle();
-
+    BEGIN_TEST_CASE(testSaveDb_MultiRecordsData_case02, "testSaveDb_MultiRecordsData_case02")
         SecureStore::Storage::DB db;
 
         SecureStore::Storage::Record *record;
@@ -89,9 +84,5 @@ namespace SecureStoreTest
         std::string key = "vmbzyirhkfs342iyvsmm5@%";
 
         db.save(fileName.c_str(), key.c_str());
-
-        t->finish();
-
-        return t;
-    }
+    END_TEST_CASE()
 }

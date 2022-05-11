@@ -6,12 +6,7 @@
 
 namespace SecureStoreTest
 {
-    CppUnitTest::TestCase* testHash_Data_case01()
-    {
-        CppUnitTest::TestCase* t = nullptr;
-        t = new CppUnitTest::TestCase("testHash_Data_case01");
-        t->printTitle();
-
+    BEGIN_TEST_CASE(testHash_Data_case01, "testHash_Data_case01")
         std::string message = "test";
         auto input = new SecureStore::DataPack((int) message.size(), (void*) message.c_str());
 
@@ -31,8 +26,5 @@ namespace SecureStoreTest
         for (int i = 0; i < 64; i++) {
             CppUnitTest::assertEquals(t, cipheredData[i], data[i]);
         }
-
-        t->finish();
-        return t;
-    }
+    END_TEST_CASE()
 }
