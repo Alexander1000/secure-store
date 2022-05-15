@@ -27,7 +27,11 @@ namespace SecureStore::Application
             return;
         }
 
-        int code = this->storage->open(this->_fileName, userValue.c_str().AsChar(), sPasswordCopy);
+        auto sUser = userValue.c_str().AsChar();
+        INIT_CHAR_STRING(sUserCopy, strlen(sUser) + 1);
+        memcpy(sUserCopy, sUser, strlen(sUser));
+
+        int code = this->storage->open(this->_fileName, sUserCopy, sPasswordCopy);
 
         if (code > 0) {
             this->lbPasswordResult->SetLabel("Error");
