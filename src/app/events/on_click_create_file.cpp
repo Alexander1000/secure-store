@@ -4,6 +4,7 @@
 #endif
 #include <secure-store.h>
 #include <string>
+#include <memory.h>
 
 namespace SecureStore::Application
 {
@@ -53,9 +54,12 @@ namespace SecureStore::Application
         INIT_CHAR_STRING(sPasswordCopy, sPassword.length() + 1);
         memcpy(sPasswordCopy, sPassword.c_str().AsChar(), sPassword.length());
 
+        INIT_CHAR_STRING(sLoginCopy, sLogin.length() + 1);
+        memcpy(sLoginCopy, sLogin.c_str().AsChar(), sLogin.length());
+
         this->storage = new SecureStore::Storage::DB;
         this->storage->createEmpty();
-        this->storage->save(sPath, sLogin.c_str().AsChar(), sPasswordCopy);
+        this->storage->save(sPath, sLoginCopy, sPasswordCopy);
 
         this->setFileName(sPath);
 
