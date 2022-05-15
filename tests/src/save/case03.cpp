@@ -9,8 +9,12 @@ namespace SecureStoreTest
         std::string fileName = "testSaveDb_AppendData_case03.xdb";
         std::string password = "bigOlolo5224^%@";
 
+        // STEP: create empty file
+
         auto db = new SecureStore::Storage::DB;
         db->save(fileName.c_str(), password.c_str());
+
+        // STEP: append record in empty file
 
         auto record = new SecureStore::Storage::Record;
         record->setId(1);
@@ -29,6 +33,8 @@ namespace SecureStoreTest
 
         delete db;
         db = new SecureStore::Storage::DB;
+
+        // STEP: open file and assert saved data in previous steps
 
         int result = db->open(fileName.c_str(), password.c_str());
         CppUnitTest::assertEquals(t, 0, result);
@@ -52,5 +58,23 @@ namespace SecureStoreTest
         CppUnitTest::assertEquals(t, "It is example record in secure store - for test case testSaveDb_AppendData_case03", record->getComment());
         CppUnitTest::assertNull(t, record->getKeywords());
         CppUnitTest::assertEquals(t, 973482784, record->getCreateTime());
+
+        // STEP: append record in opened file
+
+        record = new SecureStore::Storage::Record;
+        record->setId(2);
+        std::string name2 = "testSaveDb_AppendData_case03_record2";
+        record->setName(&name2);
+        std::string user2 = "super_user_double_dragon";
+        record->setUser(&user2);
+        std::string password2 = "nbduierw";
+        record->setPassword(&password2);
+        std::string comment2 = "This is secret for me (testSaveDb_AppendData_case03)";
+        record->setComment(&comment2);
+        record->setCreateTime(978472);
+        db->addRecord(record);
+        db->save();
+
+
     END_TEST_CASE()
 }
