@@ -6,7 +6,7 @@
 - show page: refactor grid to set of controls
 - add category for secrets and tree of categories
 
-## 0.0.2 (Unreleased)
+## 0.0.2
 
  * remove tree-list control for list secrets
  * `getPanelOpenFile` - use dynamic allocation vars for more stable
