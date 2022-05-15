@@ -9,8 +9,8 @@ namespace SecureStoreTest
         std::string fileName = "testSaveDb_AppendData_case03.xdb";
         std::string password = "bigOlolo5224^%@";
 
-        SecureStore::Storage::DB db;
-        db.save(fileName.c_str(), password.c_str());
+        auto db = new SecureStore::Storage::DB;
+        db->save(fileName.c_str(), password.c_str());
 
         auto record = new SecureStore::Storage::Record;
         record->setId(1);
@@ -24,8 +24,8 @@ namespace SecureStoreTest
         record->setComment(&comment);
         record->setCreateTime(9734827842);
 
-        db.addRecord(record);
-        db.save();
+        db->addRecord(record);
+        db->save();
 
     END_TEST_CASE()
 }
