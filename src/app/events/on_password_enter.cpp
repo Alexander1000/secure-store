@@ -3,6 +3,7 @@
 #	include <wx/wx.h>
 #endif
 #include <secure-store.h>
+#include <memory.h>
 
 namespace SecureStore::Application
 {
@@ -15,7 +16,10 @@ namespace SecureStore::Application
             return;
         }
 
-        int code = this->storage->open(this->_fileName, value.c_str().AsChar());
+        auto sPassword = value.c_str().AsChar();
+        INIT_CHAR_STRING(sPasswordCopy, strlen(sPassword) + 1);
+        memcpy(sPasswordCopy, sPassword, strlen(sPassword));
+        int code = this->storage->open(this->_fileName, sPasswordCopy);
 
         if (code > 0) {
             this->lbPasswordResult->SetLabel("Error");
