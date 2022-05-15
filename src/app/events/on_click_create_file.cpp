@@ -49,9 +49,12 @@ namespace SecureStore::Application
             memcpy(sPath + offset + sFileName.size(), sExt, strlen(sExt));
         }
 
+        INIT_CHAR_STRING(sPasswordCopy, sPassword.length() + 1);
+        memcpy(sPasswordCopy, sPassword.c_str().AsChar(), sPassword.length());
+
         this->storage = new SecureStore::Storage::DB;
         this->storage->createEmpty();
-        this->storage->save(sPath, sPassword.c_str().AsChar());
+        this->storage->save(sPath, sPasswordCopy);
 
         this->setFileName(sPath);
 
