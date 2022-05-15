@@ -5,7 +5,6 @@
 - generate passwords
 - show page: refactor grid to set of controls
 - add category for secrets and tree of categories
-- credentials: user & password for access to storage
 
 ## 0.0.2 (Unreleased)
 
@@ -14,6 +13,7 @@
  * `getPanelNewFile` - use dynamic allocation vars for more stable
  * db open/save use `const char*` as arguments
  * fix problems with memory allocation in `SecureStore::Crypto::encrypt_decrypt` method
+ * credentials: user & password for access to storage
 
 ## 0.0.1
 
