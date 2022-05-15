@@ -27,5 +27,10 @@ namespace SecureStoreTest
         db->addRecord(record);
         db->save();
 
+        delete db;
+        db = new SecureStore::Storage::DB;
+
+        int result = db->open(fileName.c_str(), password.c_str());
+        CppUnitTest::assertEquals(t, 0, result);
     END_TEST_CASE()
 }
