@@ -19,18 +19,21 @@ namespace SecureStore::Application
         F_AUTH_LB_FILE_BROWSE,
         F_AUTH_TX_FILE_PATH,
         F_AUTH_BTN_FILE_BROWSE,
+        F_AUTH_LB_LOGIN,
+        F_AUTH_TX_LOGIN,
         // new file page
         F_NEW_FILE_LB_OPEN_DIRECTORY,
         F_NEW_FILE_TX_OPEN_DIRECTORY,
         F_NEW_FILE_BTN_OPEN_DIRECTORY,
         F_NEW_FILE_LB_FILE_NAME,
         F_NEW_FILE_TX_FILE_NAME,
+        F_NEW_FILE_LB_LOGIN,
+        F_NEW_FILE_TX_LOGIN,
         F_NEW_FILE_LB_PASSWORD,
         F_NEW_FILE_TX_PASSWORD,
         F_NEW_FILE_BTN_CREATE,
         F_NEW_FILE_LB_ERROR,
         // main window form controls
-        TREE_DB_RECORDS,
         DB_GRID,
         BUTTON_ADD_SECRET,
         BUTTON_SAVE_SECRET,
@@ -86,6 +89,8 @@ namespace SecureStore::Application
         wxStaticText* lbFileBrowse;
         wxTextCtrl* txFilePath;
         wxButton* btnFileBrowse;
+        wxStaticText* lbLogin;
+        wxTextCtrl* txLogin;
         wxStaticText* lbPasswordEnter;
         wxButton* btnPasswordEnter;
         wxTextCtrl* textPasswordCtrl;
@@ -97,6 +102,8 @@ namespace SecureStore::Application
         wxButton* btnOpenDirectory;
         wxStaticText* lbFileName;
         wxTextCtrl* txFileName;
+        wxStaticText* lbNewLogin;
+        wxTextCtrl* txNewLogin;
         wxStaticText* lbPassword;
         wxTextCtrl* txPassword;
         wxButton* btnCreateFile;

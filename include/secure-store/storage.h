@@ -88,20 +88,22 @@ namespace SecureStore::Storage
 
     const uint8_t CIPHER_ALGORITHM_AES_256_CBC = 1;
 
-    const uint8_t DB_HEADER_BYTE_SIZE = 24;
+    const uint8_t DB_HEADER_BYTE_SIZE = 56;
+    const uint8_t DB_HEADER_SALT_BYTE_SIZE = 32;
 
     /**
      * Format stored data
      * ===================================================
-     * signature (24 bytes):
-     * +--------+-------------+-----------+-----------+---------------+
-     * | FORMAT | CIPHER_ALGO | VER_MAJOR | VER_MINOR | CHECKSUM(md5) |
-     * +--------+-------------+-----------+-----------+---------------+
+     * signature (56 bytes):
+     * +--------+-------------+-----------+-----------+---------------+------+
+     * | FORMAT | CIPHER_ALGO | VER_MAJOR | VER_MINOR | CHECKSUM(md5) | salt |
+     * +--------+-------------+-----------+-----------+---------------+------+
      * format (24-bit) - simple identifier
      * cipher_algo (8-bit) - cipher algorithm, identifier
      * ver_major (16-bit) - major version
      * ver_minor (16-bit) - minor version
      * checksum (128-bit) - checksum of ciphered content
+     * salt (256-bit) - salt
      * ===================================================
      * ciphered block:
      * header:
@@ -124,11 +126,11 @@ namespace SecureStore::Storage
         void createEmpty();
         void addRecord(Record*);
 
-        int open(const char* fileName, const char* password); // open file
+        int open(const char* fileName, const char* user, const char* password); // open file
 
         int save(); // save opened file
 
-        void save(const char* fileName, const char* key); // save new file
+        void save(const char* fileName, const char* user, const char* key); // save new file
 
         std::list<DBRecord*>* getRecords();
 
@@ -136,7 +138,9 @@ namespace SecureStore::Storage
         std::list<DBRecord*>* records;
 
         const char* fileName;
+        const char* user;
         const char* password;
+        unsigned char* _salt;
 
         unsigned char* format;
 

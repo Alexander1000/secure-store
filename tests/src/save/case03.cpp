@@ -7,12 +7,13 @@ namespace SecureStoreTest
 {
     BEGIN_TEST_CASE(testSaveDb_AppendData_case03, "save db - append data in storage")
         std::string fileName = "testSaveDb_AppendData_case03.xdb";
+        std::string login = "Konishua";
         std::string password = "bigOlolo5224^%@";
 
         // STEP: create empty file
 
         auto db = new SecureStore::Storage::DB;
-        db->save(fileName.c_str(), password.c_str());
+        db->save(fileName.c_str(), login.c_str(), password.c_str());
 
         // STEP: append record in empty file
 
@@ -36,7 +37,7 @@ namespace SecureStoreTest
 
         // STEP: open file and assert saved data in previous steps
 
-        int result = db->open(fileName.c_str(), password.c_str());
+        int result = db->open(fileName.c_str(), login.c_str(), password.c_str());
         CppUnitTest::assertEquals(t, 0, result);
 
         auto recs = db->getRecords();
@@ -80,7 +81,7 @@ namespace SecureStoreTest
 
         // STEP: open early saved file and assert result
 
-        result = db->open(fileName.c_str(), password.c_str());
+        result = db->open(fileName.c_str(), login.c_str(), password.c_str());
         CppUnitTest::assertEquals(t, 0, result);
 
         recs = db->getRecords();

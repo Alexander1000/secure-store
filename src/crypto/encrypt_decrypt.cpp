@@ -56,7 +56,7 @@ namespace SecureStore::Crypto
         buffer.write((char*) input->getData(), input->getLength());
         buffer.setPosition(0);
 
-        IOBuffer::IOMemoryBuffer outBuffer;
+        auto outBuffer = new IOBuffer::IOMemoryBuffer;
 
         while (true) {
             // Read in data in blocks until EOF. Update the ciphering with each read.
@@ -70,7 +70,7 @@ namespace SecureStore::Crypto
                 return nullptr;
             }
 
-            outBuffer.write((char*) out_buf, out_len);
+            outBuffer->write((char*) out_buf, out_len);
             if (num_bytes_read < BUFSIZE) {
                 /* Reached End of file */
                 break;
@@ -87,17 +87,21 @@ namespace SecureStore::Crypto
             return nullptr;
         }
 
-        outBuffer.write((char*) out_buf, out_len);
+        outBuffer->write((char*) out_buf, out_len);
         EVP_CIPHER_CTX_cleanup(ctx);
 
-        void* data = malloc(outBuffer.length() * sizeof(uint8_t));
-        memset(data, 0, sizeof(uint8_t) * outBuffer.length());
-        outBuffer.setPosition(0);
-        outBuffer.read((char*) data, outBuffer.length());
+        void* data = malloc(outBuffer->length() * sizeof(uint8_t));
+        memset(data, 0, sizeof(uint8_t) * outBuffer->length());
+        outBuffer->setPosition(0);
+        outBuffer->read((char*) data, outBuffer->length());
+
+        auto output = new SecureStore::DataPack(outBuffer->length(), data);
 
         free(in_buf);
         free(out_buf);
 
-        return new SecureStore::DataPack(outBuffer.length(), data);
+        delete outBuffer;
+
+        return output;
     }
 }

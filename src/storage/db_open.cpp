@@ -3,11 +3,12 @@
 
 namespace SecureStore::Storage
 {
-    int DB::open(const char* fileName, const char* password)
+    int DB::open(const char* fileName, const char* user, const char* password)
     {
         this->createEmpty();
 
         this->fileName = fileName;
+        this->user = user;
         this->password = password;
 
         IOBuffer::IOFileReader fileReader(fileName);
@@ -44,12 +45,9 @@ namespace SecureStore::Storage
         auto checksum = (uint8_t*) malloc(16 * sizeof(uint8_t));
         memcpy(checksum, headerData + 8, 16 * sizeof(uint8_t));
 
-        unsigned char iv[AES_BLOCK_SIZE];
-        readLength = fileReader.read((char*) iv, AES_BLOCK_SIZE);
-        if (readLength != AES_BLOCK_SIZE) {
-            // error: corrupted file
-            return 5;
-        }
+        this->_salt = (unsigned char*) malloc(sizeof(unsigned char) * DB_HEADER_SALT_BYTE_SIZE);
+        memset(this->_salt, 0, sizeof(unsigned char) * DB_HEADER_SALT_BYTE_SIZE);
+        memcpy(this->_salt, headerData + DB_HEADER_BYTE_SIZE - DB_HEADER_SALT_BYTE_SIZE, DB_HEADER_SALT_BYTE_SIZE * sizeof(unsigned char));
 
         // read data
         int ioBufferSize = 4096;
@@ -82,14 +80,18 @@ namespace SecureStore::Storage
             return 0;
         }
 
+        auto keyData = SecureStore::Crypto::prepare_credentials(this->user, this->password, (const char*) this->_salt);
+
         auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
+
         unsigned char key[AES_256_KEY_SIZE];
         memset(key, 0, sizeof(key));
-        int passwordLength = strlen(password);
-        if (passwordLength > 32) {
-            passwordLength = 32;
-        }
-        memcpy(key, password, passwordLength);
+        memcpy(key, keyData->getData(), AES_256_KEY_SIZE);
+
+        unsigned char iv[AES_BLOCK_SIZE];
+        memset(iv, 0, sizeof(iv));
+        memcpy(iv, (unsigned char*) keyData->getData() + AES_256_KEY_SIZE, AES_BLOCK_SIZE);
+
         params->key = key;
         params->iv = iv;
         params->encrypt = 0;

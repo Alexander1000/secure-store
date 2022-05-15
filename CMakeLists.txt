@@ -46,6 +46,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/crypto/encrypt_decrypt.cpp
     src/crypto/hash_md5.cpp
     src/crypto/hash_sha3_512.cpp
+    src/crypto/prepare_credentials.cpp
     src/data_pack.cpp
     src/storage/main.cpp
     src/storage/create_empty.cpp
@@ -114,6 +115,7 @@ set(SECURE_STORE_SOURCES_TEST
     tests/src/open/case02.cpp
     tests/src/open/case03.cpp
     tests/src/hash_tests/case01.cpp
+    tests/src/prepare_credentials/case01.cpp
 )
 
 include_directories(

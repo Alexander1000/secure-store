@@ -25,6 +25,8 @@ namespace SecureStore::Crypto
     uint8_t* hash_md5(SecureStore::DataPack* input);
 
     uint8_t* hash_sha3_512(SecureStore::DataPack* input);
+
+    SecureStore::DataPack* prepare_credentials(const char* user, const char* password, const char* salt);
 }
 
 #endif

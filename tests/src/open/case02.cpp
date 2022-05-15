@@ -7,10 +7,11 @@ namespace SecureStoreTest
 {
     BEGIN_TEST_CASE(testOpenDb_ThreeElementsAes256Cbc_case02, "open db file ciphered by aes 256 cbc with three records")
         std::string fileName = "tests/fixtures/3_elements_aes_256_cbc_ver_0_0.xdb";
+        std::string login = "Nagibator_3000";
         std::string key = "vmbzyirhkfs342iyvsmm5@%";
 
         SecureStore::Storage::DB db;
-        int result = db.open(fileName.c_str(), key.c_str());
+        int result = db.open(fileName.c_str(), login.c_str(), key.c_str());
         CppUnitTest::assertEquals(t, 0, result);
 
         auto recs = db.getRecords();
