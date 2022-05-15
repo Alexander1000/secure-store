@@ -8,10 +8,11 @@ namespace SecureStoreTest
     BEGIN_TEST_CASE(testOpenDb_RepeatableOpenDb_case3, "open db files repeatable")
         // open first file
         std::string fileName = "tests/fixtures/one_element_aes_256_cbc.xdb";
+        std::string user = "Nagibator_3000";
         std::string key = "Qwerty123!";
 
         SecureStore::Storage::DB db;
-        int result = db.open(fileName.c_str(), key.c_str());
+        int result = db.open(fileName.c_str(), user.c_str(), key.c_str());
         CppUnitTest::assertEquals(t, 0, result);
 
         auto recs = db.getRecords();
@@ -42,7 +43,7 @@ namespace SecureStoreTest
         std::string fileName2 = "tests/fixtures/3_elements_aes_256_cbc_ver_0_0.xdb";
         std::string key2 = "vmbzyirhkfs342iyvsmm5@%";
 
-        result = db.open(fileName2.c_str(), key2.c_str());
+        result = db.open(fileName2.c_str(), user.c_str(), key2.c_str());
         CppUnitTest::assertEquals(t, 0, result);
 
         recs = db.getRecords();
