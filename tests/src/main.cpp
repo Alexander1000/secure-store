@@ -19,6 +19,7 @@ int main() {
     testSuite.addTestCase(SecureStoreTest::testOpenDb_OneElementAes256Cbc_case01());
     testSuite.addTestCase(SecureStoreTest::testOpenDb_ThreeElementsAes256Cbc_case02());
     testSuite.addTestCase(SecureStoreTest::testOpenDb_RepeatableOpenDb_case3());
+    testSuite.addTestCase(SecureStoreTest::testOpenDb_OpenAfterRepeatableTriesWithWrongPassword_case4());
 
     // hash tests
     testSuite.addTestCase(SecureStoreTest::testHash_Data_case01());
