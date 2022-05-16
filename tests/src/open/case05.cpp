@@ -18,7 +18,7 @@ namespace SecureStoreTest
             sprintf(sPassword, "SuperPassword_%d", i);
 
             int result = db.open(fileName.c_str(), sUser, sPassword);
-            CppUnitTest::assertEquals(t, 6, result);
+            CppUnitTest::assertTrue(t, result == 6 || result == 7);
 
             free(sUser);
             free(sPassword);
