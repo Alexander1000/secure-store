@@ -15,7 +15,8 @@ namespace SecureStore::Application
         sprintf(sTitle, "Secure store: %s", this->_fileName);
         showFrame->SetTitle(_(sTitle));
         showFrame->renderStorageRecords();
-        this->getApp()->getMainFrame()->Close();
         showFrame->Show(true);
+        this->getApp()->SetTopWindow(showFrame);
+        this->getApp()->getMainFrame()->Close();
     }
 }
