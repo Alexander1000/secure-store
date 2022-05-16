@@ -77,10 +77,7 @@ namespace SecureStore::Crypto
             }
         }
 
-        /* Now cipher the final block and write it out to file */
         if (!EVP_CipherFinal_ex(ctx, out_buf, &out_len)) {
-            fprintf(stderr, "ERROR: EVP_CipherFinal_ex failed. OpenSSL error: %s\n",
-                    ERR_error_string(ERR_get_error(), NULL));
             EVP_CIPHER_CTX_cleanup(ctx);
             free(in_buf);
             free(out_buf);
