@@ -34,6 +34,7 @@ namespace SecureStoreTest
     CppUnitTest::TestCase* testOpenDb_ThreeElementsAes256Cbc_case02();
     CppUnitTest::TestCase* testOpenDb_RepeatableOpenDb_case3();
     CppUnitTest::TestCase* testOpenDb_OpenAfterRepeatableTriesWithWrongPassword_case4();
+    CppUnitTest::TestCase* testOpenDb_BruteForce1000Tries_case5();
 
     // hash tests
     CppUnitTest::TestCase* testHash_Data_case01();
