@@ -18,13 +18,15 @@ namespace SecureStore::Crypto
             passwordLength = 32;
         }
 
-        int baseStringLength = userLength + 1 + passwordLength + 1 + 32;
+        int halfSaltSize = SecureStore::Storage::DB_HEADER_SALT_BYTE_SIZE >> 1;
+        int baseStringLength = userLength + passwordLength + SecureStore::Storage::DB_HEADER_SALT_BYTE_SIZE + 1;
         char* baseString = (char*) malloc(baseStringLength);
         memset(baseString, 0, baseStringLength);
 
         memcpy(baseString, user, userLength);
-        memcpy(baseString + userLength, password, passwordLength);
-        memcpy(baseString + userLength + passwordLength, salt, 32);
+        memcpy(baseString + userLength, salt, halfSaltSize);
+        memcpy(baseString + userLength + halfSaltSize, password, passwordLength);
+        memcpy(baseString + userLength + halfSaltSize + passwordLength, salt + halfSaltSize, halfSaltSize);
 
         auto input = new SecureStore::DataPack(baseStringLength, baseString);
         auto hashData = hash_sha3_512(input);
