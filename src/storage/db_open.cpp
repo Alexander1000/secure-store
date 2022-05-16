@@ -7,9 +7,9 @@ namespace SecureStore::Storage
     {
         this->createEmpty();
 
-        this->fileName = fileName;
-        this->user = user;
-        this->password = password;
+        this->_fileName = fileName;
+        this->_user = user;
+        this->_password = password;
 
         IOBuffer::IOFileReader fileReader(fileName);
 
@@ -80,7 +80,7 @@ namespace SecureStore::Storage
             return 0;
         }
 
-        auto keyData = SecureStore::Crypto::prepare_credentials(this->user, this->password, (const char*) this->_salt);
+        auto keyData = SecureStore::Crypto::prepare_credentials(this->_user, this->_password, (const char*) this->_salt);
 
         auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
 

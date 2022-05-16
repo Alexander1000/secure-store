@@ -4,7 +4,7 @@ namespace SecureStore::Storage
 {
     int DB::save()
     {
-        this->save(this->fileName, this->user, this->password);
+        this->save(this->_fileName, this->_user, this->_password);
         return 0;
     }
 }

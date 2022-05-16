@@ -137,9 +137,9 @@ namespace SecureStore::Storage
     private:
         std::list<DBRecord*>* records;
 
-        const char* fileName;
-        const char* user;
-        const char* password;
+        const char* _fileName;
+        const char* _user;
+        const char* _password;
         unsigned char* _salt;
 
         unsigned char* format;

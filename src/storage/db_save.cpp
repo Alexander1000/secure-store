@@ -7,9 +7,9 @@ namespace SecureStore::Storage
 {
     void DB::save(const char* fileName, const char* user, const char* password)
     {
-        this->fileName = fileName;
-        this->user = user;
-        this->password = password;
+        this->_fileName = fileName;
+        this->_user = user;
+        this->_password = password;
 
         this->_salt = (unsigned char*) malloc(sizeof(unsigned char) * DB_HEADER_SALT_BYTE_SIZE);
         memset(this->_salt, 0, sizeof(unsigned char) * DB_HEADER_SALT_BYTE_SIZE);
@@ -35,7 +35,7 @@ namespace SecureStore::Storage
         memcpy(headerData + DB_HEADER_BYTE_SIZE - DB_HEADER_SALT_BYTE_SIZE, this->_salt, DB_HEADER_SALT_BYTE_SIZE * sizeof(unsigned char));
 
         if (this->cipherAlgorithm == CIPHER_ALGORITHM_AES_256_CBC) {
-            auto keyData = SecureStore::Crypto::prepare_credentials(this->user, this->password, (const char*) this->_salt);
+            auto keyData = SecureStore::Crypto::prepare_credentials(this->_user, this->_password, (const char*) this->_salt);
 
             auto params = (SecureStore::Crypto::cipher_params_t*) malloc(sizeof(SecureStore::Crypto::cipher_params_t));
 
@@ -58,7 +58,7 @@ namespace SecureStore::Storage
             }
 
             IOBuffer::IOFileWriter* fileWriter = nullptr;
-            fileWriter = new IOBuffer::IOFileWriter(this->fileName, "w+");
+            fileWriter = new IOBuffer::IOFileWriter(this->_fileName, "w+");
             fileWriter->write((char*) headerData, DB_HEADER_BYTE_SIZE);
             if (encryptedSecrets != nullptr) {
                 fileWriter->write((char *) encryptedSecrets->getData(), encryptedSecrets->getLength());
