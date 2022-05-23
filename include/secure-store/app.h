@@ -74,13 +74,13 @@ namespace SecureStore::Application
     public:
         MainFrame(const wxString &title, const wxPoint &pos, const wxSize &size, MainApp* app);
 
+    private:
         void OnFileBrowseClick(wxCommandEvent& event);
         void OnPasswordEnter(wxCommandEvent& event);
 
         void OnClickSelectDirectory(wxCommandEvent& event);
         void OnClickCreateFile(wxCommandEvent& event);
 
-    private:
         MainApp* app;
 
         wxNotebook* notebook;
@@ -122,7 +122,7 @@ namespace SecureStore::Application
 
         void setFileName(const char*);
 
-        DECLARE_EVENT_TABLE()
+        wxDECLARE_EVENT_TABLE();
     };
 
     DECLARE_APP(MainApp)
