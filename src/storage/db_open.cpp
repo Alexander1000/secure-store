@@ -5,7 +5,7 @@ namespace SecureStore::Storage
 {
     int DB::open(const char* fileName, const char* user, const char* password)
     {
-        DEBUG_MESSAGE("Storage::DB::Open <called>");
+        DEBUG_MESSAGE("Storage::DB::open <called>");
 
         this->createEmpty();
 
@@ -107,6 +107,7 @@ namespace SecureStore::Storage
 
         auto decrypted = SecureStore::Crypto::encrypt_decrypt(params, &dataPack);
         if (decrypted == nullptr) {
+            DEBUG_MESSAGE("error: Crypto::encrypt_decrypt returns nullptr");
             return 6;
         }
 
