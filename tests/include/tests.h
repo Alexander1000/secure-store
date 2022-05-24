@@ -50,6 +50,7 @@ namespace SecureStoreTest
 
     // prepare credentials
     CppUnitTest::TestCase* testPrepareCredentials_Data_case01();
+    CppUnitTest::TestCase* testPrepareCredentials_BruteForce_case02();
 }
 
 #endif

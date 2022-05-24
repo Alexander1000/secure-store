@@ -27,6 +27,7 @@ int main() {
 
     // prepare credentials
     testSuite.addTestCase(SecureStoreTest::testPrepareCredentials_Data_case01());
+    testSuite.addTestCase(SecureStoreTest::testPrepareCredentials_BruteForce_case02());
 
     testSuite.printTotal();
 

@@ -5,7 +5,7 @@
 #define VERSION_MINOR 0
 #define VERSION_PATCH 2
 
-#define DEBUG_LOGGER
+// #define DEBUG_LOGGER
 
 // type: stdout(1), file(2)
 #define DEBUG_LOGGER_TYPE 2

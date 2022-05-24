@@ -119,6 +119,7 @@ set(SECURE_STORE_SOURCES_TEST
     tests/src/open/case05.cpp
     tests/src/hash_tests/case01.cpp
     tests/src/prepare_credentials/case01.cpp
+    tests/src/prepare_credentials/case02.cpp
 )
 
 include_directories(
