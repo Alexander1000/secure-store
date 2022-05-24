@@ -13,12 +13,12 @@
         rusage* r = (rusage*) malloc(sizeof(rusage)); \
         memset(r, 0, sizeof(rusage)); \
         getrusage(RUSAGE_SELF, r); \
-        int startMinFlt = r->ru_minflt;
+        int __rusage_startMinFlt = r->ru_minflt;
 
 #define END_TEST_CASE() \
         getrusage(RUSAGE_SELF, r); \
         std::cout << std::endl; \
-        std::cout << "Page reclaims changed by: +" << (r->ru_minflt - startMinFlt) << std::endl; \
+        std::cout << "Page reclaims changed by: +" << (r->ru_minflt - __rusage_startMinFlt) << std::endl; \
         free(r); \
         t->finish(); \
         return t; \
