@@ -57,6 +57,7 @@ set(SECURE_STORE_SOURCES_SHARED
     src/storage/db_save.cpp
     src/storage/db_open.cpp
     src/storage/db_save_current.cpp
+    src/utils/log.cpp
 )
 
 set(SECURE_STORE_SOURCES
