@@ -1,6 +1,7 @@
 #include <secure-store.h>
 #include <iostream>
 #include <io-buffer.h>
+#include <unistd.h>
 
 namespace SecureStore
 {
@@ -28,7 +29,7 @@ namespace SecureStore
     {
         char* result = (char*) malloc(1024);
         memset(result, 0, 1024);
-        sprintf(result, "[debug] allocate memory \"%s\" (size: %d)\n", varName, length);
+        sprintf(result, "[debug] (pid: %d) allocate memory \"%s\" (size: %d)\n", getpid(), varName, length);
         this->fileWriter->write(result, strlen(result));
         free(result);
     }
@@ -37,15 +38,17 @@ namespace SecureStore
     {
         char* result = (char*) malloc(1024);
         memset(result, 0, 1024);
-        sprintf(result, "[debug] free memory \"%s\"\n", varName);
+        sprintf(result, "[debug] (pid: %d) free memory \"%s\"\n", getpid(), varName);
         this->fileWriter->write(result, strlen(result));
         free(result);
     }
 
     void FileLogger::debug(const char *data)
     {
-        this->fileWriter->write("[debug] message: ", 17);
-        this->fileWriter->write((char*) data, strlen(data));
-        this->fileWriter->write("\n", 1);
+        char* result = (char*) malloc(1024);
+        memset(result, 0, 1024);
+        sprintf(result, "[debug] (pid: %d) message: %s\n", getpid(), data);
+        this->fileWriter->write(result, strlen(result));
+        free(result);
     }
 }
