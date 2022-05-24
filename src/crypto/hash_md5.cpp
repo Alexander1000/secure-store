@@ -7,6 +7,8 @@ namespace SecureStore::Crypto
 {
     uint8_t* hash_md5(SecureStore::DataPack* input)
     {
+        DEBUG_MESSAGE("Crypto::hash_md5 <called>");
+
         EVP_MD_CTX *ctx;
         ctx = EVP_MD_CTX_new();
         EVP_DigestInit(ctx, EVP_md5());
