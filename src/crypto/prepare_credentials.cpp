@@ -8,6 +8,8 @@ namespace SecureStore::Crypto
 {
     SecureStore::DataPack* prepare_credentials(const char* user, const char* password, const char* salt)
     {
+        DEBUG_MESSAGE("Crypto::prepare_credentials <called>");
+
         int userLength = strlen(user);
         if (userLength > 32) {
             userLength = 32;
