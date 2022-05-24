@@ -11,4 +11,7 @@
     void* varName = malloc((length) * sizeof(unsigned char)); \
     memset(varName, 0, (length) * sizeof(unsigned char));
 
+#define MEMORY_FREE(varName) \
+    free(varName);
+
 #endif

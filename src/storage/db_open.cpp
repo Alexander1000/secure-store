@@ -48,6 +48,8 @@ namespace SecureStore::Storage
         memset(this->_salt, 0, sizeof(unsigned char) * DB_HEADER_SALT_BYTE_SIZE);
         memcpy(this->_salt, (char*) headerData + DB_HEADER_BYTE_SIZE - DB_HEADER_SALT_BYTE_SIZE, DB_HEADER_SALT_BYTE_SIZE * sizeof(unsigned char));
 
+        MEMORY_FREE(headerData);
+
         // read data
         int ioBufferSize = 4096;
         IOBuffer::IOMemoryBuffer memoryBuffer;
