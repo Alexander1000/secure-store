@@ -7,6 +7,10 @@
 
 #define DEBUG_LOGGER
 
+// type: stdout(1), file(2)
+#define DEBUG_LOGGER_TYPE 2
+#define DEBUG_LOGGER_FILE_PATH "./debug.log"
+
 #include <secure-store/app.h>
 #include <secure-store/app/add_secret.h>
 #include <secure-store/app/show.h>

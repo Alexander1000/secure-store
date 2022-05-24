@@ -4,6 +4,14 @@
 #include <io-buffer.h>
 #include <memory.h>
 
+#if DEBUG_LOGGER_TYPE == 1
+    #define LOGGER_INIT SecureStore::StdoutLogger log;
+#elif DEBUG_LOGGER_TYPE == 2
+    #define LOGGER_INIT SecureStore::FileLogger log(DEBUG_LOGGER_FILE_PATH);
+#else
+    #error Unsupported debug logger type
+#endif
+
 #ifdef DEBUG_LOGGER
 #define INIT_CHAR_STRING(str, length) \
     { \
