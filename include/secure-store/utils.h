@@ -3,7 +3,7 @@
 
 #include <memory.h>
 
-// #define DEBUG
+#define DEBUG
 
 #ifdef DEBUG
 #define INIT_CHAR_STRING(str, length) \
@@ -35,6 +35,10 @@
 
 #ifdef DEBUG
 #define MEMORY_FREE(varName) \
+    { \
+        SecureStore::StdoutLogger log; \
+        log.freeMemory(#varName); \
+    } \
     free(varName);
 #else
 #define MEMORY_FREE(varName) \
@@ -47,12 +51,14 @@ namespace SecureStore
     {
     public:
         virtual void allocateMemory(const char* varName, int length) = 0;
+        virtual void freeMemory(const char* varName) = 0;
     };
 
     class StdoutLogger : public Log
     {
     public:
         void allocateMemory(const char* varName, int length) override;
+        void freeMemory(const char* varName) override;
     };
 }
 
