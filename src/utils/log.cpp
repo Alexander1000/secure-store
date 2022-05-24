@@ -14,6 +14,11 @@ namespace SecureStore
         std::cout << "[debug] free memory \"" << varName << "\"" << std::endl;
     }
 
+    void StdoutLogger::debug(const char *data)
+    {
+        std::cout << "[debug] message: " << data << std::endl;
+    }
+
     FileLogger::FileLogger(const char *fileName)
     {
         this->fileWriter = new IOBuffer::IOFileWriter(fileName);
@@ -35,5 +40,12 @@ namespace SecureStore
         sprintf(result, "[debug] free memory \"%s\"\n", varName);
         this->fileWriter->write(result, strlen(result));
         free(result);
+    }
+
+    void FileLogger::debug(const char *data)
+    {
+        this->fileWriter->write("[debug] message: ", 17);
+        this->fileWriter->write((char*) data, strlen(data));
+        this->fileWriter->write("\n", 1);
     }
 }

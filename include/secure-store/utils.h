@@ -52,6 +52,16 @@
     free(varName);
 #endif
 
+#ifdef DEBUG_LOGGER
+#define DEBUG_MESSAGE(str) \
+    { \
+        LOGGER_INIT(); \
+        log.debug(str); \
+    }
+#else
+#define DEBUG_MESSAGE(str)
+#endif
+
 namespace SecureStore
 {
     class Log
@@ -59,6 +69,7 @@ namespace SecureStore
     public:
         virtual void allocateMemory(const char* varName, int length) = 0;
         virtual void freeMemory(const char* varName) = 0;
+        virtual void debug(const char* data) = 0;
     };
 
     class StdoutLogger : public Log
@@ -66,6 +77,7 @@ namespace SecureStore
     public:
         void allocateMemory(const char* varName, int length) override;
         void freeMemory(const char* varName) override;
+        void debug(const char* data) override;
     };
 
     class FileLogger : public Log
@@ -74,6 +86,7 @@ namespace SecureStore
         FileLogger(const char*);
         void allocateMemory(const char* varName, int length) override;
         void freeMemory(const char* varName) override;
+        void debug(const char* data) override;
 
     private:
         IOBuffer::IOFileWriter* fileWriter;

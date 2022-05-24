@@ -9,6 +9,8 @@ namespace SecureStore::Application
 {
     void MainFrame::OnPasswordEnter( wxCommandEvent& event )
     {
+        DEBUG_MESSAGE("Event: MainFrame::OnPasswordEnter");
+
         auto passwordValue = this->textPasswordCtrl->GetValue();
         if (passwordValue.empty()) {
             this->lbPasswordResult->SetLabel("Empty password");
