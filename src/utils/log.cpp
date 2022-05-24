@@ -7,17 +7,17 @@ namespace SecureStore
 {
     void StdoutLogger::allocateMemory(const char* varName, int length)
     {
-        std::cout << "[debug] allocate memory \"" << varName << "\" (size: " << length << " bytes)" << std::endl;
+        std::cout << "[debug] (pid: " << getpid() << ") allocate memory \"" << varName << "\" (size: " << length << " bytes)" << std::endl;
     }
 
     void StdoutLogger::freeMemory(const char *varName)
     {
-        std::cout << "[debug] free memory \"" << varName << "\"" << std::endl;
+        std::cout << "[debug] (pid: " << getpid() << ") free memory \"" << varName << "\"" << std::endl;
     }
 
     void StdoutLogger::debug(const char *data)
     {
-        std::cout << "[debug] message: " << data << std::endl;
+        std::cout << "[debug] (pid: " << getpid() << ") message: " << data << std::endl;
     }
 
     FileLogger::FileLogger(const char *fileName)
