@@ -20,8 +20,8 @@ namespace SecureStoreTest
             int result = db.open(fileName.c_str(), sUser, sPassword);
             CppUnitTest::assertTrue(t, result == 6 || result == 7);
 
-            free(sUser);
-            free(sPassword);
+            MEMORY_FREE(sUser);
+            MEMORY_FREE(sPassword);
         }
     END_TEST_CASE()
 }
