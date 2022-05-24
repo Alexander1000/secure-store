@@ -9,8 +9,8 @@
 #define INIT_CHAR_STRING(str, length) \
     { \
         SecureStore::StdoutLogger log; \
-        log.initCharString(#str, length); \
-    }                                 \
+        log.allocateMemory(#str, length); \
+    } \
     char* str = (char*) malloc((length) * sizeof(char));   \
     memset(str, 0, (length) * sizeof(char));
 #else
@@ -19,25 +19,40 @@
     memset(str, 0, (length) * sizeof(char));
 #endif
 
+#ifdef DEBUG
+#define MEMORY_ALLOC(varName, length) \
+    { \
+        SecureStore::StdoutLogger log; \
+        log.allocateMemory(#varName, length); \
+    } \
+    void* varName = malloc((length) * sizeof(unsigned char)); \
+    memset(varName, 0, (length) * sizeof(unsigned char));
+#else
 #define MEMORY_ALLOC(varName, length) \
     void* varName = malloc((length) * sizeof(unsigned char)); \
     memset(varName, 0, (length) * sizeof(unsigned char));
+#endif
 
+#ifdef DEBUG
 #define MEMORY_FREE(varName) \
     free(varName);
+#else
+#define MEMORY_FREE(varName) \
+    free(varName);
+#endif
 
 namespace SecureStore
 {
     class Log
     {
     public:
-        virtual void initCharString(const char* varName, int length) = 0;
+        virtual void allocateMemory(const char* varName, int length) = 0;
     };
 
     class StdoutLogger : public Log
     {
     public:
-        void initCharString(const char* varName, int length) override;
+        void allocateMemory(const char* varName, int length) override;
     };
 }
 
