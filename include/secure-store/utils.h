@@ -1,6 +1,7 @@
 #ifndef H_SECURE_STORE_UTILS
 #define H_SECURE_STORE_UTILS
 
+#include <io-buffer.h>
 #include <memory.h>
 
 #define DEBUG
@@ -59,6 +60,17 @@ namespace SecureStore
     public:
         void allocateMemory(const char* varName, int length) override;
         void freeMemory(const char* varName) override;
+    };
+
+    class FileLogger : public Log
+    {
+    public:
+        FileLogger(const char*);
+        void allocateMemory(const char* varName, int length) override;
+        void freeMemory(const char* varName) override;
+
+    private:
+        IOBuffer::IOFileWriter* fileWriter;
     };
 }
 
