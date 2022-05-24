@@ -149,14 +149,14 @@ namespace SecureStore::Storage
                 offset = 0;
             }
 
-            auto heapData = malloc(length * sizeof(uint8_t));
+            MEMORY_ALLOC(heapData, length);
             memcpy(heapData, (uint8_t*) decryptedData + heapOffsetStart + offset, length * sizeof(uint8_t));
 
             SecureStore::DataPack dataPackSecret(length, heapData);
             Record* record = unpack(&dataPackSecret);
             this->addRecord(record);
 
-            free(heapData);
+            MEMORY_FREE(heapData);
         }
 
         return 0;
