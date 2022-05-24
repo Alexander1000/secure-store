@@ -6,7 +6,7 @@
 namespace SecureStoreTest
 {
     BEGIN_TEST_CASE(testOpenDb_BruteForce1000Tries_case5, "Brute force 1000 tries attempts open secured file")
-        std::string fileName = "tests/fixtures/one_element_aes_256_cbc.xdb";
+        const char* fileName = "tests/fixtures/one_element_aes_256_cbc.xdb";
 
         SecureStore::Storage::DB db;
 
@@ -20,7 +20,7 @@ namespace SecureStoreTest
             INIT_CHAR_STRING(sPassword, 32);
             sprintf(sPassword, patternPassword, i);
 
-            int result = db.open(fileName.c_str(), sUser, sPassword);
+            int result = db.open(fileName, sUser, sPassword);
             CppUnitTest::assertTrue(t, result == 6 || result == 7);
 
             MEMORY_FREE(sUser);
