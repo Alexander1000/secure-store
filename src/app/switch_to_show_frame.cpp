@@ -9,6 +9,8 @@ namespace SecureStore::Application
 {
     void MainFrame::switchToShowFrame()
     {
+        DEBUG_MESSAGE("MainFrame::switchToShowFrame <called>");
+
         auto showFrame = (ShowFrame*) this->getApp()->getShowFrame();
         showFrame->storage = this->storage;
         INIT_CHAR_STRING(sTitle, 15 + strlen(this->_fileName)); // "Secure store: " // 14
