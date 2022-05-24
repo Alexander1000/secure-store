@@ -13,31 +13,35 @@ namespace SecureStore::Storage
         this->_user = user;
         this->_password = password;
 
-        IOBuffer::IOFileReader fileReader(fileName);
+        auto fileReader = new IOBuffer::IOFileReader(fileName);
 
         MEMORY_ALLOC(headerData, DB_HEADER_BYTE_SIZE);
 
-        int readLength = fileReader.read((char*) headerData, DB_HEADER_BYTE_SIZE);
+        int readLength = fileReader->read((char*) headerData, DB_HEADER_BYTE_SIZE);
         if (readLength < DB_HEADER_BYTE_SIZE) {
             // error: incorrect file length
+            delete fileReader;
             return 1;
         }
 
         memcpy(this->format, headerData, 3 * sizeof(uint8_t));
         if (std::string((char*) this->format) != "xdb") {
             // error: unsupported format
+            delete fileReader;
             return 2;
         }
 
         memcpy(&this->cipherAlgorithm, (char*) headerData + 3, sizeof(uint8_t));
         if (this->cipherAlgorithm != CIPHER_ALGORITHM_AES_256_CBC) {
             // error: unsupported cipher algorithm
+            delete fileReader;
             return 3;
         }
 
         memcpy(&this->verMajor, (char*) headerData + 4, sizeof(uint16_t));
         if (this->verMajor > VERSION_MAJOR) {
             // error: unsupported version
+            delete fileReader;
             return 4;
         }
 
@@ -61,7 +65,7 @@ namespace SecureStore::Storage
 
         do {
             memset(buffer, 0, ioBufferSize * sizeof(uint8_t));
-            readLength = fileReader.read(buffer, ioBufferSize);
+            readLength = fileReader->read(buffer, ioBufferSize);
 
             if (readLength == 0 && first) {
                 empty = true;
@@ -80,8 +84,11 @@ namespace SecureStore::Storage
         } while (true);
 
         if (empty) {
+            delete fileReader;
             return 0;
         }
+
+        delete fileReader;
 
         auto keyData = SecureStore::Crypto::prepare_credentials(this->_user, this->_password, (const char*) this->_salt);
 
