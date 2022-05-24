@@ -5,6 +5,8 @@ namespace SecureStore::Storage
 {
     int DB::open(const char* fileName, const char* user, const char* password)
     {
+        DEBUG_MESSAGE("Storage::DB::Open <called>");
+
         this->createEmpty();
 
         this->_fileName = fileName;

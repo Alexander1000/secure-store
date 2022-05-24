@@ -9,6 +9,8 @@ namespace SecureStore::Crypto
 {
     DataPack* encrypt_decrypt(cipher_params_t* params, SecureStore::DataPack* input)
     {
+        DEBUG_MESSAGE("Crypto::encrypt_decrypt <called>");
+
         /* Allow enough space in output buffer for additional block */
         int cipher_block_size = EVP_CIPHER_block_size(params->cipher_type);
 
