@@ -26,6 +26,9 @@ namespace SecureStoreTest
 
             MEMORY_FREE(sUser);
             MEMORY_FREE(sPassword);
+
+            free(data->getData());
+            delete data;
         }
 
         MEMORY_FREE(salt);
