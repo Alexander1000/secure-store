@@ -84,6 +84,7 @@ namespace SecureStore
     {
     public:
         FileLogger(const char*);
+        ~FileLogger();
         void allocateMemory(const char* varName, int length) override;
         void freeMemory(const char* varName) override;
         void debug(const char* data) override;

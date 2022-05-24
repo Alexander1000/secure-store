@@ -25,6 +25,11 @@ namespace SecureStore
         this->fileWriter = new IOBuffer::IOFileWriter(fileName);
     }
 
+    FileLogger::~FileLogger()
+    {
+        delete this->fileWriter;
+    }
+
     void FileLogger::allocateMemory(const char *varName, int length)
     {
         char* result = (char*) malloc(1024);
