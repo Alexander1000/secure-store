@@ -4,7 +4,7 @@
 #include <memory.h>
 
 #define INIT_CHAR_STRING(str, length) \
-    char* str = new char[(length)];   \
+    char* str = (char*) malloc((length) * sizeof(char));   \
     memset(str, 0, (length) * sizeof(char));
 
 #endif

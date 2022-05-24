@@ -31,7 +31,10 @@ namespace SecureStore::Application
         INIT_CHAR_STRING(sUserCopy, strlen(sUser) + 1);
         memcpy(sUserCopy, sUser, strlen(sUser));
 
-        int code = this->storage->open(this->_fileName, sUserCopy, sPasswordCopy);
+        INIT_CHAR_STRING(sFileName, strlen(this->_fileName) + 1);
+        memcpy(sFileName, this->_fileName, strlen(this->_fileName));
+
+        int code = this->storage->open(sFileName, sUserCopy, sPasswordCopy);
 
         if (code > 0) {
             this->lbPasswordResult->SetLabel("Error");
