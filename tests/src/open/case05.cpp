@@ -10,12 +10,15 @@ namespace SecureStoreTest
 
         SecureStore::Storage::DB db;
 
+        const char* patternUser = "Nagibator_%d";
+        const char* patternPassword = "SuperPassword_%d";
+
         for (int i = 0; i < 1000; i++) {
             INIT_CHAR_STRING(sUser, 32);
-            sprintf(sUser, "Nagibator_%d", i);
+            sprintf(sUser, patternUser, i);
 
             INIT_CHAR_STRING(sPassword, 32);
-            sprintf(sPassword, "SuperPassword_%d", i);
+            sprintf(sPassword, patternPassword, i);
 
             int result = db.open(fileName.c_str(), sUser, sPassword);
             CppUnitTest::assertTrue(t, result == 6 || result == 7);
