@@ -5,9 +5,9 @@
 #include <memory.h>
 
 #if DEBUG_LOGGER_TYPE == 1
-    #define LOGGER_INIT SecureStore::StdoutLogger log;
+    #define LOGGER_INIT() SecureStore::StdoutLogger log;
 #elif DEBUG_LOGGER_TYPE == 2
-    #define LOGGER_INIT SecureStore::FileLogger log(DEBUG_LOGGER_FILE_PATH);
+    #define LOGGER_INIT() SecureStore::FileLogger log(DEBUG_LOGGER_FILE_PATH);
 #else
     #error Unsupported debug logger type
 #endif
@@ -15,7 +15,7 @@
 #ifdef DEBUG_LOGGER
 #define INIT_CHAR_STRING(str, length) \
     { \
-        SecureStore::StdoutLogger log; \
+        LOGGER_INIT(); \
         log.allocateMemory(#str, length); \
     } \
     char* str = (char*) malloc((length) * sizeof(char));   \
@@ -29,7 +29,7 @@
 #ifdef DEBUG_LOGGER
 #define MEMORY_ALLOC(varName, length) \
     { \
-        SecureStore::StdoutLogger log; \
+        LOGGER_INIT(); \
         log.allocateMemory(#varName, length); \
     } \
     void* varName = malloc((length) * sizeof(unsigned char)); \
@@ -43,7 +43,7 @@
 #ifdef DEBUG_LOGGER
 #define MEMORY_FREE(varName) \
     { \
-        SecureStore::StdoutLogger log; \
+        LOGGER_INIT(); \
         log.freeMemory(#varName); \
     } \
     free(varName);
