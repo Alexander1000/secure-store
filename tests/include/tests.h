@@ -2,15 +2,23 @@
 #define H_SECURE_STORE_TESTS
 
 #include <cpp-unit-test.h>
+#include <sys/resource.h>
 
 #define BEGIN_TEST_CASE(method, description) \
     CppUnitTest::TestCase *method() \
     { \
         CppUnitTest::TestCase* t = nullptr; \
         t = new CppUnitTest::TestCase(description); \
-        t->printTitle();
+        t->printTitle(); \
+        rusage* r = (rusage*) malloc(sizeof(rusage)); \
+        getrusage(RUSAGE_SELF, r); \
+        int startMinFlt = r->ru_minflt;
 
 #define END_TEST_CASE() \
+        getrusage(RUSAGE_SELF, r); \
+        std::cout << std::endl; \
+        std::cout << "Page reclaims changed by: +" << (r->ru_minflt - startMinFlt) << std::endl; \
+        free(r); \
         t->finish(); \
         return t; \
     }
