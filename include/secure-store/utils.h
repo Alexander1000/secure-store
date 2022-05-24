@@ -4,9 +4,7 @@
 #include <io-buffer.h>
 #include <memory.h>
 
-#define DEBUG
-
-#ifdef DEBUG
+#ifdef DEBUG_LOGGER
 #define INIT_CHAR_STRING(str, length) \
     { \
         SecureStore::StdoutLogger log; \
@@ -20,7 +18,7 @@
     memset(str, 0, (length) * sizeof(char));
 #endif
 
-#ifdef DEBUG
+#ifdef DEBUG_LOGGER
 #define MEMORY_ALLOC(varName, length) \
     { \
         SecureStore::StdoutLogger log; \
@@ -34,7 +32,7 @@
     memset(varName, 0, (length) * sizeof(unsigned char));
 #endif
 
-#ifdef DEBUG
+#ifdef DEBUG_LOGGER
 #define MEMORY_FREE(varName) \
     { \
         SecureStore::StdoutLogger log; \

@@ -5,6 +5,8 @@
 #define VERSION_MINOR 0
 #define VERSION_PATCH 2
 
+#define DEBUG_LOGGER
+
 #include <secure-store/app.h>
 #include <secure-store/app/add_secret.h>
 #include <secure-store/app/show.h>
