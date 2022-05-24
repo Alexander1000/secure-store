@@ -13,10 +13,9 @@ namespace SecureStore::Crypto
         ctx = EVP_MD_CTX_new();
         EVP_DigestInit(ctx, EVP_sha3_512());
         EVP_DigestUpdate(ctx, input->getData(), input->getLength());
-        uint8_t* hash = (uint8_t*) malloc(64);
-        memset(hash, 0, 64);
+        MEMORY_ALLOC(hash, 64);
         unsigned int size;
-        EVP_DigestFinal(ctx, hash, &size);
-        return hash;
+        EVP_DigestFinal(ctx, (unsigned char*) hash, &size);
+        return (uint8_t*) hash;
     }
 }
