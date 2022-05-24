@@ -13,8 +13,7 @@ namespace SecureStore::Storage
 
         IOBuffer::IOFileReader fileReader(fileName);
 
-        auto headerData = (uint8_t*) malloc(DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
-        memset(headerData, 0, DB_HEADER_BYTE_SIZE * sizeof(uint8_t));
+        MEMORY_ALLOC(headerData, DB_HEADER_BYTE_SIZE);
 
         int readLength = fileReader.read((char*) headerData, DB_HEADER_BYTE_SIZE);
         if (readLength < DB_HEADER_BYTE_SIZE) {
@@ -28,26 +27,26 @@ namespace SecureStore::Storage
             return 2;
         }
 
-        memcpy(&this->cipherAlgorithm, headerData + 3, sizeof(uint8_t));
+        memcpy(&this->cipherAlgorithm, (char*) headerData + 3, sizeof(uint8_t));
         if (this->cipherAlgorithm != CIPHER_ALGORITHM_AES_256_CBC) {
             // error: unsupported cipher algorithm
             return 3;
         }
 
-        memcpy(&this->verMajor, headerData + 4, sizeof(uint16_t));
+        memcpy(&this->verMajor, (char*) headerData + 4, sizeof(uint16_t));
         if (this->verMajor > VERSION_MAJOR) {
             // error: unsupported version
             return 4;
         }
 
-        memcpy(&this->verMinor, headerData + 6, sizeof(uint16_t));
+        memcpy(&this->verMinor, (char*) headerData + 6, sizeof(uint16_t));
 
         auto checksum = (uint8_t*) malloc(16 * sizeof(uint8_t));
-        memcpy(checksum, headerData + 8, 16 * sizeof(uint8_t));
+        memcpy(checksum, (char*) headerData + 8, 16 * sizeof(uint8_t));
 
         this->_salt = (unsigned char*) malloc(sizeof(unsigned char) * DB_HEADER_SALT_BYTE_SIZE);
         memset(this->_salt, 0, sizeof(unsigned char) * DB_HEADER_SALT_BYTE_SIZE);
-        memcpy(this->_salt, headerData + DB_HEADER_BYTE_SIZE - DB_HEADER_SALT_BYTE_SIZE, DB_HEADER_SALT_BYTE_SIZE * sizeof(unsigned char));
+        memcpy(this->_salt, (char*) headerData + DB_HEADER_BYTE_SIZE - DB_HEADER_SALT_BYTE_SIZE, DB_HEADER_SALT_BYTE_SIZE * sizeof(unsigned char));
 
         // read data
         int ioBufferSize = 4096;
