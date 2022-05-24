@@ -11,6 +11,7 @@
         t = new CppUnitTest::TestCase(description); \
         t->printTitle(); \
         rusage* r = (rusage*) malloc(sizeof(rusage)); \
+        memset(r, 0, sizeof(rusage)); \
         getrusage(RUSAGE_SELF, r); \
         int startMinFlt = r->ru_minflt;
 
