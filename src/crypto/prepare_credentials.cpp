@@ -22,13 +22,13 @@ namespace SecureStore::Crypto
 
         int halfSaltSize = SecureStore::Storage::DB_HEADER_SALT_BYTE_SIZE >> 1;
         int baseStringLength = userLength + passwordLength + SecureStore::Storage::DB_HEADER_SALT_BYTE_SIZE + 1;
-        char* baseString = (char*) malloc(baseStringLength);
+        MEMORY_ALLOC(baseString, baseStringLength);
         memset(baseString, 0, baseStringLength);
 
         memcpy(baseString, user, userLength);
-        memcpy(baseString + userLength, salt, halfSaltSize);
-        memcpy(baseString + userLength + halfSaltSize, password, passwordLength);
-        memcpy(baseString + userLength + halfSaltSize + passwordLength, salt + halfSaltSize, halfSaltSize);
+        memcpy((unsigned char*) baseString + userLength, salt, halfSaltSize);
+        memcpy((unsigned char*) baseString + userLength + halfSaltSize, password, passwordLength);
+        memcpy((unsigned char*) baseString + userLength + halfSaltSize + passwordLength, salt + halfSaltSize, halfSaltSize);
 
         auto input = new SecureStore::DataPack(baseStringLength, baseString);
         auto hashData = hash_sha3_512(input);
@@ -39,6 +39,12 @@ namespace SecureStore::Crypto
         params->encrypt = 1;
         params->cipher_type = EVP_aes_256_cbc();
 
-        return encrypt_decrypt(params, input);
+        auto output = encrypt_decrypt(params, input);
+
+        free(params);
+        delete input;
+        MEMORY_FREE(baseString);
+
+        return output;
     }
 }
